@@ -84,19 +84,22 @@ if(isset ($_POST['submit'])){
     // anti-flood protection
     if (!empty($_SESSION['antiflood'])){
         $seconde = 30; // 30 seconds delay
-        $tijd = time() - $_SESSION['antiflood'];
-        if($tijd < $seconde)
+        $tijd = time() - $_SESSION['antiflood'];}
+        if($tijd < $seconde){
             $antiflood = 1;
-    }
+        }
+        else{
+        	$antiflood = 0;
+        }
  	if ($antiflood == "") {
 	$_SESSION['antiflood'] = time();
 	mail($sendto, $subject, $message, $headers);
   	}
  	else
   	{
-        echo"U kunt eens per 30 seconden een bericht verzenden."; 
+         echo"U kunt eens per 30 seconden een bericht verzenden."; 
   }  
-} 
+}
 ?>
                 </div>
 
