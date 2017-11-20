@@ -12,16 +12,32 @@
     <!-- Bootstrap core CSS -->
     <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="offcanvas.css" rel="stylesheet">
+    <!-- Custom styles for this project -->
+    <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
+  <div class="col-12">
+    <div class="top-nav row"> 
+      <div id="logo" class="col-md-3"> 
+        <a class="navbar-brand" href="#">
+          <img src="./img/svhtc.png">
+        </a>
+      </div>
+      <div id="sponsors" class="col-md-3">
 
-    <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
+      </div>
+      <div id="img" class="col-md-6">
+        <img height="200" src="./img/beachsoccer.jpg">
+      </div>
+
+    </div>
+  </div>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Navbar</a>
+      
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
@@ -44,8 +60,8 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="text" placeholder="Zoek">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoeken</button>
         </form>
       </div>
     </nav>
