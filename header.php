@@ -23,10 +23,9 @@
           <img src="./img/svhtc.png">
         </a>
       </div>
-      <div id="sponsors" class="col-md-3">
-
+      <div id="sponsors" class="col-md-4">
       </div>
-      <div id="img" class="col-md-6">
+      <div id="img" class="col-md-5">
         <img height="200" src="./img/beachsoccer.jpg">
       </div>
 
@@ -45,10 +44,13 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">Media</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="#">Agenda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -57,6 +59,12 @@
               <a class="dropdown-item" href="#">Another action</a>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bestuur</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

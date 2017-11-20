@@ -9,3 +9,12 @@
 }
 #img {
 }
+@media screen and (max-width: 991px) {
+	.top-nav {
+		display: none;
+		margin:0;
+	}
+	.navbar {
+		min-height: 50px
+	}
+}
