@@ -1,6 +1,9 @@
 <?php 
 include 'header.php';
 ?>
+<div class="container">
+	<h2>Contactformulier</h2>
+	<p>
 <form>
 <p>Naam: </p>
 <input name="Naam" type="text">
