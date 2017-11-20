@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include 'header.php';
 ?>
 <div class="container">
@@ -67,7 +68,7 @@ include 'header.php';
 </form> 
 <?php
 if(isset ($_POST['submit'])){
-	session_start();
+	
 	$from=$_POST['email'];
 	$voornaam=$_POST['voornaam'];
 	$achternaam=$_POST['achternaam'];
@@ -96,8 +97,6 @@ if(isset ($_POST['submit'])){
         echo"U kunt eens per 30 seconden een bericht verzenden."; 
   }  
 } 
-
-}
 ?>
                 </div>
 
