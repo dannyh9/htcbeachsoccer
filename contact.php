@@ -9,6 +9,7 @@ include 'header.php';
                 <div class="col-lg-8 col-lg-offset-2">
 
                     <h1>Contactformulier</a></h1>
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
 <form id="contact-form" method="post" action="contact.php" role="form">	
 
     <div class="messages"></div>
@@ -55,50 +56,62 @@ include 'header.php';
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
+                        <div class="g-recaptcha" data-sitekey="6LcxpDkUAAAAAB4tNZF46kkKJfK850_fu9fXCQt4" data-callback="enableBtn"></div>
+                        <script type="text/javascript"
+                    src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>">
+                        
+        </script>
             <div class="col-md-12">
-                <input type="submit" name="submit" class="btn btn-success btn-send" value="Verzend bericht">
-            </div>
-        </div>
+                <input type="submit" name="submit" id="submit" class="btn btn-success btn-send" value="Verzend bericht">
+       </div>
+        
+<script>
+document.getElementById("submit").disabled = true;
+             function enableBtn(){
+    document.getElementById("submit").disabled = false;
+   }
+</script>
         <div class="row">
             <div class="col-md-12">
                 <p class="text-muted"><strong>*</strong> Deze velden zijn verplicht.</p>
             </div>
         </div>
     </div>
+
 </form> 
 <?php
-if(isset ($_POST['submit'])){
+	if(isset ($_POST['submit'])){
 	
-	$from=$_POST['email'];
-	$voornaam=$_POST['voornaam'];
-	$achternaam=$_POST['achternaam'];
-	$name="". $voornaam ." " . $achternaam .""; 
-	$sendto="kevinhendriks69@gmail.com";
-	$message=$_POST['bericht'];
-	$message= str_replace("\n.", "\n..", $message);
-	$message= wordwrap($message, 70, "\r\n");
-	$subject="Nieuw ingevuld contactformulier.";
-	$headers= "Antwoord naar: " . $from . "\r\n";
-	$headers .= "From: " . $from ."\r\n";
+		$from=$_POST['email'];
+		$voornaam=$_POST['voornaam'];
+		$achternaam=$_POST['achternaam'];
+		$name="". $voornaam ." " . $achternaam .""; 
+		$sendto="kevinhendriks69@gmail.com";
+		$message=$_POST['bericht'];
+		$message= str_replace("\n.", "\n..", $message);
+		$message= wordwrap($message, 70, "\r\n");
+		$subject="Nieuw ingevuld contactformulier.";
+		$headers= "Antwoord naar: " . $from . "\r\n";
+		$headers .= "From: " . $from ."\r\n";
 	
-    // anti-flood protection
-    if (!empty($_SESSION['antiflood'])){
-        $seconde = 30; // 30 seconds delay
-        $tijd = time() - $_SESSION['antiflood'];}
-        if($tijd < $seconde){
-            $antiflood = 1;
-        }
-        else{
-        	$antiflood = 0;
-        }
- 	if ($antiflood == "") {
-	$_SESSION['antiflood'] = time();
-	mail($sendto, $subject, $message, $headers);
-  	}
- 	else
-  	{
-         echo"U kunt eens per 30 seconden een bericht verzenden."; 
-  }  
+	    // anti-flood protection
+	 //   if (!empty($_SESSION['antiflood'])){
+	 //       $seconde = 30; // 30 seconds delay
+	 //       $tijd = time() - $_SESSION['antiflood'];}
+	//	        if($tijd < $seconde){
+	//	            $antiflood = 1;
+	//	        }
+	//	        else{
+	//	        	$antiflood = 0;
+	//	        }
+	 //	if ($antiflood == "") {
+	//	$_SESSION['antiflood'] = time();
+		mail($sendto, $subject, $message, $headers);
+	//  	}
+	// 	else
+	 // 	{
+	 //        echo"U kunt eens per 30 seconden een bericht verzenden."; 
+	 // }  
 }
 ?>
                 </div>
