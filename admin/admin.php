@@ -6,7 +6,7 @@
   <link href="./css/admin.css" rel="stylesheet">
 </head>
 <body>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 menu ">
@@ -19,7 +19,7 @@
                       <ul id="menu-content" class="menu-content collapse out">
                           <li>
                             <a href="#">
-                            <i class="fa fa-dashboard fa-lg"></i> Home
+                            <i class="fa fa-home   fa-lg"></i> Home
                             </a>
                           </li>
           
@@ -33,7 +33,7 @@
           
           
                           <li data-toggle="collapse" data-target="#Personen" class="collapsed">
-                            <a href="#"><i class="fa fa-globe fa-lg"></i> Personen <span class="arrow"></span></a>
+                            <a href="#"><i class="fa fa-address-book fa-lg"></i> Personen <span class="arrow"></span></a>
                           </li>  
                           <ul class="sub-menu collapse" id="Personen">
                             <li>Personen Beheren</li>
@@ -42,7 +42,7 @@
           
           
                           <li data-toggle="collapse" data-target="#Account" class="collapsed">
-                            <a href="#"><i class="fa fa-car fa-lg"></i> Accounts <span class="arrow"></span></a>
+                            <a href="#"><i class="fa fa-user-circle-o fa-lg"></i> Accounts <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Account">
                             <li>Accounts Beheren</li>
@@ -51,7 +51,7 @@
 
 
                           <li data-toggle="collapse" data-target="#Team" class="collapsed">
-                            <a href="#"><i class="fa fa-car fa-lg"></i> Teams <span class="arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-lg"></i> Teams <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Team">
                             <li>Teams Beheren</li>
@@ -60,7 +60,7 @@
 
 
                           <li data-toggle="collapse" data-target="#Nieuws" class="collapsed">
-                            <a href="#"><i class="fa fa-car fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
+                            <a href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Nieuws">
                             <li>Nieuwsartikelen Beheren</li>
@@ -69,7 +69,7 @@
                           
 
                           <li data-toggle="collapse" data-target="#Media" class="collapsed">
-                            <a href="#"><i class="fa fa-car fa-lg"></i> Media <span class="arrow"></span></a>
+                            <a href="#"><i class="fa fa-picture-o fa-lg"></i> Media <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Media">
                             <li>Media Beheren</li>
@@ -85,7 +85,7 @@
           
                            <li>
                             <a href="admin.php?page=contact">
-                            <i class="fa fa-envelope-o fa-lg"></i> Verstuurde contact formulieren
+                            <i class="fa fa-envelope fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
                       </ul>
@@ -98,6 +98,7 @@
           $page = $_GET['page'];
           if ($page = "contact") {
               //laad contact formulier in
+            echo "contact pagina";
           }
        } else { 
           //laad home pagina in
