@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-sm-3 menu ">
           <div class="nav-side-menu">
-              <div class="brand">Brand Logo</div>
+              <div class="brand">Welkom User</div>
               <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
             
                   <div class="menu-list">
@@ -19,7 +19,7 @@
                       <ul id="menu-content" class="menu-content collapse out">
                           <li>
                             <a href="#">
-                            <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                            <i class="fa fa-dashboard fa-lg"></i> Home
                             </a>
                           </li>
           
@@ -59,7 +59,7 @@
                             </li>
           
                            <li>
-                            <a href="">
+                            <a href="admin.php?page=contact">
                             <i class="fa fa-envelope-o fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
@@ -68,15 +68,29 @@
           </div>
       </div>
       <div class="col-sm-9 content">
-                          <h1>Welcome To Dashboard Panel :)</h1>
-                          <p>
-                              this  is test text.this  is test text.this  is test text.this  is test text.
-                              this  is test text.this  is test text.this  is test text.this  is test text.
-                              this  is test text.this  is test text.this  is test text.this  is test text.
-                              this  is test text.this  is test text.this  is test text.this  is test text.
-                              this  is test text.this  is test text.
-                          </p>
-                      </div>
+      <?php 
+       if (isset($_GET['page'])) {
+          $page = $_GET['page'];
+          if ($page = "contact") {
+              //laad contact formulier in
+          }
+       } else { 
+          //laad home pagina in
+        ?>
+         <h1>Welcome To Dashboard Panel :)</h1>
+            <p>
+                this  is test text.this  is test text.this  is test text.this  is test text.
+                this  is test text.this  is test text.this  is test text.this  is test text.
+                this  is test text.this  is test text.this  is test text.this  is test text.
+                this  is test text.this  is test text.this  is test text.this  is test text.
+                this  is test text.this  is test text.
+            </p>
+       <?php
+
+       }
+      ?>
+                         
+        </div>
       </div>
   </div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
