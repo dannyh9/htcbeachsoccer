@@ -5,35 +5,20 @@
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="css/formulier.css">
 <script src="js/uploadknopscript.js"></script>
+
+<script>tinymce.init((selector:'textarea'));</script>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
     <form method="post">
      <div class="form-group ">
-      <label class="control-label " for="name">
-       Auteur
-         <span class="asteriskField">
-        *
-      </label>
-      <input class="form-control" id="name" name="name" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="email">
-       Datum
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <input class="form-control" id="email" name="email" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="subject">
+      <label class="control-label " for="titel">
        Titel
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="subject" name="subject" type="text"/>
+      <input class="form-control" id="titel" name="titel" type="text"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="message">
