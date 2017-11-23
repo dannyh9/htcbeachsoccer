@@ -1,12 +1,16 @@
 
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-
+ <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+<script>
+  tinymce.init({
+    selector: '.tinymce'
+  });
+  </script>
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="css/formulier.css">
 <script src="js/uploadknopscript.js"></script>
 
-<script>tinymce.init((selector:'textarea'));</script>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
@@ -26,7 +30,7 @@
          <span class="asteriskField">
         *
       </label>
-      <textarea class="form-control" cols="40" id="message" name="message" rows="10"></textarea>
+      <textarea class="form-control tinymce" cols="40" id="message" name="message" rows="10"></textarea>
      </div>
      <div class="form-group">
           <div class="form-group">
