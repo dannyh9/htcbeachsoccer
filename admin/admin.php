@@ -32,23 +32,48 @@
                           </ul>
           
           
-                          <li data-toggle="collapse" data-target="#service" class="collapsed">
-                            <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                          <li data-toggle="collapse" data-target="#Personen" class="collapsed">
+                            <a href="#"><i class="fa fa-globe fa-lg"></i> Personen <span class="arrow"></span></a>
                           </li>  
-                          <ul class="sub-menu collapse" id="service">
-                            <li>New Service 1</li>
-                            <li>New Service 2</li>
-                            <li>New Service 3</li>
+                          <ul class="sub-menu collapse" id="Personen">
+                            <li>Personen Beheren</li>
+                            <li>Personen Aanmaken</li>
                           </ul>
           
           
-                          <li data-toggle="collapse" data-target="#new" class="collapsed">
-                            <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                          <li data-toggle="collapse" data-target="#Account" class="collapsed">
+                            <a href="#"><i class="fa fa-car fa-lg"></i> Accounts <span class="arrow"></span></a>
                           </li>
-                          <ul class="sub-menu collapse" id="new">
-                            <li>New New 1</li>
-                            <li>New New 2</li>
-                            <li>New New 3</li>
+                          <ul class="sub-menu collapse" id="Account">
+                            <li>Accounts Beheren</li>
+                            <li>Accounts Aanmaken</li>
+                          </ul>
+
+
+                          <li data-toggle="collapse" data-target="#Team" class="collapsed">
+                            <a href="#"><i class="fa fa-car fa-lg"></i> Teams <span class="arrow"></span></a>
+                          </li>
+                          <ul class="sub-menu collapse" id="Team">
+                            <li>Teams Beheren</li>
+                            <li>Team Aanmaken</li>
+                          </ul>
+
+
+                          <li data-toggle="collapse" data-target="#Nieuws" class="collapsed">
+                            <a href="#"><i class="fa fa-car fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
+                          </li>
+                          <ul class="sub-menu collapse" id="Nieuws">
+                            <li>Nieuwsartikelen Beheren</li>
+                            <li>Nieuwsartikelen Aanmaken</li>
+                          </ul>
+                          
+
+                          <li data-toggle="collapse" data-target="#Media" class="collapsed">
+                            <a href="#"><i class="fa fa-car fa-lg"></i> Media <span class="arrow"></span></a>
+                          </li>
+                          <ul class="sub-menu collapse" id="Media">
+                            <li>Media Beheren</li>
+                            <li>Media Uploaden</li>
                           </ul>
           
           
