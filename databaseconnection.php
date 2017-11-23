@@ -1,9 +1,12 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
 
-$db ="mysql:host=localhost;dbname=htc;port=80";
-$user = "root";
-$pass = "";
-$pdo = new PDO($db, $user, $pass);
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, 'htc');
 
-
-?>
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}?> 
