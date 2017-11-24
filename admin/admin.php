@@ -88,6 +88,12 @@
                             <i class="fa fa-envelope fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
+
+                          <li>
+                            <a href="">
+                            <i class="fa fa-sign-out fa-lg"></i> Uitloggen
+                            </a>
+                          </li>
                       </ul>
                </div>
           </div>
