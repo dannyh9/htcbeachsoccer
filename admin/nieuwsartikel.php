@@ -9,7 +9,7 @@
   });
   </script>
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-<link rel="stylesheet" type="text/css" href="css/formulier.css">
+<link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
 
 <div class="bootstrap-iso">
