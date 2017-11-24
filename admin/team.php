@@ -1,14 +1,6 @@
-
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
- <script src="tinymce/plugin/tinymce.min.js"></script>
-<script>
-  tinymce.init({
-    selector: '.tinymce',
-    language: 'nl'
-  });
-  </script>
-<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+ <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="css/formulier.css">
 <script src="js/uploadknopscript.js"></script>
 
@@ -18,30 +10,30 @@
    <div class="col-md-6 col-sm-6 col-xs-12">
     <form method="post">
      <div class="form-group ">
-      <label class="control-label " for="titel">
-       Titel
+      <label class="control-label " for="team naam">
+       Team naam
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="team naam" name="team naam" type="text"/>
      </div>
      <div class="form-group ">
-      <label class="control-label " for="message">
-       Inhoud
+      <label class="control-label " for="klasse">
+       Speelt Klasse
          <span class="asteriskField">
         *
       </label>
-      <textarea class="form-control tinymce" cols="40" id="message" name="message" rows="10"></textarea>
+      <input class="form-control" id="klasse" name="klasse" type="text"/>
      </div>
-     <div class="form-group">
+          <div class="form-group">
           <div class="form-group">
         <label>
-        Upload foto
+        Upload team foto
       </label>
         <div class="input-group">
             <span class="input-group-btn">
                 <span class="btn btn-default btn-file">
-                    Zoeken… <input type="file" id="imgInp">
+                    Zoeken… <input type="file" id="teamimgInp">
                 </span>
             </span>
             <input type="text" class="form-control" readonly>
