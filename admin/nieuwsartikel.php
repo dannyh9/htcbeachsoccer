@@ -62,6 +62,6 @@
 $titel=$_POST('titel');
 $inhoud=$_POST('message');
 $username="Kevin";
-$contactquery = INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username');
+$contactquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
 $conn->query($contactquery);
 ?>
