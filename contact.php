@@ -109,11 +109,9 @@ include 'databaseconnection.php';
         $message= wordwrap($message, 70, "\r\n");
         $subject="Nieuw ingevuld contactformulier.";
         $headers= "Antwoord naar: " . $from . "\r\n";
-        $headers .= "Van: " . $from ."\r\n";
+        $headers .= "From: " . $from ."\r\n";
         $headers .= "Telefoonnummer: " . $phone . "\r\n";
         $headersfrom="";    
-        var_dump($from);
-        var_dump($message);
         // anti-flood protection
         if (!empty($_SESSION['antiflood'])){
             $seconde = 30; // 30 seconds delay
