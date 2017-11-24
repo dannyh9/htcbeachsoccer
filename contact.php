@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include 'header.php';
+include 'databaseconnection.php';
 ?>
 <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -101,14 +102,18 @@ include 'header.php';
         $voornaam=$_POST['voornaam'];
         $achternaam=$_POST['achternaam'];
         $name="". $voornaam ." " . $achternaam .""; 
+        $phone=$_POST['telefoonnummer'];
         $sendto="kevinhendriks69@gmail.com";
         $message=$_POST['bericht'];
         $message= str_replace("\n.", "\n..", $message);
         $message= wordwrap($message, 70, "\r\n");
         $subject="Nieuw ingevuld contactformulier.";
         $headers= "Antwoord naar: " . $from . "\r\n";
-        $headers .= "From: " . $from ."\r\n";
-    
+        $headers .= "Van: " . $from ."\r\n";
+        $headers .= "Telefoonnummer: " . $phone . "\r\n";
+        $headersfrom="";    
+        var_dump($from);
+        var_dump($message);
         // anti-flood protection
         if (!empty($_SESSION['antiflood'])){
             $seconde = 30; // 30 seconds delay
@@ -121,7 +126,10 @@ include 'header.php';
               }
         if ($antiflood == "") {
             $_SESSION['antiflood'] = time();
-            mail($sendto, $subject, $message, $headers);
+            @mail($from, "Uw bericht is verzonden.", $message, $headersfrom);
+            @mail($sendto, $subject, $message, $headers);
+            $contactquery = "INSERT INTO `contactformulier`(`Email`, `Naam`, `Telefoonnummer`, `Bericht`) VALUES ('$from','$name','$phone','$message')";
+            $conn->query($contactquery);
           }
       else
          {
@@ -132,3 +140,4 @@ include 'header.php';
 <?php 
 include 'footer.php';
 ?>
+
