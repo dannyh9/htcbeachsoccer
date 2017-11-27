@@ -38,7 +38,7 @@ include 'databaseconnection.php';
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_email">Email*</label>
+                    <label for="form_email">E-mail*</label>
                     <input id="form_email" type="email" name="email" class="form-control" placeholder="Vul hier uw emailadres in. *" required="required" data-error="Vul een geldig emailadres in.">
                     <div class="help-block with-errors"></div>
                 </div>
@@ -74,6 +74,7 @@ include 'databaseconnection.php';
         </div>
               <input type="submit" name="submit" id="submit" class="btn btn-success btn-send" value="Verzend bericht" disabled>
        </div>
+
         
 <script>
     $( document ).ready(function() {
@@ -95,6 +96,8 @@ include 'databaseconnection.php';
         </div>
     </div>
 </form> 
+</div>
+
 <?php
     if(isset ($_POST['submit'])){
     
@@ -136,7 +139,7 @@ include 'databaseconnection.php';
      }  
 }
 ?>
-</div>
+
 
 <?php 
 include 'footer.php';
