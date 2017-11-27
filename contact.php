@@ -128,6 +128,7 @@ include 'databaseconnection.php';
             @mail($sendto, $subject, $message, $headers);
             $contactquery = "INSERT INTO `contactformulier`(`Email`, `Naam`, `Telefoonnummer`, `Bericht`) VALUES ('$from','$name','$phone','$message')";
             $conn->query($contactquery);
+            echo "Uw bericht is verzonden.";
           }
       else
          {
@@ -135,6 +136,8 @@ include 'databaseconnection.php';
      }  
 }
 ?>
+</div>
+
 <?php 
 include 'footer.php';
 ?>
