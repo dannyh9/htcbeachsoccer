@@ -15,7 +15,7 @@ include 'databaseconnection.php';
                     <h1>Contactformulier</a></h1>
 <form id="contact-form" method="post" action="contact.php" role="form">	
 
-    <div class="messages"></div>
+    <div class="messages" style="font-size:30px"></div>
 
     <div class="controls">
 
@@ -72,7 +72,7 @@ include 'databaseconnection.php';
                 </div>
             </div>
         </div>
-              <input type="submit" name="submit" id="submit" class="btn btn-success btn-send" value="Verzend bericht" disabled>
+              <input type="submit" name="submit" id="submit" class="btn btn-success btn-send" value="Verzenden" disabled>
        </div>
 
         
@@ -131,11 +131,19 @@ include 'databaseconnection.php';
             @mail($sendto, $subject, $message, $headers);
             $contactquery = "INSERT INTO `contactformulier`(`Email`, `Naam`, `Telefoonnummer`, `Bericht`) VALUES ('$from','$name','$phone','$message')";
             $conn->query($contactquery);
-            echo "Uw bericht is verzonden.";
+            ?>
+            <script>
+            $(".messages").text("Uw formulier is verzonden.");
+            </script>
+            <?php
           }
       else
          {
-            echo"U kunt eens per 30 seconden een bericht verzenden."; 
+            ?>
+            <script>
+            $(".messages").text("U kunt eens per 30 seconden een bericht verzenden.");
+            </script>
+            <?php
      }  
 }
 ?>
