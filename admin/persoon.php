@@ -81,6 +81,6 @@ $achternaam=$_POST['achternaam'];
 $email=$_POST['email'];
 $functie=$_POST['functie'];
 $username="Kevin";
-$persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie',)";
+$persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
 $conn->query($persoonquery);}
 ?>

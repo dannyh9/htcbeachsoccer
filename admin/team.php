@@ -15,7 +15,7 @@
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="team naam" name="team naam" type="text" placeholder="Vul hier de teamnaam in *"/>
+      <input class="form-control" id="teamnaam" name="teamnaam" type="text" placeholder="Vul hier de teamnaam in *"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="klasse">
@@ -50,3 +50,11 @@
   </div>
  </div>
 </div>
+<?php 
+if (isset($_POST['submit'])){
+$teamnaam=$_POST['teamnaam'];
+$klasse=$_POST['klasse'];
+$username="Kevin";
+$teamquery = "INSERT INTO `team`(`teamnaam`, `klasse`) VALUES ('$teamnaam', '$klasse')";
+$conn->query($teamquery);}
+?>
