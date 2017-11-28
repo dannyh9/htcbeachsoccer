@@ -1,3 +1,5 @@
+
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <?php
 include '../databaseconnection.php';
 
@@ -54,7 +56,7 @@ if ($result->num_rows === 0) {
 if($result->num_rows > 0){ 
         echo "meer dan 0 resultaat";
 ?>
-        <table>
+        <table class="table table-hover">
            <thead>
               <th>Naam</th>
               <th>Email</th>
@@ -66,7 +68,8 @@ if($result->num_rows > 0){
                         //var_dump($row);
                         $date = substr($row["Timestamp"],0,16);
                 ?>
-                        <tr>
+                        <tr data-id="<?php echo $row['FormID'];?>">
+                            <a href="test.php">
                             <td>
                                 <?php echo $row['Naam'];?>
                             </td>
@@ -76,6 +79,7 @@ if($result->num_rows > 0){
                             <td>
                                 <?php echo $date;?>
                             </td>
+                        </a>
                         </tr>
                         <?php          
                     }
