@@ -9,8 +9,8 @@ include 'header.php';
             <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+            <h1>HTC Beachsoccer</h1>
+            <p>Wij zijn HTC beachsoccer en wij spelen beachsoccer op het hoogst haalbare niveau. Onze doelstelling hierin is om leidend te zijn in beachsoccer rondom regio zwolle.</p>
           </div>
           <div class="row">
             <div class="col-6 col-lg-4">

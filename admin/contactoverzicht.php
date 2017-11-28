@@ -1,9 +1,13 @@
+
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 include '../databaseconnection.php';
 
-$Contactoverzichtquery = "SELECT FormID, Naam, Telefoonnummer, Timestamp FROM Contactformulier WHERE FormID = 1";
+$Contactoverzichtquery = "SELECT * FROM Contactformulier";
 // $result = $conn->query($Contactoverzichtquery);
-
+ 
 
 
 
@@ -48,40 +52,85 @@ if ($result->num_rows === 0) {
     // Oh, no rows! Sometimes that's expected and okay, sometimes
     // it is not. You decide. In this case, maybe actor_id was too
     // large? 
-    echo "We could not find a match for ID $aid, sorry about that. Please try again.";
+    echo "Geen Resultaten gevonden";
     exit;
 }
+if($result->num_rows > 0){ 
+?>      
+  <script type="text/javascript">
+   $( document ).ready(function() {
+
+        $('tr.row1').click(linkToOverview);
+
+        function linkToOverview () {
+            var Id = $(this).closest('tr').attr('data-id');
+            window.location= '?id='+Id;
+        };
+    });
+</script>
+        
+<?php
 
 
-if (!$result = $conn->query($Contactoverzichtquery)) {
-    echo "Sorry, the website is experiencing problems.";
-    exit;
+if(isset($_GET["id"])){
+    $id = $_GET["id"];
+
+    $query = "SELECT * FROM Contactformulier WHERE FormID = '$id'";
+    $result = $conn->query($query);
+    $row = mysqli_fetch_array($result);
+    var_dump($row);
+    ?>
+    <div class="container">
+        <h2>Naam: <?php echo($row["Naam"]) ?></h1>
+
+        <h2>Email:</h2>
+                <p><?php echo $row["Email"]; ?></p>
+        <h2> telefoon
+        <div class="well">
+            
+            <h2>bericht:</h2>
+                <p><?php echo($row["Bericht"]) ?></p>
+        </div>
+    </div>
+<?php
+} else { 
+    ?>
+    <table class="table table-hover">
+           <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Email</th>
+                    <th>Tijd</th>
+                </tr>
+           </thead>
+           <tbody>
+                <?php 
+                    while($row = mysqli_fetch_array($result)){ 
+                        //var_dump($row);
+                        $date = substr($row["Timestamp"],0,16);
+                ?>
+                        <tr class="row1" data-id="<?php echo $row['FormID'];?>">
+                            <td>
+                                <?php echo $row['Naam'];?>
+                            </td>
+                            <td>
+                                <?php echo $row['Email'];?>
+                            </td>
+                            <td>
+                                <?php echo $date;?>
+                            </td>
+                        </tr>
+                        <?php          
+                    }
+                ?>
+           </tbody>
+        </table>
+        <?php
 }
+}
+$row = mysqli_fetch_array($result);
 
-
-
-
-$row = $result->fetch_assoc();
-
-var_dump($row);
 
  ?>
 
 
-<table>
-	<thead>
-		<th>Naam</th>
-		<th>Telefoonnummer</th>
-		<th>Tijd</th>
-	</thead>
-	<tbody>
-		<?php 
-		// foreach ($row as $key => $value) {
-		// 	print("<tr>");
-		// 		print("<td>".$)
-
-		// 	print("<tr>");
-		// }
-		 ?>
-	</tbody>
-</table>

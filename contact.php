@@ -101,11 +101,11 @@ include 'databaseconnection.php';
 <?php
     if(isset ($_POST['submit'])){
     
-        $from=$_POST['email'];
-        $voornaam=$_POST['voornaam'];
-        $achternaam=$_POST['achternaam'];
+        $from=mysqli_escape_string($conn,$_POST['email']);
+        $voornaam=mysqli_escape_string($conn,$_POST['voornaam']);
+        $achternaam=mysqli_escape_string($conn,$_POST['achternaam']);
         $name="". $voornaam ." " . $achternaam .""; 
-        $phone=$_POST['telefoonnummer'];
+        $phone=mysqli_real_escape_string($conn,$_POST['telefoonnummer']);
         $sendto="kevinhendriks69@gmail.com";
         $message=$_POST['bericht'];
         $message= str_replace("\n.", "\n..", $message);
