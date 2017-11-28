@@ -1,5 +1,6 @@
 
 <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <?php
 include '../databaseconnection.php';
 
@@ -55,12 +56,25 @@ if ($result->num_rows === 0) {
 }
 if($result->num_rows > 0){ 
         echo "meer dan 0 resultaat";
-?>
+?>      
+  <script type="text/javascript">
+   $( document ).ready(function() {
+
+        $('tr.row').click(linkToOverview);
+
+        function linkToOverview () {
+            var Id = $(this).closest('tr').attr('data-id');
+            window.location= '?id='+Id;
+        };
+    });
+</script>
         <table class="table table-hover">
            <thead>
-              <th>Naam</th>
-              <th>Email</th>
-              <th>Tijd</th>
+                <tr>
+                    <th>Naam</th>
+                    <th>Email</th>
+                    <th>Tijd</th>
+                </tr>
            </thead>
            <tbody>
                 <?php 
@@ -68,8 +82,7 @@ if($result->num_rows > 0){
                         //var_dump($row);
                         $date = substr($row["Timestamp"],0,16);
                 ?>
-                        <tr data-id="<?php echo $row['FormID'];?>">
-                            <a href="test.php">
+                        <tr class="row" data-id="<?php echo $row['FormID'];?>">
                             <td>
                                 <?php echo $row['Naam'];?>
                             </td>
