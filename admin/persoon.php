@@ -14,45 +14,45 @@ include '../databaseconnection.php';
    <div class="col-md-6 col-sm-6 col-xs-12">
 <form id="persoon-form" method="post" action="persoon.php" role="form"> 
      <div class="form-group ">
-      <label class="control-label " for="titel">
+      <label class="control-label " for="voornaam">
        Voornaam
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" placeholder="Vul hier uw Voornaam in *" name="titel" type="text"/>
+      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text"/>
      </div>
      <div class="form-group ">
-      <label class="control-label " for="titel">
+      <label class="control-label " for="tussenvoegsel">
        Tussenvoegsel
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="titel" placeholder="Vul hier een tussenvoegsel in " name="titel" type="text"/>
+      <input class="form-control" id="tussenvoegsel" placeholder="Vul hier een tussenvoegsel in " name="tussenvoegsel" type="text"/>
      </div>
      <div class="form-group ">
-      <label class="control-label " for="titel">
+      <label class="control-label " for="achternaam">
        Achternaam
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" placeholder="Vul hier uw Achternaam in *" name="titel" type="text"/>
+      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text"/>
      </div>
      <div class="form-group">
           <div class="form-group">
-        <label>
+      <label class="control-label " for="email">
            Email
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="titel" placeholder="Vul hier uw Email in *" name="titel" type="text"/>
+      <input class="form-control" id="email" placeholder="Vul hier uw Email in *" name="email" type="text"/>
      </div>
      <div class="form-group ">
-      <label class="control-label " for="titel">
+      <label class="control-label " for="functie">
          Functie
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="titel" name="titel" placeholder="Vul hier een functie in " type="text"/>
+      <input class="form-control" id="functie" name="functie" placeholder="Vul hier een functie in " type="text"/>
      </div>
      <div class="form-group ">
-      <label class="control-label " for="titel">
+      <label class="control-label " for="pasfoto">
         Upload pasfoto
       </label>
         <div class="input-group">
