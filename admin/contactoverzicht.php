@@ -1,7 +1,7 @@
 <?php
 include '../databaseconnection.php';
 
-$Contactoverzichtquery = "SELECT FormID, Naam, Timestamp FROM Contactformulier";
+$Contactoverzichtquery = "SELECT FormID, Naam, Email, Timestamp FROM Contactformulier";
 // $result = $conn->query($Contactoverzichtquery);
  
 
@@ -56,24 +56,25 @@ if($result->num_rows > 0){
 ?>
         <table>
            <thead>
-            <th>bekijken</th>
               <th>Naam</th>
+              <th>Email</th>
               <th>Tijd</th>
            </thead>
            <tbody>
                 <?php 
                     while($row = mysqli_fetch_array($result)){ 
                         //var_dump($row);
-                        ?>
+                        $date = substr($row["Timestamp"],0,16);
+                ?>
                         <tr>
-                            <td>
-                                <?php echo $row['FormID'];?>
-                            </td>
                             <td>
                                 <?php echo $row['Naam'];?>
                             </td>
                             <td>
-                                <?php echo $row['Timestamp'];?>
+                                <?php echo $row['Email'];?>
+                            </td>
+                            <td>
+                                <?php echo $date;?>
                             </td>
                         </tr>
                         <?php          
