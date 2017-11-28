@@ -18,7 +18,7 @@ include '../databaseconnection.php';
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
-    <form method="post">
+<form id="nieuwsartikel-form" method="post" action="nieuwsartikel.php" role="form"> 
      <div class="form-group ">
       <label class="control-label " for="titel">
        Titel
