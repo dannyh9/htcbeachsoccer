@@ -81,11 +81,23 @@ if(isset($_GET["id"])){
     var_dump($row);
     ?>
     <div class="container">
-        <h2>Naam: <?php echo($row["Naam"]) ?></h1>
+        <h2>Naam: </h2>
+                <p><?php echo($row["Naam"]) ?></p>
 
         <h2>Email:</h2>
                 <p><?php echo $row["Email"]; ?></p>
-        <h2> telefoon
+                
+        <h2> Telefoon: </h2>
+        <p>
+        <?php
+                if(!$row["Telefoonnummer"] == ""){
+                    echo $row["Telefoonnummer"];
+                 } else {
+                    echo ("Niet Bijgevoegd");
+                }
+                print_r($row["Telefoonnummer"]);
+            ?>
+        </p>
         <div class="well">
             
             <h2>bericht:</h2>
