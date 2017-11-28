@@ -15,7 +15,7 @@
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="team naam" name="team naam" type="text"/>
+      <input class="form-control" id="team naam" name="team naam" type="text" placeholder="Vul hier de teamnaam in *"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="klasse">
@@ -23,7 +23,7 @@
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="klasse" name="klasse" type="text"/>
+      <input class="form-control" id="klasse" name="klasse" type="text" placeholder="Vul hier de klasse waarin het team speelt in *"/>
      </div>
           <div class="form-group">
           <div class="form-group">
