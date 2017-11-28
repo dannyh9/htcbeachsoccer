@@ -73,3 +73,14 @@
   </div>
  </div>
 </div>
+<?php 
+if (isset($_POST['submit'])){
+$voornaam=$_POST['voornaam'];
+$tussenvoegsel=$_POST['tussenvoegsel'];
+$achternaam=$_POST['achternaam'];
+$email=$_POST['email'];
+$functie=$_POST['functie'];
+$username="Kevin";
+$persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
+$conn->query($persoonquery);}
+?>
