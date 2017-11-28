@@ -13,7 +13,7 @@ include '../databaseconnection.php';
    <div class="col-md-6 col-sm-6 col-xs-12">
     <form method="post">
      <div class="form-group ">
-      <label class="control-label " for="team naam">
+      <label class="control-label " for="teamnaam">
        Team naam
          <span class="asteriskField">
         *
