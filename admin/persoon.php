@@ -7,7 +7,21 @@ include '../databaseconnection.php';
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
-
+<?php 
+if(isset($_GET["id"])) {
+$id = $_GET["id"];
+var_dump($id);
+$idquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
+$result = $conn->query($idquery);
+var_dump($result);
+$row = mysqli_fetch_array($result);
+var_dump($row);
+print_r($row);
+$voornaam=$row['Voornaam'];
+} else {
+  $voornaam="";
+}
+?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
@@ -19,7 +33,7 @@ include '../databaseconnection.php';
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text"/>
+      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text" value="<?php echo $voornaam; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="tussenvoegsel">
@@ -76,10 +90,6 @@ include '../databaseconnection.php';
  </div>
 </div>
 <?php 
-if(isset($_GET['id'])) {
- $id = $_GET['id'];
- echo "ik heb gegevens nodig van persoon".$id;
-}
 if (isset($_POST['submit'])){
 $voornaam=$_POST['voornaam'];
 $tussenvoegsel=$_POST['tussenvoegsel'];
