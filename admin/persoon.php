@@ -47,7 +47,7 @@
          Functie
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier een functie in"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="titel">
