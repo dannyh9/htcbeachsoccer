@@ -25,7 +25,7 @@ include '../databaseconnection.php';
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="message">
@@ -33,7 +33,7 @@ include '../databaseconnection.php';
          <span class="asteriskField">
         *
       </label>
-      <textarea class="form-control tinymce" cols="40" id="message" name="message" rows="10"></textarea>
+      <textarea class="form-control tinymce" cols="40" id="message" name="message" rows="10" ></textarea>
      </div>
      <div class="form-group">
           <div class="form-group">
