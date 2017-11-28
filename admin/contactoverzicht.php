@@ -1,9 +1,9 @@
 <?php
 include '../databaseconnection.php';
 
-$Contactoverzichtquery = "SELECT FormID, Naam, Telefoonnummer, Timestamp FROM Contactformulier WHERE FormID = 1";
+$Contactoverzichtquery = "SELECT FormID, Naam, Timestamp FROM Contactformulier";
 // $result = $conn->query($Contactoverzichtquery);
-
+ 
 
 
 
@@ -48,40 +48,46 @@ if ($result->num_rows === 0) {
     // Oh, no rows! Sometimes that's expected and okay, sometimes
     // it is not. You decide. In this case, maybe actor_id was too
     // large? 
-    echo "We could not find a match for ID $aid, sorry about that. Please try again.";
+    echo "Geen Resultaten gevonden";
     exit;
 }
-
-
-if (!$result = $conn->query($Contactoverzichtquery)) {
-    echo "Sorry, the website is experiencing problems.";
-    exit;
+if($result->num_rows > 0){ 
+        echo "meer dan 0 resultaat";
+?>
+        <table>
+           <thead>
+            <th>bekijken</th>
+              <th>Naam</th>
+              <th>Tijd</th>
+           </thead>
+           <tbody>
+                <?php 
+                    while($row = mysqli_fetch_array($result)){ 
+                        //var_dump($row);
+                        ?>
+                        <tr>
+                            <td>
+                                <?php echo $row['FormID'];?>
+                            </td>
+                            <td>
+                                <?php echo $row['Naam'];?>
+                            </td>
+                            <td>
+                                <?php echo $row['Timestamp'];?>
+                            </td>
+                        </tr>
+                        <?php          
+                    }
+                ?>
+           </tbody>
+        </table>
+<?php
 }
 
-
-
-
-$row = $result->fetch_assoc();
+$row = mysqli_fetch_array($result);
 
 var_dump($row);
 
  ?>
 
 
-<table>
-	<thead>
-		<th>Naam</th>
-		<th>Telefoonnummer</th>
-		<th>Tijd</th>
-	</thead>
-	<tbody>
-		<?php 
-		// foreach ($row as $key => $value) {
-		// 	print("<tr>");
-		// 		print("<td>".$)
-
-		// 	print("<tr>");
-		// }
-		 ?>
-	</tbody>
-</table>
