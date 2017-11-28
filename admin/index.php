@@ -27,7 +27,7 @@ include '../databaseconnection.php';
 			    	<h3 class="panel-title">Please sign in</h3>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form method="post" action="index.php" accept-charset="UTF-8" role="form">
+			    	<form method="POST" action="index.php" accept-charset="UTF-8" role="form">
                     <fieldset>
 			    	  	<div class="form-group">
 			    		    <input class="form-control" placeholder="Username" name="username" type="text">
@@ -61,8 +61,9 @@ if (isset($_POST["login"])) {
   if(isset($_POST["username"]) && $_POST["password"] != "") {
 	$username=$_POST['username'];
 	$password=$_POST['password'];
+	$hashpassword = md5($password);
 
-	$loginquery = "SELECT * FROM `authenticatie` WHERE Username = '$username' AND Password = '$password'";
+	$loginquery = "SELECT * FROM `authenticatie` WHERE Username = '$username' AND Password = '$hashpassword'";
 
 	if (!$result = $conn->query($loginquery)) {
     	// Oh no! The query failed. 
@@ -80,6 +81,10 @@ if (isset($_POST["login"])) {
     echo "Username of password onjuist";
     exit;
 	} else {
+		$row = mysqli_fetch_array($result);
+		$_SESSION['rollid'] = $row['RolID'];
+		$_SESSION['user'] = $row['Username'];
+		echo succes;
 		//in sessie doen resultaten http://php.net/manual/en/mysqli.examples-basic.php
 	}
 
