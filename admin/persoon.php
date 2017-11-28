@@ -10,21 +10,21 @@
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
-    <form method="post">
+<form id="persoon-form" method="post" action="persoon.php" role="form"> 
      <div class="form-group ">
       <label class="control-label " for="titel">
        Voornaam
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="titel" placeholder="Vul hier uw Voornaam in *" name="titel" type="text"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="titel">
        Tussenvoegsel
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="titel" placeholder="Vul hier een tussenvoegsel in " name="titel" type="text"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="titel">
@@ -32,7 +32,7 @@
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="titel" placeholder="Vul hier uw Achternaam in *" name="titel" type="text"/>
      </div>
      <div class="form-group">
           <div class="form-group">
@@ -40,7 +40,7 @@
            Email
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="titel" name="titel" type="text"/>
+      <input class="form-control" id="titel" placeholder="Vul hier uw Email in *" name="titel" type="text"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="titel">
