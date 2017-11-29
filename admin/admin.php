@@ -19,7 +19,7 @@
                       <ul id="menu-content" class="menu-content collapse out">
                           <li>
                             <a href="#">
-                            <i class="fa fa-home   fa-lg"></i> Home
+                            <i class="fa fa-home fa-lg"></i> Home
                             </a>
                           </li>
           
@@ -84,7 +84,7 @@
                             </li>
           
                            <li>
-                            <a href="admin.php?page=contact">
+                            <a href="?page=contact">
                             <i class="fa fa-envelope fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
