@@ -7,11 +7,6 @@ include '../databaseconnection.php';
 
 $Contactoverzichtquery = "SELECT * FROM Contactformulier";
 // $result = $conn->query($Contactoverzichtquery);
- 
-
-
-
-
 
 if ($conn->connect_errno) {
     // The connection failed. What do you want to do? 
@@ -64,7 +59,7 @@ if($result->num_rows > 0){
 
         function linkToOverview () {
             var Id = $(this).closest('tr').attr('data-id');
-            window.location= '?id='+Id;
+            window.location= '?contactid='+Id;
         };
     });
 </script>
@@ -72,13 +67,12 @@ if($result->num_rows > 0){
 <?php
 
 
-if(isset($_GET["id"])){
-    $id = $_GET["id"];
-
+if(isset($_GET["contactid"])){
+    $id = mysqli_real_escape_string($conn , $_GET["contactid"]);
     $query = "SELECT * FROM Contactformulier WHERE FormID = '$id'";
     $result = $conn->query($query);
     $row = mysqli_fetch_array($result);
-    var_dump($row);
+    //var_dump($row);
     ?>
     <div class="container">
         <h2>Naam: </h2>
@@ -98,11 +92,9 @@ if(isset($_GET["id"])){
                 print_r($row["Telefoonnummer"]);
             ?>
         </p>
-        <div class="well">
-            
+                    
             <h2>bericht:</h2>
                 <p><?php echo($row["Bericht"]) ?></p>
-        </div>
     </div>
 <?php
 } else { 
@@ -118,7 +110,6 @@ if(isset($_GET["id"])){
            <tbody>
                 <?php 
                     while($row = mysqli_fetch_array($result)){ 
-                        //var_dump($row);
                         $date = substr($row["Timestamp"],0,16);
                 ?>
                         <tr class="row1" data-id="<?php echo $row['FormID'];?>">

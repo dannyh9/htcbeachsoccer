@@ -103,13 +103,14 @@
        if (isset($_GET['page'])) {
           $page = $_GET['page'];
           if ($page = "contact") {
-              //laad contact formulier in
-            echo "contact pagina";
+              include 'contactoverzicht.php';
           }
+       } else if (isset($_GET['contactid'])) {
+          include 'contactoverzicht.php';
        } else { 
           //laad home pagina in
         ?>
-         <h1>Welcome To Dashboard Panel :)</h1>
+         <h1>Welcome To Dashboard Panel</h1>
             <p>
                 this  is test text.this  is test text.this  is test text.this  is test text.
                 this  is test text.this  is test text.this  is test text.this  is test text.
