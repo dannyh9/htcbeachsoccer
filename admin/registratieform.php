@@ -1,49 +1,52 @@
 <?php
 include '../databaseconnection.php';
-
 ?>
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+ <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  </script>
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+<link rel="stylesheet" type="text/css" href="../css/formulier.css">
+<script src="../js/uploadknopscript.js"></script>
 
-<!DOCTYPE html>
-<html>
-<head>    
-	<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="./css/style.css" rel="stylesheet">
-	<title>  Registreren </title>
-</head>
-<body>
-
-	<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
-<!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
-
-<div class="container">
-    <div class="row vertical-offset-100">
-    	<div class ="row horizontal-offset-100"></div>
-    	<div class="col-md-4 col-md-offset-4">
-    		<div class="panel panel-default">
-			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Registreren</h3>
-			 	</div>
-			  	<div class="panel-body">
-			    	<form method="POST" action="index.php" accept-charset="UTF-8" role="form">
-                    <fieldset>
-			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="Username" name="Username" type="text">
-			    		</div>
-			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Password" name="Password" type="password" value="">
-			    		</div>
-			    		<div class="form-group">
-			    		    <input class="form-control" placeholder="RollID" name="RollID" type="number">
-			    		
-			    	    	
-			    	    </div>
-			    		<input class="btn btn-lg btn-success btn-block" name="registreren" type="submit" value="Registreer">
-			    	</fieldset>
-			      	</form>
-			    </div>
-			</div>
-		</div>
-	</div>
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+<form id="registratieform" method="post" action="registratieform.php" role="form"> 
+     <div class="form-group ">
+      <label class="control-label " for="username">
+       Gebruikersnaam
+         <span class="asteriskField">
+        *
+      </label>
+      <input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value=""/>
+     </div>
+    
+     <div class="form-group ">
+      <label class="control-label " for="password">
+       Wachtwoord
+         <span class="asteriskField">
+        *
+      </label>
+      <input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password"/>
+     </div>
+     <div class="form-group ">
+      <label class="radio " for="rollid">
+         Rol
+         <span class="input-group-btn">
+      </label>
+      <input class="radio" id="rollid" name="rollid" placeholder="Vul hier een rol in " value="admin" type="radio"/>
+     </div>
+     
+            <br>
+       <button class="btn btn-primary " name="submit" type="submit">
+        Submit
+       </button>
+      </div>
+    </form>
+   </div>
+  </div>
+ </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -60,10 +63,7 @@ if (isset($_POST["registreren"])) {
 
 	
 
-	$username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
-
+	
 
 	//Error handlers
 	//Check for empty fields
@@ -72,7 +72,10 @@ if (isset($_POST["registreren"])) {
 		exit();
 	}
 	else {
-				//Check if username exists USING PREPARED STATEMENTS
+				$username = mysqli_real_escape_string($conn, $_POST['username']);
+                $password = mysqli_real_escape_string($conn, $_POST['password']);
+                $rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
+//Check if username exists USING PREPARED STATEMENTS
 				$sql = "SELECT * FROM authenticatie WHERE authenticatie_username=?";
 				//Create a prepared statement
 				$stmt = mysqli_stmt_init($conn);

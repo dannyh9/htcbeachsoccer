@@ -6,8 +6,12 @@ body{
 
 .vertical-offset-100{
     padding-top:100px;
+     margin-left: 450px;
 }
 
 .horizontal-offset-100{
 	padding-right:20px;
+}
+p {
+    margin-left: 2000px;
 }

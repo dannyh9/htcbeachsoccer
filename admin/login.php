@@ -15,25 +15,23 @@ include '../databaseconnection.php';
 
 <div class="container">
     <div class="row vertical-offset-100">
+   
     	<div class ="row horizontal-offset-100"></div>
     	<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Please sign in</h3>
+			    	<h3 class="panel-title">Login</h3>
 			 	</div>
 			  	<div class="panel-body">
 			    	<form method="POST" action="index.php" accept-charset="UTF-8" role="form">
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="Username" name="username" type="text">
+			    		    <input class="form-control" placeholder="Gebruikersnaaam" name="username" type="text">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
+			    			<input class="form-control" placeholder="Wachtwoord" name="password" type="password" value="">
 			    		</div>
-			    		<div class="checkbox">
-			    	    	<label>
-			    	    		<input name="remember" type="checkbox" value="Remember Me"> Remember Me
-			    	    	</label>
+			    	
 			    	    </div>
 			    		<input class="btn btn-lg btn-success btn-block" name="login" type="submit" value="Login">
 			    	</fieldset>
