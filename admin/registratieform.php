@@ -30,16 +30,22 @@ include '../databaseconnection.php';
       </label>
       <input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password"/>
      </div>
-     
      <div class="radio">
-  <label> <p> <strong>Rol</strong></p> <br>
-  	<input type="radio" name="optradio">Option 1</label>
+      <label class="radio " for="rollid">
+         <p> <strong>Rol</strong></p>
+         <span class="input-group-btn">
+      </label>
+      <input class="radio" id="rollid" name="rollid" placeholder="Vul hier een rol in " value="admin" type="radio"/>
+     </div>
+
+     <div class="radio">
+  <label> <p> <strong>Rol</strong></p> <br><input type="radio" name="optradio">Option 1</label>
 </div>
 <div class="radio">
   <label><input type="radio" name="optradio">Option 2</label>
 </div>
 <div class="radio disabled">
-  
+  <label><input type="radio" name="optradio" disabled>Option 3</label>
 </div>
             <br>
        <button class="btn btn-primary " name="submit" type="submit">
@@ -102,7 +108,7 @@ if (isset($_POST["registreren"])) {
 						exit();
 					} else {
 						//Hashing the password
-						$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+						$hashedPwd = md5($password);
 						//Insert the user into the database
 						$sql = "INSERT INTO authenticatie VALUES (authenticatie_Username, authenticatie_Password, authenticatie_RollID)
 						VALUES ('?', '?', '?');";
