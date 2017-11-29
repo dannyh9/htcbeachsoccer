@@ -79,6 +79,7 @@ if (isset($_POST["login"])) {
 		$row = mysqli_fetch_array($result);
 		$_SESSION['rollid'] = $row['RolID'];
 		$_SESSION['user'] = $row['Username'];
+		header("Refresh:1");
 		//in sessie doen resultaten http://php.net/manual/en/mysqli.examples-basic.php
 	}
 

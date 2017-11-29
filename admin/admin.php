@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-sm-3 menu ">
           <div class="nav-side-menu">
-              <div class="brand">Welkom User</div>
+              <div class="brand">Welkom <?php echo $_SESSION['user'];?></div>
               <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
             
                   <div class="menu-list">
