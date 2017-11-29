@@ -30,21 +30,16 @@ include '../databaseconnection.php';
       </label>
       <input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password"/>
      </div>
-     <label for="PersoonID">Selecteer persoonID</label>
-     <select class="form-control" id="persoonid" name="persoonid">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
-     <p><strong>Rol</strong></p>
-     <div class="rollid">
-  <label><input type="radio" name="rollid" id="rollid" value="1">Admin</label>
-</div>
-<div class="rollid">
-  <label><input type="radio" name="rollid" id="rollid" value="2">Nieuwsbeheerder</label>
-</div>
-       <button class="btn btn-primary " name="registreren" type="submit">
+     <div class="form-group ">
+      <label class="radio " for="rollid">
+         Rol
+         <span class="input-group-btn">
+      </label>
+      <input class="radio" id="rollid" name="rollid" placeholder="Vul hier een rol in " value="admin" type="radio"/>
+     </div>
+     
+            <br>
+       <button class="btn btn-primary " name="submit" type="submit">
         Submit
        </button>
       </div>
@@ -65,16 +60,14 @@ include '../databaseconnection.php';
 <?php
 
 if (isset($_POST["registreren"])) {
-var_dump($username);
-var_dump($password);
-echo("jawel");
+
 	
 
 	
 
 	//Error handlers
 	//Check for empty fields
-	if (empty($username) || empty($password)){
+	if (empty($username) || empty($password) || empty($rollid)) {
 		header("Location: registratieform.php?signup=empty");
 		exit();
 	}
@@ -82,7 +75,6 @@ echo("jawel");
 				$username = mysqli_real_escape_string($conn, $_POST['username']);
                 $password = mysqli_real_escape_string($conn, $_POST['password']);
                 $rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
-                $persoonid = mysqli_real_escape_string($conn, $_POST['persoonid']);
 //Check if username exists USING PREPARED STATEMENTS
 				$sql = "SELECT * FROM authenticatie WHERE authenticatie_username=?";
 				//Create a prepared statement
@@ -109,8 +101,8 @@ echo("jawel");
 						//Hashing the password
 						$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 						//Insert the user into the database
-						$sql = "INSERT INTO authenticatie VALUES (authenticatie_Username, authenticatie_Password, authenticatie_RollID, authenticatie_PersoonID)
-						VALUES ('?', '?', '?', '?');";
+						$sql = "INSERT INTO authenticatie VALUES (authenticatie_Username, authenticatie_Password, authenticatie_RollID)
+						VALUES ('?', '?', '?');";
 						//Create second prepared statement
 						$stmt2 = mysqli_stmt_init($conn);
 
@@ -120,7 +112,7 @@ echo("jawel");
 						    exit();
 						} else {
 							//Bind parameters to the placeholder
-							mysqli_stmt_bind_param($stmt2, "ssss", $username, $hashedPwd, $rollid, $persoonid);
+							mysqli_stmt_bind_param($stmt2, "sss", $username, $hashedPwd, $rollid);
 
 							//Run query in database
 							mysqli_stmt_execute($stmt2);
