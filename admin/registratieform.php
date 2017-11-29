@@ -30,14 +30,17 @@ include '../databaseconnection.php';
       </label>
       <input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password"/>
      </div>
-     <div class="form-group ">
-      <label class="radio " for="rollid">
-         Rol
-         <span class="input-group-btn">
-      </label>
-      <input class="radio" id="rollid" name="rollid" placeholder="Vul hier een rol in " value="admin" type="radio"/>
-     </div>
      
+     <div class="radio">
+  <label> <p> <strong>Rol</strong></p> <br>
+  	<input type="radio" name="optradio">Option 1</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio">Option 2</label>
+</div>
+<div class="radio disabled">
+  
+</div>
             <br>
        <button class="btn btn-primary " name="submit" type="submit">
         Submit
