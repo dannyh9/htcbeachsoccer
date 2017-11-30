@@ -24,6 +24,9 @@ if (!$result = $conn->query($queryoverzicht)) {
 
 if ($result->num_rows === 0) {
     echo "Geen Resultaten gevonden";
+    ?>
+    <a class="btn btn-primary" href="persoon.php">Nieuw persoon</a>
+    <?php
     exit;
 }
 if($result->num_rows > 0){ 
@@ -70,13 +73,12 @@ if($result->num_rows > 0){
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="persoon.php">nieuw persoon</a>
+        <a class="btn btn-primary" href="persoon.php">Nieuw persoon</a>
 <?php
 }
 
 $row = mysqli_fetch_array($result);
 
-var_dump($row);
 
  ?>
 

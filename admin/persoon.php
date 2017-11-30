@@ -9,23 +9,39 @@ include '../databaseconnection.php';
 <script src="../js/uploadknopscript.js"></script>
 <?php 
 if(isset($_GET["id"])) {
-$id = $_GET["id"];
-var_dump($id);
-$idquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
-$result = $conn->query($idquery);
-var_dump($result);
-$row = mysqli_fetch_array($result);
-var_dump($row);
-print_r($row);
-$voornaam=$row['Voornaam'];
+    $id = $_GET["id"];
+    $idquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
+    $result = $conn->query($idquery);
+    $row = mysqli_fetch_array($result);
+    $voornaam=$row['Voornaam'];
+    $tussenvoegsel=$row["Tussenvoegsel"];
+    $achternaam=$row["Achternaam"];
+    $email=$row["Email"];
+    $functie=$row["Functie"];
 } else {
   $voornaam="";
+  $tussenvoegsel="";
+  $achternaam="";
+  $email="";
+  $functie="";
+  $id="";
 }
 ?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
+<?php 
+if($id == ""){
+?>
+  <form id="persoon-form" method="post" action="persoon.php" role="form"> 
+    <?php
+} else {
+  ?>
+  <form id="persoon-form" method="post" action="persoon.php?id=<?php echo $id; ?>" role="form"> 
+    <?php
+}
+?>
 <form id="persoon-form" method="post" action="persoon.php" role="form"> 
      <div class="form-group ">
       <label class="control-label " for="voornaam">
@@ -40,7 +56,7 @@ $voornaam=$row['Voornaam'];
        Tussenvoegsel
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="tussenvoegsel" placeholder="Vul hier een tussenvoegsel in " name="tussenvoegsel" type="text"/>
+      <input class="form-control" id="tussenvoegsel" placeholder="Vul hier een tussenvoegsel in " name="tussenvoegsel" type="text" value="<?php echo $tussenvoegsel; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="achternaam">
@@ -48,7 +64,7 @@ $voornaam=$row['Voornaam'];
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text"/>
+      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
      </div>
      <div class="form-group">
           <div class="form-group">
@@ -56,14 +72,14 @@ $voornaam=$row['Voornaam'];
            Email
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="email" placeholder="Vul hier uw Email in *" name="email" type="text"/>
+      <input class="form-control" id="email" placeholder="Vul hier uw Email in" name="email" type="text" value="<?php echo $email; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="functie">
          Functie
          <span class="input-group-btn">
       </label>
-      <input class="form-control" id="functie" name="functie" placeholder="Vul hier een functie in " type="text"/>
+      <input class="form-control" id="functie" name="functie" placeholder="Vul hier een functie in " type="text" value="<?php echo $functie; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="pasfoto">
@@ -81,7 +97,7 @@ $voornaam=$row['Voornaam'];
           <div>
             <br>
        <button class="btn btn-primary " name="submit" type="submit">
-        Submit
+        Opslaan
        </button>
       </div>
     </form>
@@ -89,14 +105,29 @@ $voornaam=$row['Voornaam'];
   </div>
  </div>
 </div>
+
 <?php 
-if (isset($_POST['submit'])){
-$voornaam=$_POST['voornaam'];
-$tussenvoegsel=$_POST['tussenvoegsel'];
-$achternaam=$_POST['achternaam'];
-$email=$_POST['email'];
-$functie=$_POST['functie'];
-$username="Kevin";
-$persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
-$conn->query($persoonquery);}
+
+if (isset($_POST['submit'])) {
+  $voornaam=$_POST['voornaam'];
+  $tussenvoegsel=$_POST['tussenvoegsel'];
+  $achternaam=$_POST['achternaam'];
+  $email=$_POST['email'];
+  $functie=$_POST['functie'];
+
+  if ($id == ""){
+    $persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
+    $conn->query($persoonquery);
+
+
+  } else if ($id != ""){
+
+  $updatequery = "UPDATE persoon SET Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
+  $conn->query($updatequery);
+
+  } else {
+
+  }
+}
+
 ?>
