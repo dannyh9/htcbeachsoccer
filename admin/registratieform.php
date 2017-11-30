@@ -72,7 +72,7 @@ if (isset($_POST["registreren"])) {
 
 	//Error handlers
 	//Check for empty fields
-	if (empty($username) || empty($password) || empty($rollid)) {
+	if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['rollid'])) {
 		header("Location: registratieform.php?signup=empty");
 		exit();
 	}
@@ -80,13 +80,14 @@ if (isset($_POST["registreren"])) {
 				$username = mysqli_real_escape_string($conn, $_POST['username']);
                 $password = mysqli_real_escape_string($conn, $_POST['password']);
                 $rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
-//Check if username exists USING PREPARED STATEMENTS
-				$sql = "SELECT * FROM authenticatie WHERE authenticatie_username=?";
+                $persoonID = mysqli_real_escape_string($conn, $_POST['persoonid']);
+				//Check if username exists USING PREPARED STATEMENTS
+				$sql = "SELECT * FROM authenticatie WHERE authenticatie_username=$username";
 				//Create a prepared statement
 				$stmt = mysqli_stmt_init($conn);
 				//Check if prepared statement fails
 				if(!mysqli_stmt_prepare($stmt, $sql)) {
-				    header("Location: registratieform.php?login=error");
+				    header("Location: registratieform.php?login=error1");
 				    exit();
 				} else {
 					//Bind parameters to the placeholder
@@ -106,18 +107,18 @@ if (isset($_POST["registreren"])) {
 						//Hashing the password
 						$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 						//Insert the user into the database
-						$sql = "INSERT INTO authenticatie VALUES (authenticatie_Username, authenticatie_Password, authenticatie_RollID)
-						VALUES ('?', '?', '?');";
+						$sql = "INSERT INTO authenticatie VALUES (authenticatie_Username, authenticatie_Password, authenticatie_RollID, authenticatie_PersoonID)
+						VALUES ('?', '?', '?', '?');";
 						//Create second prepared statement
 						$stmt2 = mysqli_stmt_init($conn);
 
 						//Check if prepared statement fails
 						if(!mysqli_stmt_prepare($stmt2, $sql)) {
-						    header("Location: registratieform.php?login=error");
+						    header("Location: registratieform.php?login=error2");
 						    exit();
 						} else {
 							//Bind parameters to the placeholder
-							mysqli_stmt_bind_param($stmt2, "sss", $username, $hashedPwd, $rollid);
+							mysqli_stmt_bind_param($stmt2, "ssss", $username, $hashedPwd, $rollid, $persoonID);
 
 							//Run query in database
 							mysqli_stmt_execute($stmt2);
