@@ -1,17 +1,3 @@
 body{
-    background: url(http://mymaplist.com/img/parallax/back.png);
-	background-color: #444;
-    background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);    
-}
-
-.vertical-offset-100{
-    padding-top:100px;
-     margin-left: 450px;
-}
-
-.horizontal-offset-100{
-	padding-right:20px;
-}
-p {
-    margin-left: 2000px;
+	padding-top:20px;
 }

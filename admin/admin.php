@@ -18,13 +18,13 @@
             
                       <ul id="menu-content" class="menu-content collapse out">
                           <li>
-                            <a href="#">
+                            <a class="wide" href="index.php">
                             <i class="fa fa-home fa-lg"></i> Home
                             </a>
                           </li>
           
-                          <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-                            <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                          <li  data-toggle="collapse" data-target="#products">
+                            <a class="wide" href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="products">
                               <li class="active"><a href="#">CSS3 Animation</a></li>
@@ -33,7 +33,7 @@
           
           
                           <li data-toggle="collapse" data-target="#Personen" class="collapsed">
-                            <a href="#"><i class="fa fa-address-book fa-lg"></i> Personen <span class="arrow"></span></a>
+                            <a class="wide" href="#"><i class="fa fa-address-book fa-lg"></i> Personen <span class="arrow"></span></a>
                           </li>  
                           <ul class="sub-menu collapse" id="Personen">
                             <li>Personen Beheren</li>
@@ -42,7 +42,7 @@
           
           
                           <li data-toggle="collapse" data-target="#Account" class="collapsed">
-                            <a href="#"><i class="fa fa-user-circle-o fa-lg"></i> Accounts <span class="arrow"></span></a>
+                            <a class="wide" href="#"><i class="fa fa-user-circle-o fa-lg"></i> Accounts <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Account">
                             <li>Accounts Beheren</li>
@@ -51,7 +51,7 @@
 
 
                           <li data-toggle="collapse" data-target="#Team" class="collapsed">
-                            <a href="#"><i class="fa fa-users fa-lg"></i> Teams <span class="arrow"></span></a>
+                            <a class="wide" href="#"><i class="fa fa-users fa-lg"></i> Teams <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Team">
                             <li>Teams Beheren</li>
@@ -60,7 +60,7 @@
 
 
                           <li data-toggle="collapse" data-target="#Nieuws" class="collapsed">
-                            <a href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
+                            <a  class="wide" href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Nieuws">
                             <li>Nieuwsartikelen Beheren</li>
@@ -69,7 +69,7 @@
                           
 
                           <li data-toggle="collapse" data-target="#Media" class="collapsed">
-                            <a href="#"><i class="fa fa-picture-o fa-lg"></i> Media <span class="arrow"></span></a>
+                            <a class="wide" href="#"><i class="fa fa-picture-o fa-lg"></i> Media <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Media">
                             <li>Media Beheren</li>
@@ -78,19 +78,19 @@
           
           
                            <li>
-                            <a href="#">
+                            <a class="wide" href="#">
                             <i class="fa fa-user fa-lg"></i> Profile
                             </a>
                             </li>
           
                            <li>
-                            <a href="?page=contact">
+                            <a class="wide" href="?page=contact">
                             <i class="fa fa-envelope fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
 
                           <li>
-                            <a href="">
+                            <a class="wide" href="loguitscript.php">
                             <i class="fa fa-sign-out fa-lg"></i> Uitloggen
                             </a>
                           </li>
@@ -130,6 +130,5 @@
     <script>window.jQuery || document.write('<script src="./bootstrap/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./js/script.js"></script> 
 </body>    
 </html>
