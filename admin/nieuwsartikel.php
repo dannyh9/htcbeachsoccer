@@ -13,7 +13,21 @@ include '../databaseconnection.php';
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
-
+<?php 
+if(isset($_GET["id"])) {
+$id = $_GET["id"];
+var_dump($id);
+$idquery = "SELECT * FROM nieuwsartikel WHERE NieuwsartikelID = '$id'";
+$result = $conn->query($idquery);
+var_dump($result);
+$row = mysqli_fetch_array($result);
+var_dump($row);
+print_r($row);
+$titel=$row['Titel'];
+} else {
+  $titel="";
+}
+?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
