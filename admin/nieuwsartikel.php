@@ -13,7 +13,21 @@ include '../databaseconnection.php';
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
-
+<?php 
+if(isset($_GET["id"])) {
+$id = $_GET["id"];
+var_dump($id);
+$idquery = "SELECT * FROM Nieuwsartikel WHERE NieuwsartikelID = '$id'";
+$result = $conn->query($idquery);
+var_dump($result);
+$row = mysqli_fetch_array($result);
+var_dump($row);
+print_r($row);
+$titel=$row['Titel'];
+} else {
+  $titel="";
+}
+?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
@@ -28,12 +42,12 @@ include '../databaseconnection.php';
       <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *"/>
      </div>
      <div class="form-group ">
-      <label class="control-label " for="message">
+      <label class="control-label " for="inhoud">
        Inhoud
          <span class="asteriskField">
         *
       </label>
-      <textarea class="form-control tinymce" cols="40" id="message" name="message" rows="10" ></textarea>
+      <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10" ></textarea>
      </div>
      <div class="form-group">
           <div class="form-group">
@@ -63,8 +77,8 @@ include '../databaseconnection.php';
 <?php 
 if (isset($_POST['submit'])){
 $titel=$_POST['titel'];
-$inhoud=$_POST['message'];
+$inhoud=$_POST['inhoud'];
 $username="Kevin";
-$nieuwsartikelquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
+$nieuwsartikelquery = "INSERT INTO `Nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
 $conn->query($nieuwsartikelquery);}
 ?>
