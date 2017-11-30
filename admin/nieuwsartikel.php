@@ -17,7 +17,7 @@ include '../databaseconnection.php';
 if(isset($_GET["id"])) {
 $id = $_GET["id"];
 var_dump($id);
-$idquery = "SELECT * FROM Nieuwsartikel WHERE NieuwsartikelID = '$id'";
+$idquery = "SELECT * FROM nieuwsartikel WHERE NieuwsartikelID = '$id'";
 $result = $conn->query($idquery);
 var_dump($result);
 $row = mysqli_fetch_array($result);
@@ -79,6 +79,6 @@ if (isset($_POST['submit'])){
 $titel=$_POST['titel'];
 $inhoud=$_POST['inhoud'];
 $username="Kevin";
-$nieuwsartikelquery = "INSERT INTO `Nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
+$nieuwsartikelquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
 $conn->query($nieuwsartikelquery);}
 ?>
