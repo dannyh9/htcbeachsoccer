@@ -52,12 +52,12 @@ if($result->num_rows > 0){
                     while($row = mysqli_fetch_array($result)){ 
                         //var_dump($row);
                 ?>
-                        <tr class="row2" data-id="<?php echo $row['NieuwsartikelID'];?>">
+                        <tr class="row2" data-id="<?php echo $row['ArtikelID'];?>">
                             <td>
-                                <?php echo $row['titel'];?>
+                                <?php echo $row['Titel'];?>
                             </td>
                             <td>
-                                <?php echo $row['inhoud'];?>
+                                <?php echo $row['Inhoud'];?>
                             </td>
 
                         </a>
