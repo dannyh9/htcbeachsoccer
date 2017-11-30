@@ -25,7 +25,7 @@ if (!$result = $conn->query($queryoverzicht)) {
 if ($result->num_rows === 0) {
     echo "Geen Resultaten gevonden";
     ?>
-    <a class="btn btn-primary" href="persoon.php">Nieuw persoon</a>
+    <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw persoon</a>
     <?php
     exit;
 }
@@ -39,7 +39,7 @@ if($result->num_rows > 0){
 
         function linkToOverview () {
             var Id = $(this).closest('tr').attr('data-id');
-            window.location= 'persoon.php?id='+Id;
+            window.location= 'index.php?persoonid='+Id;
         };
     });
 </script>
@@ -73,7 +73,7 @@ if($result->num_rows > 0){
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="persoon.php">Nieuw persoon</a>
+        <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw persoon</a>
 <?php
 }
 

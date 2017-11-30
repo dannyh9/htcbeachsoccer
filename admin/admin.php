@@ -36,8 +36,14 @@
                             <a class="wide" href="#"><i class="fa fa-address-book fa-lg"></i> Personen <span class="arrow"></span></a>
                           </li>  
                           <ul class="sub-menu collapse" id="Personen">
-                            <li>Personen Beheren</li>
-                            <li>Personen Aanmaken</li>
+                            <li> 
+                              <a href="?page=personen">Personen Beheren</a>
+                            </li>
+                            <li>
+                              <a href="index.php?page=newpersoon">
+                                Personen Aanmaken
+                              </a>
+                            </li>
                           </ul>
           
           
@@ -60,7 +66,7 @@
 
 
                           <li data-toggle="collapse" data-target="#Nieuws" class="collapsed">
-                            <a  class="wide" href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
+                            <a class="wide" href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Nieuws">
                             <li>Nieuwsartikelen Beheren</li>
@@ -102,12 +108,21 @@
       <?php 
        if (isset($_GET['page'])) {
           $page = $_GET['page'];
-          if ($page = "contact") {
+          if ($page == "contact") {
               include 'contactoverzicht.php';
+          }else if ($page == "personen") {
+              include 'persoonoverzicht.php';
+          }else if ($page == "newpersoon") {
+              include 'persoon.php';
+          }  else {
+            echo "er is iets fout gegaan.";
           }
        } else if (isset($_GET['contactid'])) {
           include 'contactoverzicht.php';
-       } else { 
+       } else if (isset($_GET['persoonid'])) {
+          include 'persoon.php';
+       }
+       else { 
           //laad home pagina in
         ?>
          <h1>Welcome To Dashboard Panel</h1>

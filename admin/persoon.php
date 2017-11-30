@@ -8,8 +8,8 @@ include '../databaseconnection.php';
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
 <?php 
-if(isset($_GET["id"])) {
-    $id = $_GET["id"];
+if(isset($_GET["persoonid"])) {
+    $id = $_GET["persoonid"];
     $idquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
     $result = $conn->query($idquery);
     $row = mysqli_fetch_array($result);
@@ -34,15 +34,14 @@ if(isset($_GET["id"])) {
 <?php 
 if($id == ""){
 ?>
-  <form id="persoon-form" method="post" action="persoon.php" role="form"> 
+  <form id="persoon-form" method="post" action="index.php?page=newpersoon" role="form"> 
     <?php
 } else {
   ?>
-  <form id="persoon-form" method="post" action="persoon.php?id=<?php echo $id; ?>" role="form"> 
+  <form id="persoon-form" method="post" action="index.php?persoonid=<?php echo $id; ?>" role="form"> 
     <?php
 }
 ?>
-<form id="persoon-form" method="post" action="persoon.php" role="form"> 
      <div class="form-group ">
       <label class="control-label " for="voornaam">
        Voornaam
