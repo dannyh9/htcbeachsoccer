@@ -42,8 +42,35 @@ if($result->num_rows > 0){
             window.location= 'index.php?persoonid='+Id;
         };
     });
+
+
+
+function searchfunction() {
+    var input, filter, table, tr, td, i, ii;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("perstable");
+    tr = table.querySelectorAll("tbody tr");
+    for (i = 0; i < tr.length; i++) {
+        var tds = tr[i].getElementsByTagName("td");
+        var found = false;
+        for (ii = 0; ii < tds.length && !found; ii++) {
+            if (tds[ii].textContent.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+                break;
+            }
+        }
+        tr[i].style.display = found?"":"none";
+    }
+}
+
+//      https://stackoverflow.com/questions/42763643/search-field-on-multiple-indexes-in-a-html-table-using-java-script
+//      https://www.w3schools.com/howto/howto_js_filter_table.asp
+
+
 </script>
-        <table class="table table-hover">
+<input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
+        <table class="table table-hover" id="perstable">
            <thead>
                 <tr>
                     <th>Voornaam</th>
