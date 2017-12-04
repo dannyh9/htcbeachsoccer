@@ -6,7 +6,20 @@ include '../databaseconnection.php';
  <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
-
+<?php 
+if(isset($_GET["teamid"])) {
+    $id = $_GET["teamid"];
+    $idquery = "SELECT * FROM team WHERE TeamID = '$id'";
+    $result = $conn->query($idquery);
+    $row = mysqli_fetch_array($result);
+    $teamnaam=$row['Teamnaam'];
+    $klasse=$row["Klasse"];
+} else {
+  $teamnaam="";
+  $klasse="";
+  $id="";
+}
+?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
