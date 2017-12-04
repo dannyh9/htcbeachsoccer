@@ -2,7 +2,7 @@
 include 'header.php';
 include 'databaseconnection.php';
 
-$nieuwsoverzichtquery = "SELECT * FROM nieuwsartikel";
+$nieuwsoverzichtquery = "SELECT * FROM nieuwsartikel ORDER BY ArtikelID DESC LIMIT 6";
 
 if ($conn->connect_errno) {
     echo "Sorry, this website is experiencing problems.";
@@ -13,12 +13,10 @@ if (!$result = $conn->query($nieuwsoverzichtquery)) {
     echo "Geen resultaat";
     exit;
 }
-
 if ($result->num_rows === 0) {
     echo "Geen Resultaten gevonden";
     exit;
-}
-?>
+}?>
   <div class="container">
 
       <div class="row content row-offcanvas row-offcanvas-right">
@@ -42,7 +40,7 @@ if ($result->num_rows === 0) {
              <?php $small = substr($row['Inhoud'], 0, 150); $small .=".." ?>
                <p><?php echo $small;?></p>              
 
-               <p><a class="btn btn-secondary" href="nieuwsartikel.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
+               <p><a class="btn btn-secondary" href="nieuwsartikellen.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
             </div>
            <?php          
             }
