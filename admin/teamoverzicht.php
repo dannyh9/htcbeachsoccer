@@ -69,7 +69,7 @@ function searchfunction() {
 
 
 </script>
-<input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
+<input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek teams.." class="form-control">
         <table class="table table-hover" id="perstable">
            <thead>
                 <tr>
@@ -96,7 +96,7 @@ function searchfunction() {
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw persoon</a>
+        <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw team</a>
 <?php
 }
 
