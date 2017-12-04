@@ -137,16 +137,11 @@ if(isset($_POST['delete'])){
   var_dump($id);
   $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
   $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
-  // $conn->query($deleteaccountquery);
-  // $conn->query($deletepersoonquery);
-  $url = "../admin/index.php?page=personen";
-  Function redirect($url){
-   If (headers_sent()){
-      Echo '<script>window.location.href="' . $url . '";</script>';
-}}
-var_dump($url);
-
-  //header("location: ../admin/index.php?page=personen");
+  $conn->query($deleteaccountquery);
+  $conn->query($deletepersoonquery);
+  ?>
+  <script>window.location.replace("../admin/index.php?page=personen");</script>
+  <?php
 }
 
 
