@@ -57,7 +57,7 @@ $titel=$row['Titel'];
         <div class="input-group">
             <span class="input-group-btn">
                 <span class="btn btn-default btn-file">
-                    Zoeken… <input type="file" id="imgInp">
+                    Zoeken… <input type="file" id="imgInp" name="file">
                 </span>
             </span>
             <input type="text" class="form-control" readonly>
@@ -89,7 +89,6 @@ if (isset($_POST['submit'])){
 
 if (isset($_POST['submit'])) {
   $file = $_FILES['file'];
-
   $fileName = $file['name'];
   $fileTmpName = $file['tmp_name'];
   $fileSize = $file['size'];
