@@ -3,7 +3,7 @@ include 'header.php';
 ?>
   <div class="container">
 
-      <div class="row row-offcanvas row-offcanvas-right">
+      <div class="row content row-offcanvas row-offcanvas-right">
         <div class="col-12 col-md-9">
           <p class="float-right hidden-md-up">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>

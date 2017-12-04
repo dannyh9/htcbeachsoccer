@@ -8,7 +8,7 @@ include 'databaseconnection.php';
 
 <div class="container">
 
-            <div class="row">
+            <div class="row content">
 
                 <div class="col-lg-8 col-lg-offset-2">
 
