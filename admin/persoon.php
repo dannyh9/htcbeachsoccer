@@ -98,6 +98,9 @@ if($id == ""){
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
+       <button class="btn btn-danger " name="delete" type="submit">
+        Verwijder
+       </button>
       </div>
     </form>
    </div>
@@ -128,5 +131,24 @@ if (isset($_POST['submit'])) {
 
   }
 }
+
+if(isset($_POST['delete'])){
+  echo"iets";
+  var_dump($id);
+  $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
+  // $conn->query($deleteaccountquery);
+  // $conn->query($deletepersoonquery);
+  $url = "../admin/index.php?page=personen";
+  Function redirect($url){
+   If (headers_sent()){
+      Echo '<script>window.location.href="' . $url . '";</script>';
+}}
+var_dump($url);
+
+  //header("location: ../admin/index.php?page=personen");
+}
+
+
 
 ?>
