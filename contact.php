@@ -23,14 +23,14 @@ include 'databaseconnection.php';
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_name">Voornaam*</label>
-                    <input id="form_name" type="text" name="voornaam" class="form-control" placeholder="Vul hier uw voornaam in *" required="required" data-error="Vul uw voornaam in.">
+                    <input id="form_name" type="text" name="voornaam" class="form-control" placeholder="Vul hier uw voornaam in *" value="<?php if(isset($_POST['voornaam'])) echo $_POST['voornaam']?>" required="required" data-error="Vul uw voornaam in.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_lastname">Achternaam*</label>
-                    <input id="form_lastname" type="text" name="achternaam" class="form-control" placeholder="Vul hier uw achternaam in *" required="required" data-error="Vul uw achternaam in.">
+                    <input id="form_lastname" type="text" name="achternaam" class="form-control" value="<?php if(isset($_POST['achternaam'])) echo $_POST['achternaam']?>" placeholder="Vul hier uw achternaam in *" required="required" data-error="Vul uw achternaam in.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -39,14 +39,14 @@ include 'databaseconnection.php';
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">E-mail*</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Vul hier uw emailadres in. *" required="required" data-error="Vul een geldig emailadres in.">
+                    <input id="form_email" type="email" name="email" class="form-control" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>" placeholder="Vul hier uw emailadres in. *" required="required" data-error="Vul een geldig emailadres in.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_phone">Telefoonnummer</label>
-                    <input id="form_phone" type="tel" name="telefoonnummer" class="form-control" placeholder="Vul hier uw telefoonnummer in. ">
+                    <input id="form_phone" type="tel" name="telefoonnummer" class="form-control" value="<?php if(isset($_POST['telefoonnummer'])) echo $_POST['telefoonnummer']?>" placeholder="Vul hier uw telefoonnummer in. ">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -55,7 +55,7 @@ include 'databaseconnection.php';
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="form_message">Bericht*</label>
-                    <textarea id="form_message" name="bericht" class="form-control" placeholder="Vul hier uw bericht in *" rows="4" required="required" data-error="Vul uw bericht in."></textarea>
+                    <textarea id="form_message" name="bericht" class="form-control" value="<?php if(isset($_POST['bericht'])) echo $_POST['bericht']?>" placeholder="Vul hier uw bericht in *" rows="4" required="required" data-error="Vul uw bericht in."></textarea>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -98,7 +98,12 @@ include 'databaseconnection.php';
 </form>
 <?php
     if(isset ($_POST['submit'])){
-    
+        if (empty($_POST['email']) || empty($_POST['voornaam']) || empty($_POST['achternaam']) || empty($_POST['bericht'])) {?>
+            <script>
+            $(".messages").text("Vul alle verplichte velden in.");
+            </script>
+            <?php
+            exit();}    
         $from=mysqli_escape_string($conn,$_POST['email']);
         $voornaam=mysqli_escape_string($conn,$_POST['voornaam']);
         $achternaam=mysqli_escape_string($conn,$_POST['achternaam']);
