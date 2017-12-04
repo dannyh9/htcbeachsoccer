@@ -3,12 +3,9 @@
   .boldtext{
     font-weight:bold;
   }
-  .pull-right {
-  float: right !important;
-  }
 </style>
-          <div class="list-group">
-            <div class="container text-center boldtext pull-right" style="border:1px darkblue solid">
+          <div class="container">
+            <div class="text-center boldtext" style="border:1px #164394 solid" >
               Zaterdag 9 december
               <br>
               12:00 uur
@@ -20,7 +17,7 @@
               SV HTC 1 - SV HTC 2
             </div>
             <br><br>
-              <div class="container text-center boldtext" style="border:1px darkblue solid">
+            <div class="text-center boldtext" style="border:1px #164394 solid">
               Zaterdag 9 december
               <br>
               12:00 uur
@@ -31,6 +28,11 @@
               <br>
               SV HTC 1 - SV HTC 2
             </div>
+            <hr>
+           <a class="twitter-timeline" data-lang="nl" data-width="320" data-height="420" data-theme="light" href="https://twitter.com/PBSZ?ref_src=twsrc%5Etfw">
+            Tweets by PBSZ
+          </a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div><!--/span-->
       </div><!--/row-->
   <hr>
