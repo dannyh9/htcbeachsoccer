@@ -1,5 +1,23 @@
 <?php 
 include 'header.php';
+include 'databaseconnection.php';
+
+$nieuwsoverzichtquery = "SELECT * FROM nieuwsartikel";
+
+if ($conn->connect_errno) {
+    echo "Sorry, this website is experiencing problems.";
+    exit;
+}
+
+if (!$result = $conn->query($nieuwsoverzichtquery)) {
+    echo "Geen resultaat";
+    exit;
+}
+
+if ($result->num_rows === 0) {
+    echo "Geen Resultaten gevonden";
+    exit;
+}
 ?>
   <div class="container">
 
@@ -13,36 +31,23 @@ include 'header.php';
             <p>Wij zijn HTC beachsoccer en wij spelen beachsoccer op het hoogst haalbare niveau. Onze doelstelling hierin is om leidend te zijn in beachsoccer rondom regio zwolle.</p>
           </div>
           <div class="row">
+          <?php
+          if($result->num_rows > 0){ 
+            while($row = mysqli_fetch_array($result)){ 
+                        //var_dump($row);
+                ?>
             <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Ik ben in zwolle als PEC </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Ik ga je hoeken als een corner</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
+              <h2><?php echo $row['Titel'];?></h2>
+
+             <?php $small = substr($row['Inhoud'], 0, 150); $small .=".." ?>
+               <p><?php echo $small;?></p>              
+
+               <p><a class="btn btn-secondary" href="nieuwsartikel.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
+            </div>
+           <?php          
+            }
+          }
+          ?>
           </div><!--/row-->
         </div><!--/span-->
 
