@@ -95,9 +95,7 @@ include 'databaseconnection.php';
             </div>
         </div>
     </div>
-</form> 
-</div>
-
+</form>
 <?php
     if(isset ($_POST['submit'])){
     
@@ -150,6 +148,7 @@ include 'databaseconnection.php';
 
 
 <?php 
+include 'right-menu.php';
 include 'footer.php';
 ?>
 

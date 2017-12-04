@@ -69,7 +69,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Zoek">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoeken</button>
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Zoeken</button>
         </form>
       </div>
     </nav>

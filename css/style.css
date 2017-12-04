@@ -18,3 +18,9 @@
 		min-height: 50px
 	}
 }
+.navbar{
+	background-color:#164394 !important;
+}
+.row {
+	padding-top:20px;
+}
