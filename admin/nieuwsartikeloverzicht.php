@@ -67,7 +67,7 @@ if($result->num_rows > 0){
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="nieuwsartikel.php">nieuw nieuwsartiekel</a>
+        <a class="btn btn-primary" href="nieuwsartikel.php">nieuw nieuwsartikel</a>
 <?php
 }
 

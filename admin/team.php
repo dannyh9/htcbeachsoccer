@@ -73,4 +73,19 @@ $klasse=$_POST['klasse'];
 $username="Kevin";
 $teamquery = "INSERT INTO `team`(`teamnaam`, `klasse`) VALUES ('$teamnaam', '$klasse')";
 $conn->query($teamquery);}
+
+ if ($id == ""){
+    $persoonquery = "INSERT INTO `team`(`teamnaam`, `klasse`) VALUES ('$teamnaam', '$klasse')";
+    $conn->query($teamquery);
+
+
+  } else if ($id != ""){
+
+  $updatequery = "UPDATE team SET Teamnaam = '$teamnaam', Klasse = '$klasse' WHERE TeamID = '$id'";
+  $conn->query($updatequery);
+
+  } else {
+
+  }
+}
 ?>

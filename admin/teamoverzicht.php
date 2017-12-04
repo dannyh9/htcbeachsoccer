@@ -96,7 +96,7 @@ function searchfunction() {
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw team</a>
+        <a class="btn btn-primary" href="team.php">Nieuw team</a>
 <?php
 }
 
