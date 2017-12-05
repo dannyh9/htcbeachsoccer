@@ -14,8 +14,8 @@ include '../databaseconnection.php';
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
 <?php 
-if(isset($_GET["id"])) {
-$id = $_GET["id"];
+if(isset($_GET["nieuwsartikelid"])) {
+$id = $_GET["nieuwsartikelid"];
 var_dump($id);
 $idquery = "SELECT * FROM nieuwsartikel WHERE ArtikelID = '$id'";
 $result = $conn->query($idquery);
