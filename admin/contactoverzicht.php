@@ -89,7 +89,6 @@ if(isset($_GET["contactid"])){
                  } else {
                     echo ("Niet Bijgevoegd");
                 }
-                print_r($row["Telefoonnummer"]);
             ?>
         </p>
                     
