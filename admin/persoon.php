@@ -113,7 +113,7 @@ if($id == ""){
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
-       <button class="btn btn-danger " name="delete" type="submit">
+       <button class="btn btn-danger " onclick="return confirm('Are you sure you want to delete?');" name="delete" type="submit">
         Verwijder
        </button>
        <?php
