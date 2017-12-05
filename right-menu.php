@@ -1,4 +1,4 @@
-<div class="col12 col-md-4" id="sidebar">
+<div class="col12 col-md-3" id="sidebar">
   <style>
   .boldtext{
     font-weight:bold;
