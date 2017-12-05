@@ -69,8 +69,8 @@
                             <a class="wide" href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Nieuws">
-                            <li>Nieuwsartikelen Beheren</li>
-                            <li>Nieuwsartikelen Aanmaken</li>
+                            <li> <a href="index.php?page=nieuwsoverzicht">Nieuwsartikelen Beheren</a></li>
+                            <li> <a href="index.php?page=nieuwsartikelaanmaken">Nieuwsartikelen Aanmaken</a></li>
                           </ul>
                           
 
@@ -114,6 +114,10 @@
               include 'persoonoverzicht.php';
           }else if ($page == "newpersoon") {
               include 'persoon.php';
+          }else if($page == "nieuwsoverzicht"){
+              include 'nieuwsartikeloverzicht.php';
+          }else if($page == "nieuwsartikelaanmaken"){
+              include 'nieuwsartikel.php';
           }  else {
             echo "er is iets fout gegaan.";
           }
@@ -121,6 +125,8 @@
           include 'contactoverzicht.php';
        } else if (isset($_GET['persoonid'])) {
           include 'persoon.php';
+       } else if (isset($_GET['nieuwsartikelid'])) {
+          include 'nieuwsartikel.php';
        }
        else { 
           //laad home pagina in

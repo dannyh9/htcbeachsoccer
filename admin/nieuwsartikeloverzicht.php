@@ -36,7 +36,7 @@ if($result->num_rows > 0){
 
         function linkToOverview () {
             var Id = $(this).closest('tr').attr('data-id');
-            window.location= 'nieuwsartikel.php?id='+Id;
+            window.location= 'index.php?nieuwsartikelid='+Id;
         };
     });
 </script>
@@ -67,13 +67,11 @@ if($result->num_rows > 0){
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="nieuwsartikel.php">nieuw nieuwsartikel</a>
+        <a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
 <?php
 }
 
 $row = mysqli_fetch_array($result);
-
-var_dump($row);
 
  ?>
 

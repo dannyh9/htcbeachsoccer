@@ -37,10 +37,10 @@ if ($result->num_rows === 0) {
             <div class="col-6 col-lg-4">
               <h2><?php echo $row['Titel'];?></h2>
 
-             <?php $small = substr($row['Inhoud'], 0, 150); $small .=".." ?>
+             <?php $small = substr($row['Inhoud'], 0, 150); $small .=".."; ?>
                <p><?php echo $small;?></p>              
 
-               <p><a class="btn btn-secondary" href="nieuwsartikellen.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
+               <p><a class="btn btn-secondary" href="nieuwsartikelen.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
             </div>
            <?php          
             }

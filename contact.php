@@ -5,13 +5,17 @@ include 'databaseconnection.php';
 ?>
 <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <div class="container">
 
             <div class="row content">
-
                 <div class="col-lg-8 col-lg-offset-2">
-
+                    <h1>Locatie sportpark</h1>
+                        <iframe width="600" height="450" frameborder="1" style="border:1px" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ97Cj2G3fx0cRMNe9e9fgA8c&key=AIzaSyAu2l6wZ8WZLlAMndmCn-J0XVU8NWPqfxM" allowfullscreen>
+                        </iframe>
+                        <p>Sportpark De Pelikaan<br>
+                            Haersterveerweg 2<br>
+                            8034 PK Zwolle<br>
+                        </p>
                     <h1>Contactformulier</a></h1>
 <form id="contact-form" method="post" action="contact.php" role="form">	
 

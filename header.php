@@ -16,6 +16,14 @@
     <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=556845947780553';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
   <div class="col-12">
     <div class="top-nav row"> 
       <div id="logo" class="col-md-3"> 
@@ -48,6 +56,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Agenda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="nieuwsartikelen.php">Nieuwsartikelen</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
