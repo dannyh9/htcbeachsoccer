@@ -13,7 +13,13 @@ include '../databaseconnection.php';
 
 	<?php
 
-	if(isset($_POST['submit'])){
+	$admincheckquery = "SELECT * FROM authenticatie WHERE PersoonID = 1";
+	$adminresult = $conn->query($admincheckquery);
+	$adminrow = mysqli_fetch_array($adminresult);
+	$gotadmin = !isset($adminrow);
+
+
+	if(isset($_POST['submit']) && $gotadmin){
 
 		$createrolquery = "INSERT INTO `authorisatie` (`RolID`, `Rolnaam`, `Rechten`) VALUES (NULL, 'Admin', '')";
 		$createpersoonquery = "INSERT INTO `persoon` (`PersoonID`, `Pasfoto`, `Voornaam`, `Tussenvoegsel`, `Achternaam`, `Email`, `Functie`) VALUES (NULL, NULL, 'Admin', NULL, 'Admin', NULL, NULL)";
@@ -27,6 +33,10 @@ include '../databaseconnection.php';
 		Gebruikersnaam: Admin
 		<br>
 		Wachtwoord: Admin
+
+	<?php } elseif(isset($_POST['submit']) && !$gotadmin){?>
+
+		<h2>Account bestaat al</h2>
 
 	<?php } ?>
 </div>
