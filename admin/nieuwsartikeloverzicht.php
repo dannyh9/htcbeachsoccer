@@ -57,7 +57,10 @@ if($result->num_rows > 0){
                                 <?php echo $row['Titel'];?>
                             </td>
                             <td>
-                                <?php echo $row['Inhoud'];?>
+                                <?php
+                                $small = substr($row['Inhoud'], 0, 350); $small .="..";
+                                ?>
+                                <?php echo $small;?>
                             </td>
 
                         </a>

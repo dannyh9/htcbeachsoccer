@@ -107,7 +107,8 @@ include 'databaseconnection.php';
             $(".messages").text("Vul alle verplichte velden in.");
             </script>
             <?php
-            exit();}    
+            exit();
+        }    
         $from=mysqli_escape_string($conn,$_POST['email']);
         $voornaam=mysqli_escape_string($conn,$_POST['voornaam']);
         $achternaam=mysqli_escape_string($conn,$_POST['achternaam']);
