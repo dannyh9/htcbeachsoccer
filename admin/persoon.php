@@ -98,6 +98,18 @@ if($id == ""){
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
+       <button class="btn btn-danger " name="delete" type="submit">
+        Verwijder
+       </button>
+       <?php
+       if(!$id == ""){
+        ?>
+       <button class="btn btn-warning " name="createaccount" type="submit">
+        Maak account
+       </button>
+       <?php
+       }
+       ?>
       </div>
     </form>
    </div>
@@ -127,6 +139,16 @@ if (isset($_POST['submit'])) {
   } else {
 
   }
+}
+
+if(isset($_POST['delete'])){
+  $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
+  $conn->query($deleteaccountquery);
+  $conn->query($deletepersoonquery);
+  ?>
+  <script>window.location.replace("../admin/index.php?page=personen");</script>
+  <?php
 }
 
 ?>
