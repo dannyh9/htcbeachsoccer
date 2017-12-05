@@ -40,7 +40,7 @@ if ($result->num_rows === 0) {
              <?php $small = substr($row['Inhoud'], 0, 150); $small .=".."; ?>
                <p><?php echo $small;?></p>              
 
-               <p><a class="btn btn-secondary" href="nieuwsartikellen.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
+               <p><a class="btn btn-secondary" href="nieuwsartikelen.php?id=<?php echo $row['ArtikelID'];?>" role="button">Lees verder.. &raquo;</a></p>
             </div>
            <?php          
             }

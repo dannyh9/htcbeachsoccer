@@ -42,8 +42,6 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 		        					<h1><?php echo $row["Titel"]?></h1>
 		        					<?php echo $row["Inhoud"]?>
 		        					<?php //afbeelding ?>
-		
-		
 		        					<p>
 		        						<?php echo "Geplaatst door: ".$voornaam." ".$achternaam."</br>"  ?>
 		        						<?php echo "Om: ".$row['Datum']."</br>"  ?>

@@ -2,6 +2,7 @@
 
       <footer>
         <p>&copy; HTC 2017</p>
+        <div class="fb-share-button" data-href="https://www.facebook.com/HTCZwolleBeachSoccer/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FHTCZwolleBeachSoccer%2F&amp;src=sdkpreparse">Share</a></div>
       </footer>
 
     </div><!--/.container-->
