@@ -132,7 +132,7 @@ include 'databaseconnection.php';
               }
               else{
                   $antiflood = 0;
-              }}
+              }
         if ($antiflood == "") {
             $_SESSION['antiflood'] = time();
             @mail($from, "Uw bericht is verzonden.", $message, $headersfrom);
@@ -153,7 +153,7 @@ include 'databaseconnection.php';
             </script>
             <?php
      }  
-}
+}}
 ?>
 
 
@@ -161,4 +161,3 @@ include 'databaseconnection.php';
 include 'right-menu.php';
 include 'footer.php';
 ?>
-
