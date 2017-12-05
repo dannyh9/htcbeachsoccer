@@ -14,6 +14,7 @@ include '../databaseconnection.php';
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
 <?php 
+
 if(isset($_GET["nieuwsartikelid"])) {
 $id = $_GET["nieuwsartikelid"];
 var_dump($id);
@@ -76,46 +77,46 @@ $titel=$row['Titel'];
 </div>
 <?php 
 if (isset($_POST['submit'])){
+
     $titel=$_POST['titel'];
     $inhoud=$_POST['inhoud'];
     $username="Admin";
+
     $nieuwsartikelquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
-    var_dump($_POST);
-    var_dump($titel);
-    var_dump($inhoud);
-    var_dump($username);  
-    $conn->query($nieuwsartikelquery);
-}
+  
+    //$conn->query($nieuwsartikelquery);
 
-if (isset($_POST['submit'])) {
-  $file = $_FILES['file'];
-  $fileName = $file['name'];
-  $fileTmpName = $file['tmp_name'];
-  $fileSize = $file['size'];
-  $fileError = $file['error'];
-  $fileType = $file['type'];
-
-  $fileExt = explode('.', $fileName);
-  $fileActualExt = strtolower(end($fileExt));
-
-  $allowed = array('jpg', 'jpeg', 'png', 'pdf');
-
-  if (in_array($fileActualExt, $allowed)) {
-    if ($fileError === 0) {
-      if ($fileSize < 1000000) {
-        $fileNameNew = uniqid('', true).".".$fileActualExt;
-        $fileDestination = '../uploads/'.$fileNameNew;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        header("Location: index.php?uploadsuccess");
+    $file = $_FILES['file'];
+    $fileName = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+  
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+  
+    $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+  
+    if (in_array($fileActualExt, $allowed)) {
+      if ($fileError === 0) {
+        if ($fileSize < 1000000) {
+          $fileNameNew = uniqid('', true).".".$fileActualExt;
+          $fileDestination = '../uploads/'.$fileNameNew;
+          move_uploaded_file($fileTmpName, $fileDestination);
+          $nieuwsartikelquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`,`Afbeelding`) VALUES ('$titel', '$inhoud', '$username','$fileNameNew')";
+          //var_dump($fileNameNew);
+          //header("Location: index.php?uploadsuccess");
+        } else {
+          //echo "Your file is too big!";
+        }
       } else {
-        echo "Your file is too big!";
+        //echo "There was an error uploading your file!";
       }
     } else {
-      echo "There was an error uploading your file!";
+      //echo "You cannot upload files of this type!";
     }
-  } else {
-    echo "You cannot upload files of this type!";
-  }
+    $conn->query($nieuwsartikelquery);
 }
 
 ?>

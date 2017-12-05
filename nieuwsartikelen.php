@@ -18,6 +18,11 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 		}
 			?>
 			 <div class="container">
+			 	<style type="text/css">
+			 		.onder {
+			 			padding-top:30px;
+			 		}
+			 	</style>
 		
 		      <div class="row content row-offcanvas row-offcanvas-right">
 		        <div class="col-12 col-md-9">
@@ -40,11 +45,21 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 		        				$achternaam = $row3['Achternaam'];
 		        				?>
 		        					<h1><?php echo $row["Titel"]?></h1>
+		        					
+		        					<?php //afbeelding 
+
+		        					if($row["Afbeelding"] != NULL) {
+		        						?>
+		        						<img align="right" src="uploads/<?php echo $row['Afbeelding']; ?>">
+		        						<?php 
+		        					}
+		        						$datum = substr($row['Datum'], 0, 10);
+		        					?>
 		        					<?php echo $row["Inhoud"]?>
-		        					<?php //afbeelding ?>
-		        					<p>
+
+		        					<p class="onder">
 		        						<?php echo "Geplaatst door: ".$voornaam." ".$achternaam."</br>"  ?>
-		        						<?php echo "Om: ".$row['Datum']."</br>"  ?>
+		        						<?php echo "Om: ".$datum."</br>"  ?>
 		        					</p>
 		        					
 		        				<?php
