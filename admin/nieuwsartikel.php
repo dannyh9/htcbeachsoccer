@@ -32,7 +32,7 @@ $titel=$row['Titel'];
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
-<form id="nieuwsartikel-form" method="post" action="nieuwsartikel.php" role="form"> 
+<form id="nieuwsartikel-form" method="post" action="nieuwsartikel.php" role="form" action="upload.php" method="POST" enctype="multipart/form-data"> 
      <div class="form-group ">
       <label class="control-label " for="titel">
        Titel
