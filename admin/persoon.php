@@ -8,6 +8,12 @@ include '../databaseconnection.php';
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
 <script src="../js/uploadknopscript.js"></script>
 <?php 
+
+function redirectoverview(){
+  ?><script>window.location.replace("../admin/index.php?page=personen");</script><?php
+}
+
+
 if(isset($_GET["persoonid"])) {
     $id = $_GET["persoonid"];
     $idquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
@@ -26,6 +32,15 @@ if(isset($_GET["persoonid"])) {
   $functie="";
   $id="";
 }
+
+if (!$id == ""){
+  $accountcheckquery = "SELECT * FROM authenticatie WHERE PersoonID = '$id'";
+  $accountresult = $conn->query($accountcheckquery);
+  $accrow = mysqli_fetch_array($accountresult);
+  $gotacc = !isset($accrow);
+}
+
+
 ?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
@@ -102,7 +117,7 @@ if($id == ""){
         Verwijder
        </button>
        <?php
-       if(!$id == ""){
+       if(!$id == "" && $gotacc){
         ?>
        <button class="btn btn-warning " name="createaccount" type="submit">
         Maak account
@@ -129,26 +144,22 @@ if (isset($_POST['submit'])) {
   if ($id == ""){
     $persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
     $conn->query($persoonquery);
+    redirectoverview();
 
 
   } else if ($id != ""){
 
   $updatequery = "UPDATE persoon SET Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
   $conn->query($updatequery);
-
-  } else {
-
-  }
-}
+  redirectoverview();
+}}
 
 if(isset($_POST['delete'])){
   $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
   $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
   $conn->query($deleteaccountquery);
   $conn->query($deletepersoonquery);
-  ?>
-  <script>window.location.replace("../admin/index.php?page=personen");</script>
-  <?php
+  redirectoverview();
 }
 
 ?>
