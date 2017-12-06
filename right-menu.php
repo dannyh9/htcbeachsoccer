@@ -18,7 +18,7 @@ include('databaseconnection.php');
               $date->modify('next saturday');
               $date = $date->format('j F');
               echo("Zaterdag " . $date . "");
-              $teamthuis=mysqli_query($conn, "SELECT `Thuisteam` FROM `wedstrijd` WHERE `Datum` IS $date");
+              $teamthuis=mysqli_query($conn, "SELECT `Thuisteam` FROM `wedstrijd` WHERE `Datum` = '$date'");
               ?>
               <br>
               12:00 uur
