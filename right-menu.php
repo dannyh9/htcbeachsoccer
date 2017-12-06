@@ -12,36 +12,40 @@ include('databaseconnection.php');
             <div class="text-center boldtext" style="border:1px #164394 solid" >
               <?php
               // Create a new DateTime object
-              $date = new DateTime();
+              $date = new DateTime('yesterday');
+              $datePrint = $date->format('Y-m-d H:i:s');
+              print($datePrint);
               //$date=strtotime($date);
-                list($day,$month,$year) = explode("/",date('d/m/Y/'));
-                echo $month.'/'.$day.'/'.$year.'';
-                $dateString= $month. '/' .$day.'';
+        //        list($day,$month,$year) = explode("/",date('d/m/Y/'));
+          //      echo $month.'/'.$day.'/'.$year.'';
+            //    $dateString= $month. '-' .$day.'';
               // Check if current day is not saturday
                // if($date("l")!="saturday"){
                 //$date->modify('next saturday');
               //}
-              $datePrint = $date->format('j F');
-              echo("Zaterdag " . $datePrint . "");
-              //$date=strtolower($date);
-              var_dump($dateString);
-              $thuisteamquery=("SELECT `Thuisteam` FROM `wedstrijd` WHERE `Datum` LIKE %'$dateString'%");
+  //            echo("Zaterdag " . $datePrint . "");
+    //          //$date=strtolower($date);
+      //        var_dump($dateString);
+              $thuisteamquery="SELECT * FROM wedstrijd WHERE Datum >= '$datePrint' LIMIT 2";
               $result=mysqli_query($conn, $thuisteamquery);
-              while($row = mysql_fetch_array($result)) {
-                echo $row['fieldname'];
-              }
-              var_dump($teamthuis);
-              var_dump($result);
-              exit;
               ?>
               <br>
               12:00 uur
               <br>
-              <a> <img src="./img/svhtc.png" style="max-width:60px"></a>
+              <?php
+                if($row['Thuisteamlogo'] != NULL){
+              ?>
+              <a> <img src="./uploads/<?php echo $row['Thuisteamlogo'];?>" style="max-width:60px"></a>
+              <?php
+                }
+              ?>
                - 
               <a> <img src="./img/svhtc.png" style="max-width:60px"></a>
               <br><?php
-              echo($teamthuis); echo(" - uitteam")?>
+              $row=mysqli_fetch_array($result);
+              var_dump($row);
+              exit;
+              echo($result); echo(" - uitteam")?>
             </div>
             <br><br>
             <div class="text-center boldtext" style="border:1px #164394 solid">
