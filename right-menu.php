@@ -1,3 +1,7 @@
+<?php
+include('databaseconnection.php');
+?>
+
 <div class="col12 col-md-3" id="sidebar">
   <style>
   .boldtext{
@@ -6,15 +10,24 @@
 </style>
           <div class="container">
             <div class="text-center boldtext" style="border:1px #164394 solid" >
-              Zaterdag 9 december
+              <?php
+              // Create a new DateTime object
+              $date = new DateTime();
+
+              // Modify the date it contains
+              $date->modify('next saturday');
+              $date = $date->format('j F');
+              echo("Zaterdag " . $date . "");
+              $teamthuis=mysqli_query($conn, "SELECT `Thuisteam` FROM `wedstrijd` WHERE `Datum` IS $date");
+              ?>
               <br>
               12:00 uur
               <br>
               <a> <img src="./img/svhtc.png" style="max-width:60px"></a>
                - 
               <a> <img src="./img/svhtc.png" style="max-width:60px"></a>
-              <br>
-              SV HTC 1 - SV HTC 2
+              <br><?php
+              echo($teamthuis); echo(" - uitteam")?>
             </div>
             <br><br>
             <div class="text-center boldtext" style="border:1px #164394 solid">
