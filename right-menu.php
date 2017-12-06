@@ -13,12 +13,26 @@ include('databaseconnection.php');
               <?php
               // Create a new DateTime object
               $date = new DateTime();
-
-              // Modify the date it contains
-              $date->modify('next saturday');
-              $date = $date->format('j F');
-              echo("Zaterdag " . $date . "");
-              $teamthuis=mysqli_query($conn, "SELECT `Thuisteam` FROM `wedstrijd` WHERE `Datum` = '$date'");
+              //$date=strtotime($date);
+                list($day,$month,$year) = explode("/",date('d/m/Y/'));
+                echo $month.'/'.$day.'/'.$year.'';
+                $dateString= $month. '/' .$day.'';
+              // Check if current day is not saturday
+               // if($date("l")!="saturday"){
+                //$date->modify('next saturday');
+              //}
+              $datePrint = $date->format('j F');
+              echo("Zaterdag " . $datePrint . "");
+              //$date=strtolower($date);
+              var_dump($dateString);
+              $thuisteamquery=("SELECT `Thuisteam` FROM `wedstrijd` WHERE `Datum` LIKE %'$dateString'%");
+              $result=mysqli_query($conn, $thuisteamquery);
+              while($row = mysql_fetch_array($result)) {
+                echo $row['fieldname'];
+              }
+              var_dump($teamthuis);
+              var_dump($result);
+              exit;
               ?>
               <br>
               12:00 uur
