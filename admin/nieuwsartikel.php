@@ -28,7 +28,6 @@ if(isset($_GET["nieuwsartikelid"])) {
   $id="";
 }
 
-
 ?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
@@ -50,7 +49,7 @@ if(isset($_GET["nieuwsartikelid"])) {
          <span class="asteriskField">
         *
       </label>
-      <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10" value="<?php echo $inhoud; ?>"/> </textarea>
+      <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10""/> <?php echo $inhoud; ?> </textarea>
      </div>
      <div class="form-group">
           <div class="form-group">
