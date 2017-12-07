@@ -16,18 +16,26 @@ include '../databaseconnection.php';
 <?php 
 
 if(isset($_GET["nieuwsartikelid"])) {
-$id = $_GET["nieuwsartikelid"];
-var_dump($id);
-$idquery = "SELECT * FROM nieuwsartikel WHERE ArtikelID = '$id'";
-$result = $conn->query($idquery);
-var_dump($result);
-$row = mysqli_fetch_array($result);
-var_dump($row);
-print_r($row);
-$titel=$row['Titel'];
+    $id = $_GET["nieuwsartikelid"];
+    $idquery = "SELECT * FROM nieuwsartikel WHERE ArtikelID = '$id'";
+    $result = $conn->query($idquery);
+    $row = mysqli_fetch_array($result);
+    $titel=$row['Titel'];
+    $inhoud=$row["Inhoud"];
 } else {
   $titel="";
+  $inhoud="";
+  $id="";
 }
+
+if (!$id == ""){
+  $accountcheckquery = "SELECT * FROM authenticatie WHERE PersoonID = '$id'";
+  $accountresult = $conn->query($accountcheckquery);
+  $accrow = mysqli_fetch_array($accountresult);
+  $gotacc = !isset($accrow);
+}
+
+
 ?>
 <div class="bootstrap-iso">
  <div class="container-fluid">
@@ -35,12 +43,13 @@ $titel=$row['Titel'];
    <div class="col-md-6 col-sm-6 col-xs-12">
 <form id="nieuwsartikel-form" method="POST" action="nieuwsartikel.php" role="form" enctype="multipart/form-data"> 
      <div class="form-group ">
+       <form id="nieuwsartikel-form" method="post" action="index.php?nieuwsartikelid=<?php echo $id; ?>" role="form"> 
       <label class="control-label " for="titel">
        Titel
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *"/>
+      <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *" value="<?php echo $titel; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="inhoud">
@@ -48,7 +57,7 @@ $titel=$row['Titel'];
          <span class="asteriskField">
         *
       </label>
-      <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10" ></textarea>
+      <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10" value="<?php echo $inhoud; ?>"/> </textarea>
      </div>
      <div class="form-group">
           <div class="form-group">
