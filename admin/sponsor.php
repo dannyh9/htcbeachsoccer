@@ -107,13 +107,46 @@ if (isset($_POST['submit'])) {
   $updatequery = "UPDATE persoon SET SponsorAfbeelding = '$afbeelding',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
   $conn->query($updatequery);
   redirectoverview();
+
+   $file = $_FILES['file'];
+   $fileName = $file['name'];
+   $fileTmpName = $file['tmp_name'];
+   $fileSize = $file['size'];
+   $fileError = $file['error'];
+   $fileType = $file['type'];
+ 
+   $fileExt = explode('.', $fileName);
+   $fileActualExt = strtolower(end($fileExt));
+ 
+   $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+ 
+   if (in_array($fileActualExt, $allowed)) {
+     if ($fileError === 0) {
+       if ($fileSize < 1000000) {
+         $fileNameNew = uniqid('', true).".".$fileActualExt;
+         $fileDestination = '../uploads/'.$fileNameNew;
+         move_uploaded_file($fileTmpName, $fileDestination);
+         $nieuwsartikelquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`,`Afbeelding`) VALUES ('$titel', $inhoud', '$username','$fileNameNew')";
+         //var_dump($fileNameNew);
+         //header("Location: index.php?uploadsuccess");
+       } else {
+         //echo "Your file is too big!";
+       }
+     } else {
+       //echo "There was an error uploading your file!";
+     }
+   } else {
+     //echo "You cannot upload files of this type!";
+   }
+   $conn->query($nieuwsartikelquery);
+
 }}
 
 if(isset($_POST['delete'])){
-  $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
-  $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
-  $conn->query($deleteaccountquery);
-  $conn->query($deletepersoonquery);
-  redirectoverview();
+  //$deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  //$deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
+  //$conn->query($deleteaccountquery);
+  //$conn->query($deletepersoonquery);
+  //redirectoverview();
 }
 ?>
