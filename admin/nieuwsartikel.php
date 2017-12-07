@@ -28,13 +28,6 @@ if(isset($_GET["nieuwsartikelid"])) {
   $id="";
 }
 
-if (!$id == ""){
-  $accountcheckquery = "SELECT * FROM authenticatie WHERE PersoonID = '$id'";
-  $accountresult = $conn->query($accountcheckquery);
-  $accrow = mysqli_fetch_array($accountresult);
-  $gotacc = !isset($accrow);
-}
-
 
 ?>
 <div class="bootstrap-iso">
