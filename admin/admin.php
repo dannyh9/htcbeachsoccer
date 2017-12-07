@@ -22,16 +22,7 @@
                             <i class="fa fa-home fa-lg"></i> Home
                             </a>
                           </li>
-          
-                          <li  data-toggle="collapse" data-target="#products">
-                            <a class="wide" href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-                          </li>
-                          <ul class="sub-menu collapse" id="products">
-                              <li class="active"><a href="#">CSS3 Animation</a></li>
-                              <li><a href="#">General</a></li>
-                          </ul>
-          
-          
+
                           <li data-toggle="collapse" data-target="#Personen" class="collapsed">
                             <a class="wide" href="#"><i class="fa fa-address-book fa-lg"></i> Personen <span class="arrow"></span></a>
                           </li>  
@@ -75,11 +66,11 @@
                           
 
                           <li data-toggle="collapse" data-target="#Media" class="collapsed">
-                            <a class="wide" href="#"><i class="fa fa-picture-o fa-lg"></i> Media <span class="arrow"></span></a>
+                            <a class="wide" href="#"><i class="fa fa-picture-o fa-lg"></i> Sponsoren <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Media">
-                            <li>Media Beheren</li>
-                            <li>Media Uploaden</li>
+                            <li><a href="index.php?page=sponsorenoverzicht">Sponsoren overzicht</a></li>
+                            <li><a href="index.php?page=newsponsor">Sponsor Aanmaken</a></li>
                           </ul>
           
           
@@ -118,7 +109,11 @@
               include 'nieuwsartikeloverzicht.php';
           }else if($page == "nieuwsartikelaanmaken"){
               include 'nieuwsartikel.php';
-          }  else {
+          }else if($page == "sponsorenoverzicht"){
+              include 'sponsorenoverzicht.php';
+          }else if($page == "newsponsor"){
+              include 'sponsor.php';
+          }   else {
             echo "er is iets fout gegaan.";
           }
        } else if (isset($_GET['contactid'])) {

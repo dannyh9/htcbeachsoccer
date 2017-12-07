@@ -10,7 +10,7 @@ include '../databaseconnection.php';
 <?php 
 
 function redirectoverview(){
-  ?><script>window.location.replace("../admin/index.php?page=sponsor");</script><?php
+  ?><script>window.location.replace("../admin/index.php?page=sponsorenoverzicht");</script><?php
 }
 
 
@@ -21,14 +21,25 @@ function redirectoverview(){
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
 <?php 
+if(isset($_GET["sponsor"])) {
+    $id = $_GET["sponsor"];
+    $idquery = "SELECT * FROM sponsor WHERE SponsorID = '$id'";
+    $result = $conn->query($idquery);
+    $row = mysqli_fetch_array($result);
+    $sponsornaam=$row['SponsorNaam'];
+    $afbeelding=$row["SponsorAfbeelding"];
+    $link=$row["SponsorLink"];
+} else {
   $sponsornaam="";
-
   $link="";
-  $functie="";
+  $afbeelding ="";
   $id="";
+}
+
+ 
 if($id == ""){
 ?>
-  <form id="persoon-form" method="post" action="index.php?page=newpersoon" role="form"> 
+  <form id="persoon-form" method="post" action="index.php?page=newsponsor" role="form"> 
     <?php
 } else {
   ?>
@@ -73,7 +84,6 @@ if($id == ""){
         Verwijder
        </button>
         <?php
-
         }
         ?>
       </div>
@@ -82,3 +92,28 @@ if($id == ""){
   </div>
  </div>
 </div>
+
+<?php
+if (isset($_POST['submit'])) {
+  $naam=$_POST['sponsornaam'];
+  $link=$_POST['link'];;
+  $afbeelding="aap.jpg";
+
+  if ($id == ""){
+    $query = "INSERT INTO `sponsor`(`SponsorAfbeelding`, `SponsorLink`, `SponsorNaam`) VALUES ('$afbeelding', '$naam', '$link')";
+    $conn->query($query);
+    redirectoverview();
+  } else if ($id != ""){
+  $updatequery = "UPDATE persoon SET SponsorAfbeelding = '$afbeelding',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
+  $conn->query($updatequery);
+  redirectoverview();
+}}
+
+if(isset($_POST['delete'])){
+  $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
+  $conn->query($deleteaccountquery);
+  $conn->query($deletepersoonquery);
+  redirectoverview();
+}
+?>
