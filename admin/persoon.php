@@ -113,7 +113,7 @@ if($id == ""){
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
-       <button class="btn btn-danger " onclick="return confirm('Are you sure you want to delete?');" name="delete" type="submit">
+       <button class="btn btn-danger " onclick="return confirm('Weet u zeker dat u deze persoon en eventueel account wilt verwijderen?');" name="delete" type="submit">
         Verwijder
        </button>
        <?php
@@ -162,4 +162,6 @@ if(isset($_POST['delete'])){
   redirectoverview();
 }
 
-?>
+if(isset($_POST['delete'])){
+  }
+?> 
