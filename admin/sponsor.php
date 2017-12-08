@@ -46,11 +46,11 @@ if(isset($_GET["sponsorid"])) {
  
 if($id == ""){
 ?>
-  <form id="persoon-form" method="post" action="index.php?page=newsponsor" role="form"> 
+  <form id="persoon-form" method="post" action="index.php?page=newsponsor" role="form" enctype="multipart/form-data"> 
     <?php
 } else {
   ?>
-  <form id="persoon-form" method="post" action="index.php?sponsorid=<?php echo $id; ?>" role="form"> 
+  <form id="persoon-form" method="post" action="index.php?sponsorid=<?php echo $id; ?>" role="form" enctype="multipart/form-data"> 
     <?php
 }
 ?>
@@ -82,7 +82,7 @@ if($id == ""){
         <div class="input-group">
             <span class="input-group-btn">
                 <span class="btn btn-default btn-file">
-                    Zoeken… <input type="file" id="imgInp" name="file">
+                    Zoeken… <input type="file" id="imgInp" name="userfile">
                 </span>
             </span>
             <input type="text" class="form-control" readonly>
@@ -113,14 +113,15 @@ if($id == ""){
 if (isset($_POST['submit'])) {
   $naam= $_POST['sponsornaam'];
   $link= $_POST['link'];
-  $afbeelding = $row["SponsorAfbeelding"];
   //$conn->query($updatequery);
   //redirectoverview();
-
-  if(!file_exists($_FILES['file']['tmp_name']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
-    $query = "UPDATE persoon SET SponsorAfbeelding = '$afbeelding',  SponsorLink = '$link' , SponsorNaam = '$naam'WHERE SponsorID = '$id'";
+  //var_dump($_FILES);
+  if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+    $query = "UPDATE sponsor SET SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
+    $conn->query($query);
   } else { 
-      $file = $_FILES['file'];
+    //var_dump($id);
+      $file = $_FILES['userfile'];
       $fileName = $file['name'];
       $fileTmpName = $file['tmp_name'];
       $fileSize = $file['size'];
@@ -140,12 +141,11 @@ if (isset($_POST['submit'])) {
             move_uploaded_file($fileTmpName, $fileDestination);
                  if ($id == ""){
                    $query = "INSERT INTO `sponsor`(`SponsorAfbeelding`, `SponsorLink`, `SponsorNaam`) VALUES ('$fileNameNew', '$naam', '$link')";
-                   ;
-                   
                  } else if ($id != ""){
-                 $query = "UPDATE persoon SET SponsorAfbeelding = '$fileNameNew',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
+                 $query = "UPDATE sponsor SET SponsorAfbeelding = '$fileNameNew',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
                  }
-                 
+                 $conn->query($query);
+                  //var_dump($fileNameNew);
           } else {
             echo "Your file is too big!";
           }
@@ -156,10 +156,11 @@ if (isset($_POST['submit'])) {
         echo "You cannot upload files of this type!";
       }
     }
-    var_dump($query);
-    exit;
-   $conn->query($query);
-  //redirectoverview();
+    //var_dump($query);
+   
+    //exit;
+   
+  redirectoverview();
 
 }
 
