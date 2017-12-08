@@ -15,6 +15,11 @@ include '../databaseconnection.php';
 <script src="../js/uploadknopscript.js"></script>
 <?php 
 
+function redirectoverview(){
+  ?><script>window.location.replace("../admin/index.php?page=nieuwsoverzicht");</script><?php
+}
+
+
 if(isset($_GET["nieuwsartikelid"])) {
     $id = $_GET["nieuwsartikelid"];
     $idquery = "SELECT * FROM nieuwsartikel WHERE ArtikelID = '$id'";
@@ -118,6 +123,7 @@ if (isset($_POST['submit'])){
       //echo "You cannot upload files of this type!";
     }
     $conn->query($nieuwsartikelquery);
+    redirectoverview();
 }
 
 ?>

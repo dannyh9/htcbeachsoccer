@@ -40,6 +40,7 @@ if($result->num_rows > 0){
         };
     });
 </script>
+<a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
         <table class="table table-hover">
            <thead>
                 <tr>
@@ -70,7 +71,7 @@ if($result->num_rows > 0){
                 ?>
            </tbody>
         </table>
-        <a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
+        
 <?php
 }
 

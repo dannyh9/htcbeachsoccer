@@ -122,6 +122,8 @@
           include 'persoon.php';
        } else if (isset($_GET['nieuwsartikelid'])) {
           include 'nieuwsartikel.php';
+       } else if (isset($_GET['sponsorid'])) {
+          include 'sponsor.php';
        }
        else { 
           //laad home pagina in

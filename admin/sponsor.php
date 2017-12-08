@@ -21,10 +21,17 @@ function redirectoverview(){
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
 <?php 
-if(isset($_GET["sponsor"])) {
-    $id = $_GET["sponsor"];
+if(isset($_GET["sponsorid"])) {
+    $id = $_GET["sponsorid"];
     $idquery = "SELECT * FROM sponsor WHERE SponsorID = '$id'";
     $result = $conn->query($idquery);
+
+    //geen resultaat ga terug naar overzicht
+    if($result->num_rows === 0){ 
+      redirectoverview();
+      //
+    }
+
     $row = mysqli_fetch_array($result);
     $sponsornaam=$row['SponsorNaam'];
     $afbeelding=$row["SponsorAfbeelding"];
@@ -63,10 +70,19 @@ if($id == ""){
       <label class="control-label " for="pasfoto">
         Upload sponsorafbeelding
       </label>
+      <?php
+      if($afbeelding != ""){
+        ?>
+          <div class="form-group ">
+          <img src="../uploads/<?php echo $row["SponsorAfbeelding"]; ?>">
+          </div>
+        <?php
+      }
+        ?>
         <div class="input-group">
             <span class="input-group-btn">
                 <span class="btn btn-default btn-file">
-                    Zoeken… <input type="file" id="persoonimgInp">
+                    Zoeken… <input type="file" id="imgInp" name="file">
                 </span>
             </span>
             <input type="text" class="form-control" readonly>
@@ -95,52 +111,59 @@ if($id == ""){
 
 <?php
 if (isset($_POST['submit'])) {
-  $naam=$_POST['sponsornaam'];
-  $link=$_POST['link'];;
-  $afbeelding="aap.jpg";
+  $naam= $_POST['sponsornaam'];
+  $link= $_POST['link'];
+  $afbeelding = $row["SponsorAfbeelding"];
+  //$conn->query($updatequery);
+  //redirectoverview();
 
-  if ($id == ""){
-    $query = "INSERT INTO `sponsor`(`SponsorAfbeelding`, `SponsorLink`, `SponsorNaam`) VALUES ('$afbeelding', '$naam', '$link')";
-    $conn->query($query);
-    redirectoverview();
-  } else if ($id != ""){
-  $updatequery = "UPDATE persoon SET SponsorAfbeelding = '$afbeelding',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
-  $conn->query($updatequery);
-  redirectoverview();
+  if(!file_exists($_FILES['file']['tmp_name']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
+    $query = "UPDATE persoon SET SponsorAfbeelding = '$afbeelding',  SponsorLink = '$link' , SponsorNaam = '$naam'WHERE SponsorID = '$id'";
+  } else { 
+      $file = $_FILES['file'];
+      $fileName = $file['name'];
+      $fileTmpName = $file['tmp_name'];
+      $fileSize = $file['size'];
+      $fileError = $file['error'];
+      $fileType = $file['type'];
+ 
+      $fileExt = explode('.', $fileName);
+      $fileActualExt = strtolower(end($fileExt));
+ 
+      $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+       
+      if (in_array($fileActualExt, $allowed)) {
+        if ($fileError === 0) {
+          if ($fileSize < 1000000) {
+            $fileNameNew = uniqid('', true).".".$fileActualExt;
+            $fileDestination = '../uploads/'.$fileNameNew;
+            move_uploaded_file($fileTmpName, $fileDestination);
+                 if ($id == ""){
+                   $query = "INSERT INTO `sponsor`(`SponsorAfbeelding`, `SponsorLink`, `SponsorNaam`) VALUES ('$fileNameNew', '$naam', '$link')";
+                   ;
+                   
+                 } else if ($id != ""){
+                 $query = "UPDATE persoon SET SponsorAfbeelding = '$fileNameNew',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
+                 }
+                 
+          } else {
+            echo "Your file is too big!";
+          }
+        } else {
+          echo "There was an error uploading your file!";
+        }
+      } else {
+        echo "You cannot upload files of this type!";
+      }
+    }
+    var_dump($query);
+    exit;
+   $conn->query($query);
+  //redirectoverview();
 
-   $file = $_FILES['file'];
-   $fileName = $file['name'];
-   $fileTmpName = $file['tmp_name'];
-   $fileSize = $file['size'];
-   $fileError = $file['error'];
-   $fileType = $file['type'];
- 
-   $fileExt = explode('.', $fileName);
-   $fileActualExt = strtolower(end($fileExt));
- 
-   $allowed = array('jpg', 'jpeg', 'png', 'pdf');
- 
-   if (in_array($fileActualExt, $allowed)) {
-     if ($fileError === 0) {
-       if ($fileSize < 1000000) {
-         $fileNameNew = uniqid('', true).".".$fileActualExt;
-         $fileDestination = '../uploads/'.$fileNameNew;
-         move_uploaded_file($fileTmpName, $fileDestination);
-         $nieuwsartikelquery = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`,`Afbeelding`) VALUES ('$titel', $inhoud', '$username','$fileNameNew')";
-         //var_dump($fileNameNew);
-         //header("Location: index.php?uploadsuccess");
-       } else {
-         //echo "Your file is too big!";
-       }
-     } else {
-       //echo "There was an error uploading your file!";
-     }
-   } else {
-     //echo "You cannot upload files of this type!";
-   }
-   $conn->query($nieuwsartikelquery);
+}
 
-}}
+
 
 if(isset($_POST['delete'])){
   //$deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
