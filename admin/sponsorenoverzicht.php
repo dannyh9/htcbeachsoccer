@@ -8,7 +8,7 @@ $queryoverzicht = "SELECT * FROM sponsor";
 // $result = $conn->query($Contactoverzichtquery);
 
 if ($conn->connect_errno) {
-    echo "Sorry, this website is experiencing problems.";
+    echo "Sorry,er kan geen database connectie worden aangemaakt";
     exit;
 }
 

@@ -5,7 +5,7 @@
 <?php
 include '../databaseconnection.php';
 
-$Contactoverzichtquery = "SELECT * FROM Contactformulier";
+$Contactoverzichtquery = "SELECT * FROM Contactformulier ORDER BY Timestamp DESC";
 // $result = $conn->query($Contactoverzichtquery);
 
 if ($conn->connect_errno) {
