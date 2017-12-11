@@ -77,10 +77,10 @@ if($id == ""){
        Achternaam
          <span class="asteriskField">
         *
-      </label>
-      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
-     </div>
-     <div class="form-group">
+      </label>      
+      <input class="form-control" id="achternaam" placeh      older="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
+     </div>     
+     <div class="form-group">     
           <div class="form-group">
       <label class="control-label " for="email">
            Email
@@ -119,9 +119,9 @@ if($id == ""){
        <?php
        if(!$id == "" && $gotacc){
         ?>
-       <button class="btn btn-warning " name="createaccount" type="submit">
+       <a href="registratieform.php?persoonid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
         Maak account
-       </button>
+       </a >
        <?php
        }
        ?>
