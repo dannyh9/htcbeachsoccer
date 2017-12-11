@@ -9,9 +9,10 @@ include '../databaseconnection.php';
 <script src="../js/uploadknopscript.js"></script>
 
 <?php
-
-function redirectoverview(){
-	?><script>window.location.replace("../admin/index.php?page=personen");</script><?php
+$status = "";
+function redirectoverview($status){
+	$reloc = "../admin/index.php?page=personen";
+	?><script>window.location.replace("../admin/index.php?page=personen<?php echo $status; ?>");</script><?php
 }
 
 
@@ -25,12 +26,17 @@ if(isset($_GET["persoonid"])){
 	$persrow = mysqli_fetch_array($persoonresult);
 	$gotacc = isset($accrow);
 	$gotpers = isset($persrow);
-	if($gotacc || !$gotpers){
-		redirectoverview();
+	if($gotacc){
+		redirectoverview("&redcode=error1");
+		exit;
+	}
+	if(!$gotpers){
+		redirectoverview("&redcode=error2");
+		var_dump($_GET);
 		exit;
 	}
 } else {
-	redirectoverview();
+	redirectoverview("&redcode=error3");
 }
 
 $authorisatiequery = "SELECT * FROM authorisatie";
@@ -131,6 +137,8 @@ $authorresult = $conn->query($authorisatiequery);
 			$newaccquery = "INSERT INTO `authenticatie` (`Username`, `Password`, `RolID`, `PersoonID`) VALUES ('$username', '$hashedPwd', '$rollid', '$persoonID')";
 
 			$conn->query($newaccquery);
+
+			redirectoverview("&redcode=succes1");	
 
 
 
