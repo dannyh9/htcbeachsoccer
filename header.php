@@ -90,7 +90,7 @@ if ($result->num_rows === 0) {
             <a class="nav-link" href="#">Media</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Agenda</a>
+            <a class="nav-link" href="wedstrijduitslagen.php">Wedstrijduitslagen</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="nieuwsartikelen.php">Nieuwsartikelen</a>
