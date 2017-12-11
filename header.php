@@ -1,7 +1,32 @@
+<?php
+include('databaseconnection.php');
+$query = "SELECT * FROM sponsor";
+
+if ($conn->connect_errno) {
+    $content = "Sorry,er kan geen database connectie worden aangemaakt";
+}
+
+if (!$result = $conn->query($query)) {
+   $content = "Geen resultaat";
+}
+
+if ($result->num_rows === 0) {
+    $content = "Geen Resultaten gevonden";
+} if($result->num_rows > 0){ 
+  $content="";
+    while($row = mysqli_fetch_array($result)){ 
+      $content .="<div class='mySlides'><a href='".$row['SponsorLink']."'>";
+      $content .="<img src='./uploads/".$row['SponsorAfbeelding']."' style='height:200px;''>";
+      $content .="</a></div>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -16,14 +41,20 @@
     <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
+    <style>
+.mySlides {display:none;}
+</style>
     <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>
+  (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=556845947780553';
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+
+</script>
   <div class="col-12">
     <div class="top-nav row"> 
       <div id="logo" class="col-md-3"> 
@@ -32,6 +63,10 @@
         </a>
       </div>
       <div id="sponsors" class="col-md-4">
+        <div class="w3-content" style="max-width:400px">
+          <?php echo $content; ?>
+        </div>
+          
       </div>
       <div id="img" class="col-md-5">
         <img height="200" src="./img/beachsoccer.jpg">
@@ -72,7 +107,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Bestuur</a>
+            <a class="nav-link" href="sponsoren.php">Sponsoren</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
@@ -84,5 +119,21 @@
         </form>
       </div>
     </nav>
+<script type="text/javascript">
+  
+  var slideIndex = 0;
+carousel();
 
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1} 
+    x[slideIndex-1].style.display = "block"; 
+    setTimeout(carousel, 3000); 
+}
+</script>
     
