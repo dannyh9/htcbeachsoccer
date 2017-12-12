@@ -24,9 +24,6 @@ if (!$result = $conn->query($queryoverzicht)) {
 
 if ($result->num_rows === 0) {
     echo "Geen Resultaten gevonden";
-    ?>
-    <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw persoon</a>
-    <?php
     exit;
 }
 if($result->num_rows > 0){ 
