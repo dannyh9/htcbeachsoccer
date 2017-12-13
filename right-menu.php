@@ -15,10 +15,12 @@ include('databaseconnection.php');
               $date = new DateTime('yesterday');
               $datePrint = $date->format('d-m-Y');
               $dateQuery = $date->format('Y-m-d H:i:s');
-              print($datePrint);
+              
               $thuisteamquery="SELECT * FROM wedstrijd WHERE Datum >= '$dateQuery' LIMIT 2";
               $result=mysqli_query($conn, $thuisteamquery);
               $row=mysqli_fetch_array($result);
+              if($result = ""){
+              print($datePrint);
               ?>
               <br>
               12:00 uur
@@ -31,6 +33,9 @@ include('databaseconnection.php');
             </div>
             <br><br>
             <hr>
+            <?php
+          }
+          ?>
            <a class="twitter-timeline" data-lang="nl" data-width="320" data-height="420" data-theme="light" href="https://twitter.com/PBSZ?ref_src=twsrc%5Etfw">
             Tweets by PBSZ
           </a>
