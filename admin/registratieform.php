@@ -130,9 +130,7 @@ $authorresult = $conn->query($authorisatiequery);
 			$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
 			$persoonID = mysqli_real_escape_string($conn, $_GET['persoonid']);
 			// Hashing the password
-			// $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-			// $hashedPwd = hash("sha256", $password);
-			$hashedPwd = md5($password);
+			$hashedPwd = hash("sha256", $password);
 
 			$newaccquery = "INSERT INTO `authenticatie` (`Username`, `Password`, `RolID`, `PersoonID`) VALUES ('$username', '$hashedPwd', '$rollid', '$persoonID')";
 

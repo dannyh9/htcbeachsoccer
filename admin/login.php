@@ -9,7 +9,7 @@ if (isset($_POST["login"])) {
 	if(isset($_POST["username"]) && $_POST["password"] != "") {
 		$username=$_POST['username'];
 		$password=$_POST['password'];
-		$hashpassword = md5($password);
+		$hashpassword = hash("sha256", $password);
 
 		$loginquery = "SELECT * FROM `authenticatie` WHERE Username = '$username' AND Password = '$hashpassword'";
 
