@@ -13,10 +13,7 @@ if (!$result = $conn->query($nieuwsoverzichtquery)) {
     echo "Geen resultaat";
     exit;
 }
-if ($result->num_rows === 0) {
-    echo "Geen Resultaten gevonden";
-    exit;
-}?>
+?>
   <div class="container">
 
       <div class="row content row-offcanvas row-offcanvas-right">
@@ -30,6 +27,9 @@ if ($result->num_rows === 0) {
           </div>
           <div class="row">
           <?php
+          if ($result->num_rows === 0) {
+              echo "Geen nieuwsartikelen gevonden";
+          }
           if($result->num_rows > 0){ 
             while($row = mysqli_fetch_array($result)){ 
                         //var_dump($row);

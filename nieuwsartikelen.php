@@ -28,8 +28,8 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 		        <div class="col-12 col-md-9">
 		        		<?php
 		        		if ($result->num_rows === 0) {
-		        		    echo "Geen Resultaat gevonden";
-		        		} else {
+					    echo "Geen nieuwsartikelen gevonden";
+						} else {
 		        			while($row = mysqli_fetch_array($result)){ 
 		        				$user = $row['Username'];
 		        				$querypersoonid = "SELECT PersoonID FROM authenticatie WHERE Username = '$user'";
@@ -85,10 +85,6 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 		    echo "Geen resultaat";
 		    exit;
 		}
-		if ($result->num_rows === 0) {
-		    echo "Geen Resultaten gevonden";
-		    exit;
-		}
 		?>
 		  <div class="container">
 		
@@ -99,6 +95,10 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 		          </p>
 		          <div class="row">
 		          <?php
+
+					if ($result->num_rows === 0) {
+					    echo "Geen nieuwsartikelen gevonden";
+					}
 		          if($result->num_rows > 0){ 
 		            while($row = mysqli_fetch_array($result)){ 
 		                        //var_dump($row);

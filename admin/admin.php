@@ -128,13 +128,9 @@
        else { 
           //laad home pagina in
         ?>
-         <h1>Welcome To Dashboard Panel</h1>
+         <h1>Welkom in het adminpaneel</h1>
             <p>
-                this  is test text.this  is test text.this  is test text.this  is test text.
-                this  is test text.this  is test text.this  is test text.this  is test text.
-                this  is test text.this  is test text.this  is test text.this  is test text.
-                this  is test text.this  is test text.this  is test text.this  is test text.
-                this  is test text.this  is test text.
+                Hier kunnen onderdelen worden aangemaakt voor de website.
             </p>
        <?php
 
