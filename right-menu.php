@@ -13,17 +13,24 @@ include('databaseconnection.php');
               <?php
               // Create a new DateTime object
               $date = new DateTime('yesterday');
-              $datePrint = $date->format('d-m-Y');
               $dateQuery = $date->format('Y-m-d H:i:s');
               
               $thuisteamquery="SELECT * FROM wedstrijd WHERE Datum >= '$dateQuery' LIMIT 2";
               $result=mysqli_query($conn, $thuisteamquery);
               $row=mysqli_fetch_array($result);
-              if($result = ""){
-              print($datePrint);
+
+              if($result){
+              $datum=$row['Datum'];
+              $datum=strtotime($datum);
+              $datum=date('d-m-Y H:i', $datum);
+              $tijd=substr($datum, -5);
+              $datumprint=substr($datum, 0, 10);
+              print($datumprint);
               ?>
               <br>
-              12:00 uur
+              <?php
+              print($tijd);
+              ?>
               <br>
               <a> <img src="./teamlogo's/<?php if($row['Thuisteamlogo'] != NULL){echo($row['Thuisteamlogo']);} else{echo 'placeholder.png';}?>" style="max-width:60px"></a>
                - 
