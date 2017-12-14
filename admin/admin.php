@@ -75,12 +75,13 @@
                             <i class="fa fa-envelope fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
-
-                            <li>
-                            <a class="wide" href="?page=wedstrijd">
-                            <i class="fa fa-futbol-o fa-lg"></i> Wedstrijden invullen
-                            </a>
+                          <li data-toggle="collapse" data-target="#Wedstrijden" class="collapsed">
+                             <a class="wide" href="#"><i class="fa fa-futbol-o fa-lg"></i> Wedstrijden <span class="arrow"></span></a>
                           </li>
+                            <ul class="sub-menu collapse" id="Wedstrijden">
+                            <li><a href="index.php?page=wedstrijd">Wedstrijden aanmaken</a></li>
+                            <li><a href="index.php?page=wedstrijdoverzicht">Wedstrijdoverzicht</a></li>
+                          </ul>
 
                           <li>
                             <a class="wide" href="loguitscript.php">

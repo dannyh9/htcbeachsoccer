@@ -9,7 +9,7 @@ include '../databaseconnection.php';
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-6">
-<form id="wedstrijd-form" method="POST" action="wedstrijd.php" role="form" enctype="multipart/form-data"> 
+<form id="wedstrijd-form" method="POST" action="?page=wedstrijd" role="form" enctype="multipart/form-data"> 
      <div class="form-group "> 
       <label class="control-label " for="thuisteam">
        Thuisteam
@@ -17,9 +17,17 @@ include '../databaseconnection.php';
         *
       </label>
       <input class="form-control" id="thuisteam" name="thuisteam" type="text" placeholder="Vul hier de titel in *"/>
-     </div>
+     
+     <div class="span16 fileupload-buttonbar">
+            <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
+            <span class="btn success fileinput-button">
+                <span>Teamlogo thuisteam</span>
+                <input type="file" name="thuisteam">
+                <img src="../teamlogo's/"<php echo "$afbeelding";?>"
+            </span>
+        </div>
           <div class="form-group ">
-      <label class="control-label " for="thuisteam">
+      <label class="control-label " for="uitteam">
        Uitteam
          <span class="asteriskField">
         *
@@ -60,9 +68,24 @@ exit;
     $datum=str_replace('/', '-', $datum);
     $datum=strtotime($datum);
     $datumquery=date('Y-m-d H:i', $datum);
-    var_dump($datumquery);
-    $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
-    $conn->query($wedstrijdquery);
+    $datumhuidig = new DateTime();
+    $datumhuidig = $datumhuidig->format('Y-m-d H:i');
+    if($datumquery > $datumhuidig){
+        $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
+        $conn->query($wedstrijdquery);
+        ?>
+    <script>
+        $(".messages").text("Vul een geldige datum in.");
+    </script>
+    <?php
+    }else{
+        ?>
+    <script>
+        $(".messages").text("De ingevulde wedstrijd is toegevoegd.");
+    </script>
+    <?php
 }
+}
+
 
 ?>
