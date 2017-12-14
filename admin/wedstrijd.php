@@ -52,15 +52,20 @@ include '../databaseconnection.php';
         $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
       </script>
       <?php
-        }
+        
         if(isset($rowthuisteam)){
           $thuisteamlogo = $row["thuisteamlogo"];
         }elseif(isset($rowuitteam)){
           $thuisteamlogo = $row["uitteamlogo"];
-        }
+}
         }else{
          $thuisteamlogo="";
+       }else{
+        $thuisteamlogo="";
        }
+
+     }
+
       ?>
 
      <div class="span16 fileupload-buttonbar">
