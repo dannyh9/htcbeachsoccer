@@ -123,6 +123,8 @@
           include 'nieuwsartikel.php';
        } else if (isset($_GET['sponsorid'])) {
           include 'sponsor.php';
+       } else if(isset($_GET['newaccid'])) {
+          include 'registratieform.php';
        }
        else { 
           //laad home pagina in

@@ -146,7 +146,7 @@ if (isset($_POST['submit'])) {
             $fileDestination = '../uploads/'.$fileNameNew;
             move_uploaded_file($fileTmpName, $fileDestination);
                  if ($id == ""){
-                   $query = "INSERT INTO `sponsor`(`SponsorAfbeelding`, `SponsorLink`, `SponsorNaam`) VALUES ('$fileNameNew', '$naam', '$link')";
+                   $query = "INSERT INTO `sponsor`(`SponsorAfbeelding`, `SponsorLink`, `SponsorNaam`) VALUES ('$fileNameNew', '$link', '$naam')";
                  } else if ($id != ""){
                  $query = "UPDATE sponsor SET SponsorAfbeelding = '$fileNameNew',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
                  }
