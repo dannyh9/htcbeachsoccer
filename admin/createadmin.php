@@ -21,11 +21,13 @@ include '../databaseconnection.php';
 
 	if(isset($_POST['submit']) && $gotadmin){
 
-		$createrolquery = "INSERT INTO `authorisatie` (`RolID`, `Rolnaam`, `Rechten`) VALUES (NULL, 'Admin', '')";
+		$createroladminquery = "INSERT INTO `authorisatie` (`RolID`, `Rolnaam`, `Rechten`) VALUES (NULL, 'Admin', '0')";
+		$createrolredacteurquery = "INSERT INTO `authorisatie` (`RolID`, `Rolnaam`, `Rechten`) VALUES (NULL, 'Redacteur', '1')";
 		$createpersoonquery = "INSERT INTO `persoon` (`PersoonID`, `Pasfoto`, `Voornaam`, `Tussenvoegsel`, `Achternaam`, `Email`, `Functie`) VALUES (NULL, NULL, 'Admin', NULL, 'Admin', NULL, NULL)";
 		$createaccountquery = "INSERT INTO `authenticatie` (`Username`, `Password`, `RolID`, `PersoonID`) VALUES ('Admin', 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f', '1', '1')";
 
-		$conn->query($createrolquery);
+		$conn->query($createroladminquery);
+		$conn->query($createrolredacteurquery);
 		$conn->query($createpersoonquery);
 		$conn->query($createaccountquery);
 	?>
