@@ -11,7 +11,7 @@ if (!$result = $conn->query($query)) {
 }
 
 if ($result->num_rows === 0) {
-    $content = "Geen Resultaten gevonden";
+    $content = "Geen sponsoren toegevoegd";
 } if($result->num_rows > 0){ 
   $content="";
     while($row = mysqli_fetch_array($result)){ 
@@ -87,7 +87,7 @@ if ($result->num_rows === 0) {
             <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Media</a>
+            <a class="nav-link" href="media.php">Media</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="wedstrijduitslagen.php">Wedstrijduitslagen</a>
@@ -96,27 +96,12 @@ if ($result->num_rows === 0) {
             <a class="nav-link" href="nieuwsartikelen.php">Nieuwsartikelen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="sponsoren.php">Sponsoren</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Zoek">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">Zoeken</button>
-        </form>
       </div>
     </nav>
 <script type="text/javascript">
