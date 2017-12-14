@@ -9,23 +9,52 @@ include '../databaseconnection.php';
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-6">
-<form id="wedstrijd-form" method="POST" action="?page=wedstrijd" role="form" enctype="multipart/form-data"> 
+<form id="wedstrijd-form" method="post" action="?page=wedstrijd" role="form" enctype="multipart/form-data"> 
      <div class="form-group "> 
       <label class="control-label " for="thuisteam">
        Thuisteam
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="thuisteam" name="thuisteam" type="text" placeholder="Vul hier de titel in *"/>
-     
+      <input class="form-control" id="thuisteam" name="thuisteam" type="text" value="<?php if(isset($_POST['thuisteam']) || isset($_POST['uitteam'])) echo $_POST['thuisteam']?>"/>
+      <div class="thuisteamerror" style="font-size:20px"></div>
+       <!--Check voor logo in database -->
+       <button id="thuisdatabase" name="thuisdatabase" type="submit">
+        Check de database voor logo
+      </button>
+       <?php
+       if(isset($_POST['thuisdatabase'])){
+        if(empty($_POST['thuisteam'])){?>
+        <script>
+          $(".thuisteamerror").text("Vul het thuisteam in.");
+        </script>
+        <?php
+        $thuisteamlogo="";
+        }
+        else{
+      $thuisteam=$_POST['thuisteam'];
+      $thuislogoquery = "SELECT DISTINCT thuisteamlogo, uitteamlogo FROM wedstrijd WHERE thuisteam = '$thuisteam' || uitteam = '$thuisteam' AND thuisteamlogo IS NOT NULL || uitteamlogo IS NOT NULL";
+      $result= $conn->query($thuislogoquery);
+      $row = mysqli_fetch_array($result);
+      if($row["thuisteamlogo"]){
+      $thuisteamlogo = $row["thuisteamlogo"];
+      }elseif($row["uitteamlogo"]){
+      $thuisteamlogo = $row["uitteamlogo"];
+      }
+    }
+  }else{
+    $thuisteamlogo="";
+  }
+      ?>
+
      <div class="span16 fileupload-buttonbar">
             <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
             <span class="btn success fileinput-button">
                 <span>Teamlogo thuisteam</span>
                 <input type="file" name="thuisteam">
-                <img src="../teamlogo's/"<php echo "$afbeelding";?>"
             </span>
         </div>
+                <img src="../teamlogo's/<?php echo $thuisteamlogo;?>">
           <div class="form-group ">
       <label class="control-label " for="uitteam">
        Uitteam

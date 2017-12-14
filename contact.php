@@ -122,10 +122,8 @@ include 'databaseconnection.php';
             $tijd = time() - $_SESSION['antiflood'];
               if($tijd < $seconde){
                   $antiflood = 1;
-              }
-              else{
-                  $antiflood = 0;
               }}
+        $antiflood = 0;
         if ($antiflood == "") {
             $_SESSION['antiflood'] = time();
             @mail($from, "Uw bericht is verzonden.", $message, $headersfrom);
