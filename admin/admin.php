@@ -76,6 +76,12 @@
                             </a>
                           </li>
 
+                            <li>
+                            <a class="wide" href="?page=wedstrijd">
+                            <i class="fa fa-futbol-o fa-lg"></i> Wedstrijden invullen
+                            </a>
+                          </li>
+
                           <li>
                             <a class="wide" href="loguitscript.php">
                             <i class="fa fa-sign-out fa-lg"></i> Uitloggen
@@ -103,6 +109,8 @@
               include 'sponsorenoverzicht.php';
           }else if($page == "newsponsor"){
               include 'sponsor.php';
+          }else if($page == "wedstrijd"){
+              include 'wedstrijd.php';
           }   else {
             echo "er is iets fout gegaan.";
           }

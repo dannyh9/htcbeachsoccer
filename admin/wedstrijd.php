@@ -33,10 +33,10 @@ include '../databaseconnection.php';
             *
   <input type="datetime-local" id="datum" name="datum">
 </div>
+         <div class="messages" style="font-size:20px"></div>
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
-         <div class="messages" style="font-size:30px"></div>
       </div>
     </form>
    </div>
