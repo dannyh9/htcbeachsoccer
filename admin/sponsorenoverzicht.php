@@ -26,7 +26,6 @@ if ($result->num_rows === 0) {
     ?>
     <a class="btn btn-primary" href="index.php?page=newsponsor">Nieuw Sponsor</a>
     <?php
-    exit;
 }
 if($result->num_rows > 0){ 
 	//meer dan 0 resultaat dus 1 of meer

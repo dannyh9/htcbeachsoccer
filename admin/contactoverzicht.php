@@ -52,7 +52,6 @@ if ($result->num_rows === 0) {
     // it is not. You decide. In this case, maybe actor_id was too
     // large? 
     echo "Geen Resultaten gevonden";
-    exit;
 }
 if($result->num_rows > 0){ 
 ?>      

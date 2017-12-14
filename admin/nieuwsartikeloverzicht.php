@@ -10,11 +10,6 @@ include '../databaseconnection.php';
 
 $nieuwsartikelquery = "SELECT ArtikelID, Titel , Inhoud FROM Nieuwsartikel";
 // $result = $conn->query($Contactoverzichtquery);
- 
-
-
-
-
 
 if ($conn->connect_errno) {
     echo "Sorry, this website is experiencing problems.";
