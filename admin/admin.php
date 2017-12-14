@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php 
+    if(!isset($_SESSION['rollid'],$_SESSION['user']) && empty($_SESSION['rollid']) && empty($_SESSION['user'])) {
+        exit;
+    }
+?><!DOCTYPE html>
 <html>
 <head>
   <title></title>
@@ -15,14 +19,15 @@
               <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
             
                   <div class="menu-list">
-            
                       <ul id="menu-content" class="menu-content collapse out">
                           <li>
                             <a class="wide" href="index.php">
                             <i class="fa fa-home fa-lg"></i> Home
                             </a>
                           </li>
+                          <?php if($_SESSION['rollid'] == 1){ 
 
+                          ?>
                           <li data-toggle="collapse" data-target="#Personen" class="collapsed">
                             <a class="wide" href="#"><i class="fa fa-address-book fa-lg"></i> Personen <span class="arrow"></span></a>
                           </li>  
@@ -46,16 +51,9 @@
                             <li>Accounts Aanmaken</li>
                           </ul>
 
-
-                          <li data-toggle="collapse" data-target="#Team" class="collapsed">
-                            <a class="wide" href="#"><i class="fa fa-users fa-lg"></i> Teams <span class="arrow"></span></a>
-                          </li>
-                          <ul class="sub-menu collapse" id="Team">
-                            <li>Teams Beheren</li>
-                            <li>Team Aanmaken</li>
-                          </ul>
-
-
+                          <?php  
+                            }
+                          ?>
                           <li data-toggle="collapse" data-target="#Nieuws" class="collapsed">
                             <a class="wide" href="#"><i class="fa fa-newspaper-o  fa-lg"></i> Nieuwsartikelen <span class="arrow"></span></a>
                           </li>
@@ -63,7 +61,6 @@
                             <li> <a href="index.php?page=nieuwsoverzicht">Nieuwsartikelen Beheren</a></li>
                             <li> <a href="index.php?page=nieuwsartikelaanmaken">Nieuwsartikelen Aanmaken</a></li>
                           </ul>
-                          
 
                           <li data-toggle="collapse" data-target="#Media" class="collapsed">
                             <a class="wide" href="#"><i class="fa fa-picture-o fa-lg"></i> Sponsoren <span class="arrow"></span></a>
@@ -72,13 +69,6 @@
                             <li><a href="index.php?page=sponsorenoverzicht">Sponsoren overzicht</a></li>
                             <li><a href="index.php?page=newsponsor">Sponsor Aanmaken</a></li>
                           </ul>
-          
-          
-                           <li>
-                            <a class="wide" href="#">
-                            <i class="fa fa-user fa-lg"></i> Profile
-                            </a>
-                            </li>
           
                            <li>
                             <a class="wide" href="?page=contact">

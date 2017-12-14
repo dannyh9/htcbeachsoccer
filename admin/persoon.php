@@ -1,4 +1,8 @@
-<?php
+<?php 
+    if(!isset($_SESSION['rollid'],$_SESSION['user']) && empty($_SESSION['rollid']) && empty($_SESSION['user'])) {
+        exit;
+    }
+?><?php
 include '../databaseconnection.php';
 ?>
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
