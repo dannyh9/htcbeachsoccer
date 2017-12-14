@@ -123,7 +123,7 @@ if($id == ""){
        <?php
        if(!$id == "" && $gotacc){
         ?>
-       <a href="registratieform.php?persoonid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
+       <a href="index.php?newaccid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
         Maak account
        </a >
        <?php

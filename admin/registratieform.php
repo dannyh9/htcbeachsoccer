@@ -21,8 +21,8 @@ function redirectoverview($status){
 }
 
 
-if(isset($_GET["persoonid"])){
-	$id = $_GET["persoonid"];
+if(isset($_GET["newaccid"])){
+	$id = $_GET["newaccid"];
 	$accountcheckquery = "SELECT * FROM authenticatie WHERE PersoonID = '$id'";
 	$persooncheckquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
 	$accountresult = $conn->query($accountcheckquery);
@@ -31,13 +31,13 @@ if(isset($_GET["persoonid"])){
 	$persrow = mysqli_fetch_array($persoonresult);
 	$gotacc = isset($accrow);
 	$gotpers = isset($persrow);
+	var_dump($id);
 	if($gotacc){
 		redirectoverview("&redcode=error1");
 		exit;
 	}
 	if(!$gotpers){
 		redirectoverview("&redcode=error2");
-		var_dump($_GET);
 		exit;
 	}
 } else {
@@ -55,13 +55,13 @@ $authorresult = $conn->query($authorisatiequery);
 		<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<?php 
-				if(isset($_GET['persoonid'])){
+				if(isset($_GET['newaccid'])){
 					?>
-					<form id="registratieform" method="post" action="registratieform.php?persoonid=<?php echo $_GET['persoonid'];?>" role="form"> 
+					<form id="registratieform" method="post" action="index.php?newaccid=<?php echo $_GET['newaccid'];?>" role="form"> 
 						<?php
 					} else {
 						?>
-						<form id="registratieform" method="post" action="registratieform.php" role="form"> 
+						<form id="registratieform" method="post" action="index.php?page=newacc" role="form"> 
 							<?php
 						}
 
@@ -133,7 +133,7 @@ $authorresult = $conn->query($authorisatiequery);
 			$username = mysqli_real_escape_string($conn, $_POST['username']);
 			$password = mysqli_real_escape_string($conn, $_POST['password']);
 			$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
-			$persoonID = mysqli_real_escape_string($conn, $_GET['persoonid']);
+			$persoonID = mysqli_real_escape_string($conn, $_GET['newaccid']);
 			// Hashing the password
 			$hashedPwd = hash("sha256", $password);
 
