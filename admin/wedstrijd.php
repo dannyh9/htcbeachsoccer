@@ -17,11 +17,11 @@ include '../databaseconnection.php';
         *
       </label>
       <input class="form-control" id="thuisteam" name="thuisteam" type="text" value="<?php if(isset($_POST['thuisteam']) || isset($_POST['uitteam'])) echo $_POST['thuisteam']?>"/>
-      <div class="thuisteamerror" style="font-size:20px"></div>
        <!--Check voor logo in database -->
        <button id="thuisdatabase" name="thuisdatabase" type="submit">
         Check de database voor logo
       </button>
+      <div class="thuisteamerror" style="font-size:20px"></div>
        <?php
        if(isset($_POST['thuisdatabase'])){
         if(empty($_POST['thuisteam'])){?>
@@ -29,32 +29,48 @@ include '../databaseconnection.php';
           $(".thuisteamerror").text("Vul het thuisteam in.");
         </script>
         <?php
+        $rowthuisteam=0;
+        $rowuitteam=0;
         $thuisteamlogo="";
         }
-        else{
+        elseif(isset($_POST['thuisteam'])){
       $thuisteam=$_POST['thuisteam'];
-      $thuislogoquery = "SELECT DISTINCT thuisteamlogo, uitteamlogo FROM wedstrijd WHERE thuisteam = '$thuisteam' || uitteam = '$thuisteam' AND thuisteamlogo IS NOT NULL || uitteamlogo IS NOT NULL";
-      $result= $conn->query($thuislogoquery);
+      $thuisteamquery="SELECT DISTINCT Thuisteamlogo FROM wedstrijd WHERE thuisteam = '$thuisteam' AND thuisteamlogo IS NOT NULL";
+      $thuisuitteamquery="SELECT DISTINCT Uitteamlogo FROM wedstrijd WHERE uitteam = '$thuisteam' AND uitteamlogo IS NOT NULL";
+      $result= $conn->query($thuisteamquery);
+      $result2= $conn->query($thuisuitteamquery);
       $row = mysqli_fetch_array($result);
-      if($row["thuisteamlogo"]){
-      $thuisteamlogo = $row["thuisteamlogo"];
-      }elseif($row["uitteamlogo"]){
-      $thuisteamlogo = $row["uitteamlogo"];
-      }
-    }
-  }else{
-    $thuisteamlogo="";
-  }
+      $row2 = mysqli_fetch_array($result2);
+      if(!$result && $result2){
+      $rowthuisteam=$row2["thuisteamlogo"];
+      $rowuitteam=$row2["uitteamlogo"];}
+      elseif($result && !$result2){
+      $rowthuisteam=$row["thuisteamlogo"];
+      $rowuitteam=$row["uitteamlogo"];}
+      ?>
+      <script>
+        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
+      </script>
+      <?php
+        }
+        if(isset($rowthuisteam)){
+          $thuisteamlogo = $row["thuisteamlogo"];
+        }elseif(isset($rowuitteam)){
+          $thuisteamlogo = $row["uitteamlogo"];
+        }
+        }else{
+         $thuisteamlogo="";
+       }
       ?>
 
      <div class="span16 fileupload-buttonbar">
+                <img src="../teamlogo's/<?php echo $thuisteamlogo;?>">
             <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
             <span class="btn success fileinput-button">
                 <span>Teamlogo thuisteam</span>
                 <input type="file" name="thuisteam">
             </span>
         </div>
-                <img src="../teamlogo's/<?php echo $thuisteamlogo;?>">
           <div class="form-group ">
       <label class="control-label " for="uitteam">
        Uitteam
@@ -115,6 +131,4 @@ exit;
     <?php
 }
 }
-
-
 ?>
