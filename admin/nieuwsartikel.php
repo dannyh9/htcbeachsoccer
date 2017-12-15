@@ -53,68 +53,71 @@ if(isset($_GET["nieuwsartikelid"])) {
    <div class="col-md-6 col-sm-6 col-xs-12">
     <?php
     if($id == ""){
-?>
-<form id="nieuwsartikel-form" method="POST" action="index.php?page=nieuwsartikelaanmaken" role="form" enctype="multipart/form-data"> 
-    <?php
-} else {
-  ?>
- <form id="nieuwsartikel-form" method="post" action="index.php?nieuwsartikelid=<?php echo $id; ?>" role="form" enctype="multipart/form-data"> 
-    <?php
-}
-?>
-    
-     <div class="form-group ">
-       
-        <label class="control-label " for="titel">
-         Titel
-         <span class="asteriskField">
-          *
-        </label>
-        <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *" value="<?php echo $titel; ?>"/>
-      </div>
-      <div class="form-group ">
-        <label class="control-label " for="inhoud">
-         Inhoud
-         <span class="asteriskField">
-          *
-        </label>
-        <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10""/> <?php echo $inhoud; ?> </textarea>
-      </div>
-      <div class="form-group">
-        <div class="form-group">
-          <label>
-            Upload foto
-          </label>
+      ?>
+      <form id="nieuwsartikel-form" method="POST" action="index.php?page=nieuwsartikelaanmaken" role="form" enctype="multipart/form-data"> 
+        <?php
+      } else {
+        ?>
+        <form id="nieuwsartikel-form" method="post" action="index.php?nieuwsartikelid=<?php echo $id; ?>" role="form" enctype="multipart/form-data"> 
           <?php
-          if($Afbeelding != ""){
-            ?>
-            <div class="form-group ">
-              <img src="../uploads/<?php echo $Afbeelding; ?>">
-            </div>
+        }
+        ?>
+
+        <div class="form-group ">
+
+          <label class="control-label " for="titel">
+           Titel
+           <span class="asteriskField">
+            *
+          </label>
+          <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *" value="<?php echo $titel; ?>"/>
+        </div>
+        <div class="form-group ">
+          <label class="control-label " for="inhoud">
+           Inhoud
+           <span class="asteriskField">
+            *
+          </label>
+          <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10""/> <?php echo $inhoud; ?> </textarea>
+        </div>
+        <div class="form-group">
+          <div class="form-group">
+            <label>
+              Upload foto
+            </label>
             <?php
-          }
-          ?>
-          <div class="input-group">
-            <span class="input-group-btn">
-              <span class="btn btn-default btn-file">
-                Zoeken… <input type="file" id="imgInp" name="userfile">
+            if($Afbeelding != ""){
+              ?>
+              <div class="form-group ">
+                <img src="../uploads/<?php echo $Afbeelding; ?>">
+              </div>
+              <?php
+            }
+            ?>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                  Zoeken… <input type="file" id="imgInp" name="userfile">
+                </span>
               </span>
-            </span>
-            <input type="text" class="form-control" readonly>
-          </div>
-          <img id='img-upload'/>
-          <div>
-            <br>
-            <button class="btn btn-primary " name="submit" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+              <input type="text" class="form-control" readonly>
+            </div>
+            <img id='img-upload'/>
+            <div>
+              <br>
+              <button class="btn btn-primary " name="submit" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<?php 
+  <?php 
+
+
+
 // if (isset($_POST['submit'])){
 
 //   $titel=$_POST['titel'];
@@ -163,17 +166,17 @@ if(isset($_GET["nieuwsartikelid"])) {
 
 
 
-if (isset($_POST['submit'])) {
-  $titel= $_POST['titel'];
-  $inhoud= $_POST['inhoud'];
-  $username= $_SESSION['user'];
+  if (isset($_POST['submit'])) {
+    $titel= $_POST['titel'];
+    $inhoud= $_POST['inhoud'];
+    $username= $_SESSION['user'];
   //$conn->query($updatequery);
   //redirectoverview();
   //var_dump($_FILES);
-  if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
-    $query = "UPDATE `nieuwsartikel` SET `Titel` = '$titel', `Inhoud` = '$inhoud' WHERE `nieuwsartikelid` = '$id'";
-    $conn->query($query);
-  } else { 
+    if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+      $query = "UPDATE `nieuwsartikel` SET `Titel` = '$titel', `Inhoud` = '$inhoud' WHERE `ArtikelID` = '$id'";
+      $conn->query($query);
+    } else { 
     //var_dump($id);
       $file = $_FILES['userfile'];
       $fileName = $file['name'];
@@ -181,39 +184,39 @@ if (isset($_POST['submit'])) {
       $fileSize = $file['size'];
       $fileError = $file['error'];
       $fileType = $file['type'];
- 
+
       $fileExt = explode('.', $fileName);
       $fileActualExt = strtolower(end($fileExt));
- 
+
       $allowed = array('jpg', 'jpeg', 'png', 'pdf');
-       
+
       if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
           if ($fileSize < 1000000) {
             $fileNameNew = uniqid('', true).".".$fileActualExt;
             $fileDestination = '../uploads/'.$fileNameNew;
             move_uploaded_file($fileTmpName, $fileDestination);
-                 if ($id == ""){
-                   $query = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`,`Afbeelding`) VALUES ('$titel', '$inhoud', '$username','$fileNameNew')";
-                 } else if ($id != ""){
-                 $query = "UPDATE nieuwsartikel SET Titel = '$titel' , Inhoud = '$inhoud', Afbeelding = '$fileNameNew' WHERE nieuwsartikelid = '$id'";
-                 }
-                 $conn->query($query);
+            if ($id == ""){
+             $query = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`,`Afbeelding`) VALUES ('$titel', '$inhoud', '$username','$fileNameNew')";
+           } else if ($id != ""){
+             $query = "UPDATE nieuwsartikel SET Titel = '$titel' , Inhoud = '$inhoud', Afbeelding = '$fileNameNew' WHERE ArtikelID = '$id'";
+           }
+           $conn->query($query);
                   //var_dump($fileNameNew);
-          } else {
-            echo "Your file is too big!";
-          }
-        } else {
-          echo "There was an error uploading your file!";
+         } else {
+          echo "Your file is too big!";
         }
       } else {
-        echo "You cannot upload files of this type!";
+        echo "There was an error uploading your file!";
       }
+    } else {
+      echo "You cannot upload files of this type!";
     }
+  }
     //var_dump($query);
-   
+
     //exit;
-   
+
   // redirectoverview();
 
 }
