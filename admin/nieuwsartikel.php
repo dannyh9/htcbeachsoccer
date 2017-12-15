@@ -20,8 +20,9 @@ include '../databaseconnection.php';
 <script src="../js/uploadknopscript.js"></script>
 <?php 
 
-function redirectoverview(){
-  ?><script>window.location.replace("../admin/index.php?page=nieuwsoverzicht");</script><?php
+$status = "";
+function redirectoverview($status){
+  ?><script>window.location.replace("../admin/index.php?page=nieuwsoverzicht<?php echo $status; ?>");</script><?php
 }
 
 
@@ -33,6 +34,10 @@ if(isset($_GET["nieuwsartikelid"])) {
   $titel=$row['Titel'];
   $inhoud=$row["Inhoud"];
   $Afbeelding = $row["Afbeelding"];
+  $gotarticle = isset($row);
+  if(!$gotarticle){
+    redirectoverview("&redcode=error1");
+  }
 } else {
   $titel="";
   $inhoud="";
@@ -166,6 +171,7 @@ if(isset($_GET["nieuwsartikelid"])) {
     $username= $_SESSION['user'];
     if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
       $query = "UPDATE `nieuwsartikel` SET `Titel` = '$titel', `Inhoud` = '$inhoud' WHERE `ArtikelID` = '$id'";
+      redirectoverview("&redcode=success2");
       $conn->query($query);
     } else { 
       $file = $_FILES['userfile'];
@@ -188,10 +194,13 @@ if(isset($_GET["nieuwsartikelid"])) {
             move_uploaded_file($fileTmpName, $fileDestination);
             if ($id == ""){
              $query = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`,`Afbeelding`) VALUES ('$titel', '$inhoud', '$username','$fileNameNew')";
+             $conn->query($query);
+             redirectoverview("&redcode=success1");
            } else if ($id != ""){
              $query = "UPDATE nieuwsartikel SET Titel = '$titel' , Inhoud = '$inhoud', Afbeelding = '$fileNameNew' WHERE ArtikelID = '$id'";
+             $conn->query($query);
+             redirectoverview("&redcode=success2");
            }
-           $conn->query($query);
 
          } else {
           echo "Your file is too big!";
@@ -204,7 +213,7 @@ if(isset($_GET["nieuwsartikelid"])) {
     }
   }
 
-  redirectoverview();
+  redirectoverview("");
 
 }
 
