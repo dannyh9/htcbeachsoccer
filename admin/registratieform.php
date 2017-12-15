@@ -73,7 +73,7 @@ $authorresult = $conn->query($authorisatiequery);
 								<span class="asteriskField">
 									*
 								</label>
-								<input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value=""/>
+								<input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value="" required />
 							</div>
 
 							<div class="form-group ">
@@ -82,7 +82,7 @@ $authorresult = $conn->query($authorisatiequery);
 									<span class="asteriskField">
 										*
 									</label>
-									<input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password"/>
+									<input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password" required />
 								</div>
 								<label for="PersoonID">Selecteer rol</label>
 								<select class="form-control" id="persoonid" name="rollid">
@@ -112,10 +112,6 @@ $authorresult = $conn->query($authorisatiequery);
 
 	<?php
 
-	if (isset($_POST["registreren"])) {
-		var_dump($_POST);
-		var_dump($_GET);
-	}
 
 	if (isset($_POST["registreren"])) {
 
