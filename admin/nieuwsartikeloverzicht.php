@@ -21,9 +21,13 @@ if (!$result = $conn->query($nieuwsartikelquery)) {
     exit;
 }
 
-if ($result->num_rows === 0) {
-    echo "Geen Resultaten gevonden";
-    exit;
+if ($result->num_rows === 0) { ?>
+<br>
+<div class="alert alert-info">
+  Geen Resultaten gevonden
+</div>
+<?php
+exit;
 }
 if($result->num_rows > 0){ 
 	//meer dan 0 resultaat dus 1 of meer

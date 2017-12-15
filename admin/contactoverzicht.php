@@ -51,7 +51,12 @@ if ($result->num_rows === 0) {
     // Oh, no rows! Sometimes that's expected and okay, sometimes
     // it is not. You decide. In this case, maybe actor_id was too
     // large? 
-    echo "Geen Resultaten gevonden";
+    ?>
+    <br>
+    <div class="alert alert-info">
+      Geen Resultaten gevonden
+  </div>
+  <?php
 }
 if($result->num_rows > 0){ 
 ?>      

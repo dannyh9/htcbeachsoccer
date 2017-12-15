@@ -22,12 +22,14 @@ if (!$result = $conn->query($queryoverzicht)) {
     exit;
 }
 
-if ($result->num_rows === 0) {
-    echo "Geen Resultaten gevonden";
-    ?>
-    <a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw persoon</a>
-    <?php
-    exit;
+if ($result->num_rows === 0) {?>
+<br>
+<div class="alert alert-info">
+  Geen Resultaten gevonden
+</div>
+<a class="btn btn-primary" href="index.php?page=newpersoon">Nieuw persoon</a>
+<?php
+exit;
 }
 if($result->num_rows > 0){ 
 	//meer dan 0 resultaat dus 1 of meer
