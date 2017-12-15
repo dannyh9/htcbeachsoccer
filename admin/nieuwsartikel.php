@@ -33,17 +33,11 @@ if(isset($_GET["nieuwsartikelid"])) {
   $titel=$row['Titel'];
   $inhoud=$row["Inhoud"];
   $Afbeelding = $row["Afbeelding"];
-  var_dump($Afbeelding);
-  var_dump($id);
-  print_r($Afbeelding);
-  // var_dump($row);
 } else {
   $titel="";
   $inhoud="";
   $id="";
   $Afbeelding = "";
-  var_dump($Afbeelding);
-  var_dump($id);
 }
 
 ?>
@@ -170,14 +164,10 @@ if(isset($_GET["nieuwsartikelid"])) {
     $titel= $_POST['titel'];
     $inhoud= $_POST['inhoud'];
     $username= $_SESSION['user'];
-  //$conn->query($updatequery);
-  //redirectoverview();
-  //var_dump($_FILES);
     if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
       $query = "UPDATE `nieuwsartikel` SET `Titel` = '$titel', `Inhoud` = '$inhoud' WHERE `ArtikelID` = '$id'";
       $conn->query($query);
     } else { 
-    //var_dump($id);
       $file = $_FILES['userfile'];
       $fileName = $file['name'];
       $fileTmpName = $file['tmp_name'];
@@ -202,7 +192,7 @@ if(isset($_GET["nieuwsartikelid"])) {
              $query = "UPDATE nieuwsartikel SET Titel = '$titel' , Inhoud = '$inhoud', Afbeelding = '$fileNameNew' WHERE ArtikelID = '$id'";
            }
            $conn->query($query);
-                  //var_dump($fileNameNew);
+
          } else {
           echo "Your file is too big!";
         }
@@ -213,11 +203,8 @@ if(isset($_GET["nieuwsartikelid"])) {
       echo "You cannot upload files of this type!";
     }
   }
-    //var_dump($query);
 
-    //exit;
-
-  // redirectoverview();
+  redirectoverview();
 
 }
 
