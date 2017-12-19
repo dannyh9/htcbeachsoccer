@@ -97,7 +97,7 @@ if($id == ""){
           <div>
             <br>
        <button class="btn btn-primary " name="submit" type="submit">
-        Opslaan
+        Nieuwe sponsor
        </button>
        <?php
        if($id != ""){

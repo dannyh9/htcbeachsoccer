@@ -105,7 +105,7 @@ if(isset($_GET["nieuwsartikelid"])) {
             <div>
               <br>
               <button class="btn btn-primary " name="submit" type="submit">
-                Nieuwsartikel aanmaken
+                Nieuw nieuwsartikel
               </button>
             </div>
           </form>
