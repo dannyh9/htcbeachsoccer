@@ -67,7 +67,7 @@ if($id == ""){
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text" value="<?php echo $voornaam; ?>"/>
+      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text" required value="<?php echo $voornaam; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="tussenvoegsel">
@@ -82,7 +82,7 @@ if($id == ""){
          <span class="asteriskField">
         *
       </label>      
-      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
+      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" required value="<?php echo $achternaam; ?>"/>
      </div>     
      <div class="form-group">     
           <div class="form-group">
