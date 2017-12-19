@@ -189,12 +189,14 @@ if(isset($_GET["nieuwsartikelid"])) {
     if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
       if ($id == ""){
         $query = "INSERT INTO `nieuwsartikel`(`Titel`, `Inhoud`, `Username`) VALUES ('$titel', '$inhoud', '$username')";
+        $conn->query($query);
+        redirectoverview("&redcode=success1");
       }else {
         $query = "UPDATE `nieuwsartikel` SET `Titel` = '$titel', `Inhoud` = '$inhoud' WHERE `ArtikelID` = '$id'";
+        $conn->query($query);
+        redirectoverview("&redcode=success2");
       }
       
-      $conn->query($query);
-      redirectoverview("&redcode=success2");
       
     } else { 
       $file = $_FILES['userfile'];
