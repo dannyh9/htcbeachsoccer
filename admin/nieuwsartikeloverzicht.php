@@ -33,7 +33,7 @@ if($result->num_rows > 0){
 	//meer dan 0 resultaat dus 1 of meer
     ?>      
     <script type="text/javascript">
-     $( document ).ready(function() {
+       $( document ).ready(function() {
 
         $('tr.row2').click(linkToOverview);
 
@@ -44,7 +44,7 @@ if($result->num_rows > 0){
     });
 
 
-     function searchfunction() {
+       function searchfunction() {
         var input, filter, table, tr, td, i, ii;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
@@ -79,7 +79,7 @@ if(isset($_GET["redcode"])){
 
 
 if($code == "error1"){ ?>
-
+<br>
 <div class="alert alert-danger">
     Artikel bestaat niet!
 </div>
@@ -87,7 +87,7 @@ if($code == "error1"){ ?>
 <?php 
 } elseif($code == "success1"){
     ?>
-
+    <br>
     <div class="alert alert-success">
         Artikel aangemaak!
     </div>
@@ -95,13 +95,21 @@ if($code == "error1"){ ?>
     <?php
 } elseif($code == "success2"){
     ?>
+    <br>
     <div class="alert alert-success">
         Artikel bijgewerkt!
     </div>
     <?php
-}
-?>
+} elseif($code == "success3"){
+    ?>
+    <br>
+    <div class="alert alert-success">
+        Artikel verwijderd!
+    </div>
+    <?php } 
+    ?>
 
+<<<<<<< HEAD
  <input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
 <table class="table table-hover" id="newstable"> 
  <thead>
@@ -113,24 +121,38 @@ if($code == "error1"){ ?>
 <tbody>
     <?php 
     while($row = mysqli_fetch_array($result)){ 
+=======
+    <input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
+    <a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
+    <table class="table table-hover" id="newstable">
+       <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Inhoud</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        while($row = mysqli_fetch_array($result)){ 
+>>>>>>> 315e20cfe5bb8f8062916d3f9ac608233dbd2b58
                         //var_dump($row);
-        ?>
-        <tr class="row2" data-id="<?php echo $row['ArtikelID'];?>">
-            <td>
-                <?php echo $row['Titel'];?>
-            </td>
-            <td>
-                <?php
-                $small = substr($row['Inhoud'], 0, 350); $small .="..";
-                ?>
-                <?php echo $small;?>
-            </td>
+            ?>
+            <tr class="row2" data-id="<?php echo $row['ArtikelID'];?>">
+                <td>
+                    <?php echo $row['Titel'];?>
+                </td>
+                <td>
+                    <?php
+                    $small = substr($row['Inhoud'], 0, 350); $small .="..";
+                    ?>
+                    <?php echo $small;?>
+                </td>
 
-        </a>
-    </tr>
-    <?php          
-}
-?>
+            </a>
+        </tr>
+        <?php          
+    }
+    ?>
 </tbody>
 </table>
 <a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>

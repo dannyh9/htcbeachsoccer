@@ -244,7 +244,7 @@ if(isset($_GET["nieuwsartikelid"])) {
 if(isset($_POST['delete'])){
   $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = '$id'";
   $conn->query($deletenieuwsartikelquery);
-  redirectoverview("");
+  redirectoverview("&redcode=success3");
 }
 
 

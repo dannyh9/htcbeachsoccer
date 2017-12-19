@@ -137,6 +137,9 @@ if($code == "error1"){ ?>
 	<?php
 
 
+	$check = TRUE;
+
+
 	if (isset($_POST["registreren"])) {
 
 		$username = mysqli_real_escape_string($conn, $_POST['username']);
