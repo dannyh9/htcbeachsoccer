@@ -114,6 +114,7 @@ if($id == ""){
         <img id='img-upload'/>
           <div>
             <br>
+       <div class="messages" style="font-size:30px" ></div>     
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
@@ -123,7 +124,7 @@ if($id == ""){
         Verwijder
        </button>
        <?php
-      }
+       }
        if(!$id == "" && $gotacc){
         ?>
        <a href="index.php?newaccid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
@@ -142,6 +143,13 @@ if($id == ""){
 <?php 
 
 if (isset($_POST['submit'])) {
+  if (empty($_POST['voornaam']) || empty($_POST['achternaam'])){?>
+    <script>
+    $(".messages").text("Vul de verplichte velden in.");
+    </script>
+<?php
+  }
+  else{
   $voornaam=$_POST['voornaam'];
   $tussenvoegsel=$_POST['tussenvoegsel'];
   $achternaam=$_POST['achternaam'];
