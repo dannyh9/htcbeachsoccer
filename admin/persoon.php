@@ -117,10 +117,13 @@ if($id == ""){
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
+       <?php
+       if(!empty($id)){?>
        <button class="btn btn-danger " onclick="return confirm('Weet u zeker dat u deze persoon en eventueel account wilt verwijderen?');" name="delete" type="submit">
         Verwijder
        </button>
        <?php
+      }
        if(!$id == "" && $gotacc){
         ?>
        <a href="index.php?newaccid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
