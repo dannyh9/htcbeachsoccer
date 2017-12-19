@@ -237,13 +237,14 @@ if(isset($_GET["nieuwsartikelid"])) {
   }
 
   redirectoverview("");
-  if(isset($_POST['delete'])){
-  $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = $id";
-  $conn->query($deletenieuwsartikelquery);
-  redirectoverview();
-}
 
 }
+}
+
+if(isset($_POST['delete'])){
+  $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = '$id'";
+  $conn->query($deletenieuwsartikelquery);
+  redirectoverview("");
 }
 
 
