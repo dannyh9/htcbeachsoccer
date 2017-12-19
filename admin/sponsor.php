@@ -66,7 +66,7 @@ if($id == ""){
        <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="sponsornaam" placeholder="Vul hier de sponsor naam in *" name="sponsornaam" type="text" value="<?php echo $sponsornaam; ?>"/>
+      <input class="form-control" id="sponsornaam" placeholder="Vul hier de sponsor naam in *" name="sponsornaam" required type="text" value="<?php echo $sponsornaam; ?>"/>
      </div>
     <div class="form-group">
       <label class="control-label " for="sponsorlink">
@@ -97,6 +97,7 @@ if($id == ""){
         </div>
         <img id='img-upload'/>
           <div>
+             <div class="messages" style="font-size:30px" ></div>     
             <br>
        <button class="btn btn-primary " name="submit" type="submit">
         Nieuwe sponsor
@@ -119,6 +120,13 @@ if($id == ""){
 
 <?php
 if (isset($_POST['submit'])) {
+  if (empty($_POST['sponsornaam'])){
+?>
+<script> $(".messages").text("Vul de verplichte velden in.");
+    </script>    
+  <?php
+  }
+  else{
   $naam= $_POST['sponsornaam'];
   $link= $_POST['link'];
   //$conn->query($updatequery);
@@ -171,7 +179,7 @@ if (isset($_POST['submit'])) {
   redirectoverview();
 
 }
-
+}
 
 
 if(isset($_POST['delete'])){

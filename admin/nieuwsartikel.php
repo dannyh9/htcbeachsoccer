@@ -107,7 +107,7 @@ if(isset($_GET["nieuwsartikelid"])) {
 
               <br>
               <button class="btn btn-primary " name="submit" type="submit">
-                Nieuw nieuwsartikel
+                Opslaan
               </button>
               <?php
               if(!empty($id)){
@@ -237,13 +237,14 @@ if(isset($_GET["nieuwsartikelid"])) {
   }
 
   redirectoverview("");
-  if(isset($_POST['delete'])){
-  $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = $id";
-  $conn->query($deletenieuwsartikelquery);
-  redirectoverview();
-}
 
 }
+}
+
+if(isset($_POST['delete'])){
+  $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = '$id'";
+  $conn->query($deletenieuwsartikelquery);
+  redirectoverview("&redcode=success3");
 }
 
 
