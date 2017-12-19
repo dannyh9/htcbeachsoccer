@@ -63,6 +63,8 @@ if($id == ""){
      <div class="form-group ">
       <label class="control-label " for="sponsornaam">
        Sponsornaam
+       <span class="asteriskField">
+        *
       </label>
       <input class="form-control" id="sponsornaam" placeholder="Vul hier de sponsor naam in *" name="sponsornaam" type="text" value="<?php echo $sponsornaam; ?>"/>
      </div>
@@ -70,7 +72,7 @@ if($id == ""){
       <label class="control-label " for="sponsorlink">
            Sponsor-Link
       </label>
-       <input class="form-control" id="link" placeholder="Vul hier de sponsor link in *" name="link" type="text" value="<?php echo $link; ?>"/>
+       <input class="form-control" id="link" placeholder="Vul hier de sponsor link in " name="link" type="text" value="<?php echo $link; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="pasfoto">
