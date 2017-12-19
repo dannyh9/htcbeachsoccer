@@ -82,7 +82,7 @@ if($id == ""){
          <span class="asteriskField">
         *
       </label>      
-      <input class="form-control" id="achternaam" placeh      older="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
+      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
      </div>     
      <div class="form-group">     
           <div class="form-group">
