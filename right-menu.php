@@ -31,9 +31,9 @@ include('databaseconnection.php');
               print($tijd);
               ?>
               <br>
-              <a> <img src="./teamlogo's/<?php if($row['Thuisteamlogo'] != NULL){echo($row['Thuisteamlogo']);} else{echo 'placeholder.png';}?>" style="max-width:60px"></a>
+              <a> <img src="../uploads/teamlogo/<?php if($row['Thuisteamlogo'] != NULL){echo($row['Thuisteamlogo']);} else{echo 'placeholder.png';}?>" style="max-width:60px"></a>
                - 
-               <a> <img src="./teamlogo's/<?php if($row['Uitteamlogo'] != NULL){echo($row['Uitteamlogo']);} else{echo 'placeholder.png';}?>" style="max-width:60px"></a>
+               <a> <img src="../uploads/teamlogo/<?php if($row['Uitteamlogo'] != NULL){echo($row['Uitteamlogo']);} else{echo 'placeholder.png';}?>" style="max-width:60px"></a>
               <br><?php
               echo($row['Thuisteam']); echo(" - " . $row['Uitteam'] . "")?>
             </div>

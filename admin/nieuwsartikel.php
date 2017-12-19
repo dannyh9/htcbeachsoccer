@@ -107,7 +107,7 @@ if(isset($_GET["nieuwsartikelid"])) {
 
               <br>
               <button class="btn btn-primary " name="submit" type="submit">
-                Nieuw nieuwsartikel
+                Opslaan
               </button>
               <?php
               if(!empty($id)){
