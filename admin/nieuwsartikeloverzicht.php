@@ -89,7 +89,7 @@ if($code == "error1"){ ?>
     ?>
     <br>
     <div class="alert alert-success">
-        Artikel aangemaak!
+        Artikel aangemaakt!
     </div>
 
     <?php
