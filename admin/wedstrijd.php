@@ -23,51 +23,54 @@ include '../databaseconnection.php';
       </button>
       <div class="thuisteamerror" style="font-size:20px"></div>
        <?php
+       $thuisteamlogo="";
        if(isset($_POST['thuisdatabase'])){
         if(empty($_POST['thuisteam'])){?>
-        <script>
-          $(".thuisteamerror").text("Vul het thuisteam in.");
-        </script>
-        <?php
-        $rowthuisteam=0;
-        $rowuitteam=0;
-        $thuisteamlogo="";
-        }
+            <script>
+                $(".thuisteamerror").text("Vul het thuisteam in.");
+            </script>
+            <?php
+            $rowthuisteam=0;
+            $rowuitteam=0;
+            }
         elseif(isset($_POST['thuisteam'])){
-      $thuisteam=$_POST['thuisteam'];
-      $thuisteamquery="SELECT DISTINCT Thuisteamlogo FROM wedstrijd WHERE thuisteam = '$thuisteam' AND thuisteamlogo IS NOT NULL";
-      $thuisuitteamquery="SELECT DISTINCT Uitteamlogo FROM wedstrijd WHERE uitteam = '$thuisteam' AND uitteamlogo IS NOT NULL";
-      $result= $conn->query($thuisteamquery);
-      $result2= $conn->query($thuisuitteamquery);
-      $row = mysqli_fetch_array($result);
-      $row2 = mysqli_fetch_array($result2);
-      if(!$result && $result2){
-      $rowthuisteam=$row2["thuisteamlogo"];
-      $rowuitteam=$row2["uitteamlogo"];}
-      elseif($result && !$result2){
-      $rowthuisteam=$row["thuisteamlogo"];
-      $rowuitteam=$row["uitteamlogo"];}
-      ?>
-      <script>
-        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
-      </script>
-      <?php
-        
+            $thuisteam=$_POST['thuisteam'];
+            $thuisteamquery="SELECT DISTINCT Thuisteamlogo FROM wedstrijd WHERE thuisteam = '$thuisteam' AND thuisteamlogo IS NOT NULL";
+            $thuisuitteamquery="SELECT DISTINCT Uitteamlogo FROM wedstrijd WHERE uitteam = '$thuisteam' AND uitteamlogo IS NOT NULL";
+            $result= $conn->query($thuisteamquery);
+            $result2= $conn->query($thuisuitteamquery);
+            $row = mysqli_fetch_array($result);
+            $row2 = mysqli_fetch_array($result2);
+                if(!$result && $result2){
+                    $rowthuisteam=$row2["thuisteamlogo"];
+                    $rowuitteam=$row2["uitteamlogo"];?>
+                    <script>
+                        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
+                    </script>
+                <?php}
+                elseif($result && !$result2){
+                    $rowthuisteam=$row["thuisteamlogo"];
+                    $rowuitteam=$row["uitteamlogo"];?>
+                    <script>
+                        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
+                    </script>
+                <?php}
+                elseif($result && !$result2){
+                    $rowthuisteam=$row["thuisteamlogo"];
+                    $rowuitteam=$row["uitteamlogo"];?>
+                    <script>
+                        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
+                    </script>
+                <?php}        
         if(isset($rowthuisteam)){
-          $thuisteamlogo = $row["thuisteamlogo"];
+            $thuisteamlogo = $row["thuisteamlogo"];
         }elseif(isset($rowuitteam)){
-          $thuisteamlogo = $row["uitteamlogo"];
+            $thuisteamlogo = $row["uitteamlogo"];
+        }
+    }
+exit;
 }
-        }else{
-         $thuisteamlogo="";
-       }else{
-        $thuisteamlogo="";
-       }
-
-     }
-
-      ?>
-
+?>
      <div class="span16 fileupload-buttonbar">
                 <img src="../teamlogo's/<?php echo $thuisteamlogo;?>">
             <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
@@ -108,9 +111,8 @@ if (isset($_POST['submit'])){
                <script>
               $(".messages").text("U heeft een verplicht veld niet ingevuld.");
             </script>
-<?php
-exit;
-}
+    <?php
+    }
     $thuisteam=mysqli_escape_string($conn, $_POST['thuisteam']);
     $uitteam=mysqli_escape_string($conn, $_POST['uitteam']);
     $datum=mysqli_escape_string($conn, $_POST['datum']);
