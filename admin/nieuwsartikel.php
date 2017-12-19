@@ -107,6 +107,9 @@ if(isset($_GET["nieuwsartikelid"])) {
               <button class="btn btn-primary " name="submit" type="submit">
                 Nieuw nieuwsartikel
               </button>
+              <button class="btn btn-danger " onclick="return confirm('Weet u zeker dat u dit nieuwsartikel wilt verwijderen?');" name="delete" type="submit">
+        Verwijder
+       </button>
             </div>
           </form>
         </div>
