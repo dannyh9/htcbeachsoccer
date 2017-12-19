@@ -107,9 +107,15 @@ if(isset($_GET["nieuwsartikelid"])) {
               <button class="btn btn-primary " name="submit" type="submit">
                 Nieuw nieuwsartikel
               </button>
+              <?php
+              if(!empty($id)){
+              ?>
               <button class="btn btn-danger " onclick="return confirm('Weet u zeker dat u dit nieuwsartikel wilt verwijderen?');" name="delete" type="submit">
-        Verwijder
-       </button>
+                  Verwijder
+              </button>
+              <?php
+              }
+              ?>
             </div>
           </form>
         </div>
@@ -223,6 +229,11 @@ if(isset($_GET["nieuwsartikelid"])) {
   }
 
   redirectoverview("");
+  if(isset($_POST['delete'])){
+  $deletenieuwsartikelquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  $conn->query($deletenieuwsartikelquery);
+  redirectoverview();
+}
 
 }
 
