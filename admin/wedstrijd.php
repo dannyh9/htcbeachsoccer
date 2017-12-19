@@ -2,140 +2,183 @@
 include '../databaseconnection.php';
 ?> 
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="../css/formulier.css">
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 <link rel="stylesheet" type="text/css" href="../css/formulier.css">
+<script src="../js/uploadknopscript.js"></script>
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-6">
-<form id="wedstrijd-form" method="post" action="?page=wedstrijd" role="form" enctype="multipart/form-data"> 
-     <div class="form-group "> 
+    <form id="wedstrijd-form" method="POST" action="?page=wedstrijd" role="form" enctype="multipart/form-data"> 
+     <div class="form-group"> 
       <label class="control-label " for="thuisteam">
        Thuisteam
-         <span class="asteriskField">
+       <span class="asteriskField">
         *
+      </span>
       </label>
-      <input class="form-control" id="thuisteam" name="thuisteam" type="text" value="<?php if(isset($_POST['thuisteam']) || isset($_POST['uitteam'])) echo $_POST['thuisteam']?>"/>
-       <!--Check voor logo in database -->
-       <button id="thuisdatabase" name="thuisdatabase" type="submit">
-        Check de database voor logo
-      </button>
-      <div class="thuisteamerror" style="font-size:20px"></div>
-       <?php
-       $thuisteamlogo="";
-       if(isset($_POST['thuisdatabase'])){
-        if(empty($_POST['thuisteam'])){?>
-            <script>
-                $(".thuisteamerror").text("Vul het thuisteam in.");
-            </script>
-            <?php
-            $rowthuisteam=0;
-            $rowuitteam=0;
-            }
-        elseif(isset($_POST['thuisteam'])){
-            $thuisteam=$_POST['thuisteam'];
-            $thuisteamquery="SELECT DISTINCT Thuisteamlogo FROM wedstrijd WHERE thuisteam = '$thuisteam' AND thuisteamlogo IS NOT NULL";
-            $thuisuitteamquery="SELECT DISTINCT Uitteamlogo FROM wedstrijd WHERE uitteam = '$thuisteam' AND uitteamlogo IS NOT NULL";
-            $result= $conn->query($thuisteamquery);
-            $result2= $conn->query($thuisuitteamquery);
-            $row = mysqli_fetch_array($result);
-            $row2 = mysqli_fetch_array($result2);
-                if(!$result && $result2){
-                    $rowthuisteam=$row2["thuisteamlogo"];
-                    $rowuitteam=$row2["uitteamlogo"];?>
-                    <script>
-                        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
-                    </script>
-                <?php}
-                elseif($result && !$result2){
-                    $rowthuisteam=$row["thuisteamlogo"];
-                    $rowuitteam=$row["uitteamlogo"];?>
-                    <script>
-                        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
-                    </script>
-                <?php}
-                elseif($result && !$result2){
-                    $rowthuisteam=$row["thuisteamlogo"];
-                    $rowuitteam=$row["uitteamlogo"];?>
-                    <script>
-                        $(".thuisteamerror").text("Logo gevonden, geen nieuw logo uploaden.");
-                    </script>
-                <?php}        
-        if(isset($rowthuisteam)){
-            $thuisteamlogo = $row["thuisteamlogo"];
-        }elseif(isset($rowuitteam)){
-            $thuisteamlogo = $row["uitteamlogo"];
-        }
-    }
-exit;
-}
-?>
-     <div class="span16 fileupload-buttonbar">
-                <img src="../teamlogo's/<?php echo $thuisteamlogo;?>">
-            <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
-            <span class="btn success fileinput-button">
-                <span>Teamlogo thuisteam</span>
-                <input type="file" name="thuisteam">
-            </span>
-        </div>
-          <div class="form-group ">
-      <label class="control-label " for="uitteam">
-       Uitteam
-         <span class="asteriskField">
-        *
-      </label>
-      <input class="form-control" id="uitteam" name="uitteam" type="text" placeholder="Vul hier de titel in *"/>
- <div class="form-group ">
-    <label class="control-label" for="datum">
-            Datum wedstrijd (Datum en tijd):
-    </label>
-        <span class="asteriskField">
-            *
-  <input type="datetime-local" id="datum" name="datum">
-</div>
-         <div class="messages" style="font-size:20px"></div>
-       <button class="btn btn-primary " name="submit" type="submit">
-        Opslaan
-       </button>
+      <input class="form-control" id="thuisteam" name="thuisteam" type="text" value=""/>
+    </div>
+    <div class="form-group"> 
+      <label class="control-label " for="thuisteam">Teamlogo thuisteam</label>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <span class="btn btn-default btn-file">
+            Zoeken… <input type="file" id="imgInp" name="logothuis">
+          </span>
+        </span>
+        <input type="text" class="form-control" readonly>
       </div>
-    </form>
-   </div>
+    </div>
+      <div class="form-group">
+        <label class="control-label " for="uitteam">
+         Uitteam
+         <span class="asteriskField">
+          *
+          </span>
+        </label>
+        <input class="form-control" id="uitteam" name="uitteam" type="text" placeholder="Vul hier de titel in *"/>
+      </div>
+      <div class="form-group"> 
+      <label class="control-label " for="thuisteam">Teamlogo uitteam</label>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <span class="btn btn-default btn-file">
+            Zoeken… <input type="file" id="imgInp" name="logouit">
+          </span>
+        </span>
+        <input type="text" class="form-control" readonly>
+      </div>
+    </div>
+        
+        <div class="form-group ">
+          <label class="control-label" for="datum">
+            Datum wedstrijd (Datum en tijd):
+          </label>
+          <span class="asteriskField">
+            *
+            <input type="datetime-local" id="datum" name="datum">
+          </div>
+          <div class="messages" style="font-size:20px"></div>
+          <button class="btn btn-primary " name="submit" type="submit">
+            Opslaan
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
- </div>
 </div>
-<?php 
-if (isset($_POST['submit'])){
-    if(empty($_POST['thuisteam']) || empty($_POST['uitteam'])){
+</div>
+
+<?php
+
+if(isset($_POST['submit'])){
+    //var_dump($_POST);
+     if(empty($_POST['thuisteam']) || empty($_POST['uitteam'])){
         ?>
                <script>
               $(".messages").text("U heeft een verplicht veld niet ingevuld.");
             </script>
     <?php
+    } else {
+      $id = "";
+      $thuisteam=mysqli_escape_string($conn, $_POST['thuisteam']);
+      $uitteam=mysqli_escape_string($conn, $_POST['uitteam']);
+      $datum=mysqli_escape_string($conn, $_POST['datum']);
+      $datum=str_replace("T", " ", $datum);
+      $datum=str_replace('/', '-', $datum);
+      $datum=strtotime($datum);
+      $datumquery=date('Y-m-d H:i', $datum);
+      $datumhuidig = new DateTime();
+      $datumhuidig = $datumhuidig->format('Y-m-d H:i');
+      var_dump($datumhuidig , $datumquery);
+      if($datumquery > $datumhuidig){
+          //$wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
+          //$conn->query($wedstrijdquery);
+
+       if(!file_exists($_FILES['logothuis']['tmp_name']) || !is_uploaded_file($_FILES['logothuis']['tmp_name']) && !file_exists($_FILES['logouit']['tmp_name']) || !is_uploaded_file($_FILES['logouit']['tmp_name'] )) {
+
+            $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
+            var_dump($_FILES);
+            //$conn->query($wedstrijdquery);
+          ?>
+          <script>$(".messages").text("De ingevulde wedstrijd is toegevoegd.");</script>
+          <?php
+        } else { 
+          //var_dump($id);
+            $file = $_FILES['logothuis'];
+            $fileName = $file['name'];
+            $fileTmpName = $file['tmp_name'];
+            $fileSize = $file['size'];
+            $fileError = $file['error'];
+            $fileType = $file['type'];
+       
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+       
+            $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+             
+            if (in_array($fileActualExt, $allowed)) {
+              if ($fileError === 0) {
+                if ($fileSize < 1000000) {
+                  $fileNameNew = uniqid('', true).".".$fileActualExt;
+                  $fileDestination = '../uploads/teamlogo/'.$fileNameNew;
+                  move_uploaded_file($fileTmpName, $fileDestination);
+                  $thuislogonaam = $fileNameNew;
+                } else {
+                  echo "Your file is too big!";
+                }
+              } else {
+                echo "There was an error uploading your file!";
+              }
+            } else {
+              echo "You cannot upload files of this type!";
+            }
+
+            $file = $_FILES['logouit'];
+            $fileName = $file['name'];
+            $fileTmpName = $file['tmp_name'];
+            $fileSize = $file['size'];
+            $fileError = $file['error'];
+            $fileType = $file['type'];
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+       
+            $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+             
+            if (in_array($fileActualExt, $allowed)) {
+              if ($fileError === 0) {
+                if ($fileSize < 1000000) {
+                  $fileNameNew = uniqid('', true).".".$fileActualExt;
+                  $fileDestination = '../uploads/teamlogo/'.$fileNameNew;
+                  move_uploaded_file($fileTmpName, $fileDestination);
+                  $uitlogonaam = $fileNameNew;
+                } else {
+                  echo "Your file is too big!";
+                }
+              } else {
+                echo "There was an error uploading your file!";
+              }
+            } else {
+              echo "You cannot upload files of this type!";
+            }
+            if(!empty($thuislogonaam) && !empty($uitlogonaam)){
+              $wedstrijdquery = "INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`,`Thuisteamlogo`, `Uitteamlogo`) VALUES ('$datumquery', '$thuisteam', '$uitteam' , '$thuislogonaam' , '$uitlogonaam')";
+              $conn->query($wedstrijdquery);
+              ?><script>$(".messages").text("De ingevulde wedstrijd is toegevoegd.");</script><?php
+            } else {
+              ?><script>$(".messages").text("Er is iets fout gegaan probeer het opnieuw!");</script><?php
+            }
+          }
+          }else{
+          ?>
+        <script>
+          $(".messages").text("De ingevoerde is voor de huidige datum , voer een geldige datum in.");
+      </script>
+      <?php }
     }
-    $thuisteam=mysqli_escape_string($conn, $_POST['thuisteam']);
-    $uitteam=mysqli_escape_string($conn, $_POST['uitteam']);
-    $datum=mysqli_escape_string($conn, $_POST['datum']);
-    $datum=str_replace("T", " ", $datum);
-    $datum=str_replace('/', '-', $datum);
-    $datum=strtotime($datum);
-    $datumquery=date('Y-m-d H:i', $datum);
-    $datumhuidig = new DateTime();
-    $datumhuidig = $datumhuidig->format('Y-m-d H:i');
-    if($datumquery > $datumhuidig){
-        $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
-        $conn->query($wedstrijdquery);
-        ?>
-    <script>
-        $(".messages").text("Vul een geldige datum in.");
-    </script>
-    <?php
-    }else{
-        ?>
-    <script>
-        $(".messages").text("De ingevulde wedstrijd is toegevoegd.");
-    </script>
-    <?php
-}
 }
 ?>
