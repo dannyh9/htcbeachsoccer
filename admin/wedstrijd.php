@@ -102,7 +102,7 @@ if(isset($_POST['submit'])){
        if(!file_exists($_FILES['logothuis']['tmp_name']) || !is_uploaded_file($_FILES['logothuis']['tmp_name']) && !file_exists($_FILES['logouit']['tmp_name']) || !is_uploaded_file($_FILES['logouit']['tmp_name'] )) {
 
             $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
-            var_dump($_FILES);
+            //var_dump($_FILES);
             //$conn->query($wedstrijdquery);
           ?>
           <script>$(".messages").text("De ingevulde wedstrijd is toegevoegd.");</script>
