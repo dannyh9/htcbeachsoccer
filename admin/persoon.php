@@ -129,7 +129,7 @@ if($id == ""){
         ?>
        <a href="index.php?newaccid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
         Maak account
-       </a >
+       </a>
        <?php
        }
        ?>
@@ -142,7 +142,7 @@ if($id == ""){
 
 <?php 
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])){
   if (empty($_POST['voornaam']) || empty($_POST['achternaam'])){?>
     <script>
     $(".messages").text("Vul de verplichte velden in.");
@@ -176,7 +176,5 @@ if(isset($_POST['delete'])){
   $conn->query($deletepersoonquery);
   redirectoverview();
 }
-
-if(isset($_POST['delete'])){
-  }
+}
 ?> 
