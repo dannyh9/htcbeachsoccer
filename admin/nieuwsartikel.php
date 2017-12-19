@@ -230,7 +230,7 @@ if(isset($_GET["nieuwsartikelid"])) {
 
   redirectoverview("");
   if(isset($_POST['delete'])){
-  $deletenieuwsartikelquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = $id";
   $conn->query($deletenieuwsartikelquery);
   redirectoverview();
 }
