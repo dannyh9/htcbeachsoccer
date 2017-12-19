@@ -22,6 +22,9 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 			 		.onder {
 			 			padding-top:30px;
 			 		}
+			 		img {
+    					max-width: 400px;
+					}
 			 	</style>
 		
 		      <div class="row content row-offcanvas row-offcanvas-right">
@@ -50,7 +53,7 @@ if(isset($_GET['id'])&& !empty($_GET['id'])) {
 
 		        					if($row["Afbeelding"] != NULL) {
 		        						?>
-		        						<img align="right" src="uploads/<?php echo $row['Afbeelding']; ?>">
+		        						<img align="right" max- src="uploads/<?php echo $row['Afbeelding']; ?>">
 		        						<?php 
 		        					}
 		        						$datum = substr($row['Datum'], 0, 10);
