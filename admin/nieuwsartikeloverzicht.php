@@ -106,24 +106,9 @@ if($code == "error1"){ ?>
     <div class="alert alert-success">
         Artikel verwijderd!
     </div>
-    <?php } 
-    ?>
-
-<<<<<<< HEAD
- <input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
-<table class="table table-hover" id="newstable"> 
- <thead>
-    <tr>
-        <th>Titel</th>
-        <th>Inhoud</th>
-    </tr>
-</thead>
-<tbody>
-    <?php 
-    while($row = mysqli_fetch_array($result)){ 
-=======
-    <input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
-    <a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
+    <?php }  
+    while($row = mysqli_fetch_array($result)){?>
+    <input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek artikelen.." class="form-control">
     <table class="table table-hover" id="newstable">
        <thead>
         <tr>
@@ -133,8 +118,7 @@ if($code == "error1"){ ?>
     </thead>
     <tbody>
         <?php 
-        while($row = mysqli_fetch_array($result)){ 
->>>>>>> 315e20cfe5bb8f8062916d3f9ac608233dbd2b58
+        while($row = mysqli_fetch_array($result)){
                         //var_dump($row);
             ?>
             <tr class="row2" data-id="<?php echo $row['ArtikelID'];?>">
@@ -160,6 +144,6 @@ if($code == "error1"){ ?>
 }
 
 $row = mysqli_fetch_array($result);
-
+}
 ?>
 
