@@ -69,7 +69,7 @@ if(isset($_GET["nieuwsartikelid"])) {
            <span class="asteriskField">
             *
           </label>
-          <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *" value="<?php echo $titel; ?>"/>
+          <input class="form-control" id="titel" name="titel" type="text" placeholder="Vul hier de titel in *" required value="<?php echo $titel; ?>"/>
         </div>
         <div class="form-group ">
           <label class="control-label " for="inhoud">
@@ -77,7 +77,7 @@ if(isset($_GET["nieuwsartikelid"])) {
            <span class="asteriskField">
             *
           </label>
-          <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" rows="10""/> <?php echo $inhoud; ?> </textarea>
+          <textarea class="form-control tinymce" cols="40" id="inhoud" name="inhoud" required rows="10""/> <?php echo $inhoud; ?> </textarea>
         </div>
         <div class="form-group">
           <div class="form-group">
@@ -103,6 +103,8 @@ if(isset($_GET["nieuwsartikelid"])) {
             </div>
             <img id='img-upload'/>
             <div>
+              <div class="messages" style="font-size:30px" ></div>     
+
               <br>
               <button class="btn btn-primary " name="submit" type="submit">
                 Nieuw nieuwsartikel
@@ -175,6 +177,12 @@ if(isset($_GET["nieuwsartikelid"])) {
 
 
   if (isset($_POST['submit'])) {
+  if (empty($_POST['titel']) || empty($_POST['inhoud'])){?>
+    <script>
+    $(".messages").text("Vul de verplichte velden in.");
+    </script>
+<?php
+}else{
     $titel= $_POST['titel'];
     $inhoud= $_POST['inhoud'];
     $username= $_SESSION['user'];
@@ -230,13 +238,13 @@ if(isset($_GET["nieuwsartikelid"])) {
 
   redirectoverview("");
   if(isset($_POST['delete'])){
-  $deletenieuwsartikelquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+  $deletenieuwsartikelquery = "DELETE FROM `nieuwsartikel` WHERE `ArtikelID` = $id";
   $conn->query($deletenieuwsartikelquery);
   redirectoverview();
 }
 
 }
-
+}
 
 
 

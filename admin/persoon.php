@@ -67,7 +67,7 @@ if($id == ""){
          <span class="asteriskField">
         *
       </label>
-      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text" value="<?php echo $voornaam; ?>"/>
+      <input class="form-control" id="voornaam" placeholder="Vul hier uw Voornaam in *" name="voornaam" type="text" required value="<?php echo $voornaam; ?>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="tussenvoegsel">
@@ -82,7 +82,7 @@ if($id == ""){
          <span class="asteriskField">
         *
       </label>      
-      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" value="<?php echo $achternaam; ?>"/>
+      <input class="form-control" id="achternaam" placeholder="Vul hier uw Achternaam in *" name="achternaam" type="text" required value="<?php echo $achternaam; ?>"/>
      </div>     
      <div class="form-group">     
           <div class="form-group">
@@ -114,6 +114,7 @@ if($id == ""){
         <img id='img-upload'/>
           <div>
             <br>
+       <div class="messages" style="font-size:30px" ></div>     
        <button class="btn btn-primary " name="submit" type="submit">
         Opslaan
        </button>
@@ -123,12 +124,12 @@ if($id == ""){
         Verwijder
        </button>
        <?php
-      }
+       }
        if(!$id == "" && $gotacc){
         ?>
        <a href="index.php?newaccid=<?php echo $id;?>" class="btn btn-warning " name="createaccount" type="submit">
         Maak account
-       </a >
+       </a>
        <?php
        }
        ?>
@@ -141,7 +142,14 @@ if($id == ""){
 
 <?php 
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])){
+  if (empty($_POST['voornaam']) || empty($_POST['achternaam'])){?>
+    <script>
+    $(".messages").text("Vul de verplichte velden in.");
+    </script>
+<?php
+  }
+  else{
   $voornaam=$_POST['voornaam'];
   $tussenvoegsel=$_POST['tussenvoegsel'];
   $achternaam=$_POST['achternaam'];
@@ -168,7 +176,5 @@ if(isset($_POST['delete'])){
   $conn->query($deletepersoonquery);
   redirectoverview();
 }
-
-if(isset($_POST['delete'])){
-  }
+}
 ?> 
