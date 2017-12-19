@@ -102,9 +102,8 @@ if($code == "error1"){ ?>
 }
 ?>
 
-<input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
-<a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
-<table class="table table-hover" id="newstable">
+ <input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Zoek namen.." class="form-control">
+<table class="table table-hover" id="newstable"> 
  <thead>
     <tr>
         <th>Titel</th>
@@ -134,7 +133,7 @@ if($code == "error1"){ ?>
 ?>
 </tbody>
 </table>
-
+<a class="btn btn-primary" href="index.php?page=nieuwsartikelaanmaken">nieuw nieuwsartikel</a>
 <?php
 }
 
