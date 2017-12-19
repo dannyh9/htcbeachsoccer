@@ -1,7 +1,7 @@
 <?php 
-    if(!isset($_SESSION['rollid'],$_SESSION['user']) && empty($_SESSION['rollid']) && empty($_SESSION['user'])) {
-        exit;
-    }
+if(!isset($_SESSION['rollid'],$_SESSION['user']) && empty($_SESSION['rollid']) && empty($_SESSION['user'])) {
+	exit;
+}
 ?>
 <?php
 include '../databaseconnection.php';
@@ -31,7 +31,6 @@ if(isset($_GET["newaccid"])){
 	$persrow = mysqli_fetch_array($persoonresult);
 	$gotacc = isset($accrow);
 	$gotpers = isset($persrow);
-	var_dump($id);
 	if($gotacc){
 		redirectoverview("&redcode=error1");
 		exit;
@@ -47,6 +46,31 @@ if(isset($_GET["newaccid"])){
 $authorisatiequery = "SELECT * FROM authorisatie";
 $authorresult = $conn->query($authorisatiequery);
 
+
+
+if(isset($_GET["redcode"])){
+	$code = $_GET["redcode"];
+} else {
+	$code = "";
+}
+
+
+if($code == "error1"){ ?>
+
+<br>
+<div class="alert alert-danger">
+	Gebruikersnaam en/of wachtwoord niet ingevuld!
+</div>
+
+<?php 
+} elseif($code == "error2"){
+	?>
+	<br>
+	<div class="alert alert-danger">
+		Gebruikersnaam bestaat al!
+	</div>
+	<?php
+}
 ?>
 
 
@@ -73,7 +97,7 @@ $authorresult = $conn->query($authorisatiequery);
 								<span class="asteriskField">
 									*
 								</label>
-								<input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value="" required />
+								<input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value="" />
 							</div>
 
 							<div class="form-group ">
@@ -82,7 +106,7 @@ $authorresult = $conn->query($authorisatiequery);
 									<span class="asteriskField">
 										*
 									</label>
-									<input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password" required />
+									<input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password" />
 								</div>
 								<label for="PersoonID">Selecteer rol</label>
 								<select class="form-control" id="persoonid" name="rollid">
@@ -115,17 +139,23 @@ $authorresult = $conn->query($authorisatiequery);
 
 	if (isset($_POST["registreren"])) {
 
+		$username = mysqli_real_escape_string($conn, $_POST['username']);
+
+		$accountcheckquery = "SELECT * FROM authenticatie WHERE username = '$username'";
+		$accountresult = $conn->query($accountcheckquery);
+		$accountrow = mysqli_num_rows($accountresult);
+		if($accountrow > 0) {
+        	// account gevonden.
+        	$check = false;
+        	// error maken.
+        }
 
 
-
-
-	//Error handlers
-	//Check for empty fields
-		if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['rollid'])) {
-			header("Location: registratieform.php?signup=empty");
-			exit();
-		}
-		else {
+		if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['rollid'])) { ?>
+		<script>window.location.replace("../admin/index.php?newaccid=<?php echo $id; ?>&redcode=error1");</script>
+		<?php } elseif(!$check){
+			?><script>window.location.replace("../admin/index.php?newaccid=<?php echo $id; ?>&redcode=error2");</script><?php
+		} else {
 			$username = mysqli_real_escape_string($conn, $_POST['username']);
 			$password = mysqli_real_escape_string($conn, $_POST['password']);
 			$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
