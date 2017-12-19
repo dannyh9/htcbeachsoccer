@@ -9,7 +9,6 @@ include('databaseconnection.php');
   }
 </style>
               <?php
-              // Create a new DateTime object
               $date = new DateTime('yesterday');
               $dateQuery = $date->format('Y-m-d H:i:s');
               
@@ -20,7 +19,6 @@ include('databaseconnection.php');
           <div class="container">
             <div class="text-center boldtext" style="border:1px #164394 solid" >
               <?php
-              if($result){
               $datum=$row['Datum'];
               $datum=strtotime($datum);
               $datum=date('d-m-Y H:i', $datum);
@@ -43,8 +41,7 @@ include('databaseconnection.php');
             <hr>
             <?php
           }
-        }
-          ?>
+            ?>
            <a class="twitter-timeline" data-lang="nl" data-width="320" data-height="420" data-theme="light" href="https://twitter.com/PBSZ?ref_src=twsrc%5Etfw">
             Tweets by PBSZ
           </a>
