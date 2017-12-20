@@ -169,13 +169,12 @@ if (isset($_POST['submit'])){
       redirectoverview();
     }
   }
-
-  if(isset($_POST['delete'])){
+}
+if(isset($_POST['delete'])){
     $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
     $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
     $conn->query($deleteaccountquery);
     $conn->query($deletepersoonquery);
     redirectoverview();
   }
-}
 ?> 
