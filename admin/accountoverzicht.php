@@ -44,7 +44,7 @@ if($result->num_rows > 0){
 
         function linkToOverview () {
             var Id = $(this).closest('tr').attr('data-id');
-            window.location= 'index.php?persoonid='+Id;
+            window.location= 'index.php?accid='+Id;
         };
     });
 
