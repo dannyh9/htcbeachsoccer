@@ -156,25 +156,26 @@ if (isset($_POST['submit'])){
   $email=$_POST['email'];
   $functie=$_POST['functie'];
 
-  if ($id == ""){
-    $persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
-    $conn->query($persoonquery);
+    if ($id == ""){
+      $persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
+      $conn->query($persoonquery);
+      redirectoverview();
+  
+  
+    } else if ($id != ""){
+    
+      $updatequery = "UPDATE persoon SET Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
+      $conn->query($updatequery);
+      redirectoverview();
+    }
+  }
+
+  if(isset($_POST['delete'])){
+    $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
+    $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
+    $conn->query($deleteaccountquery);
+    $conn->query($deletepersoonquery);
     redirectoverview();
-
-
-  } else if ($id != ""){
-
-  $updatequery = "UPDATE persoon SET Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
-  $conn->query($updatequery);
-  redirectoverview();
-}}
-
-if(isset($_POST['delete'])){
-  $deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
-  $deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
-  $conn->query($deleteaccountquery);
-  $conn->query($deletepersoonquery);
-  redirectoverview();
-}
+  }
 }
 ?> 
