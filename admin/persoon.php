@@ -147,70 +147,22 @@ if (isset($_POST['submit'])){
     <script>
     $(".messages").text("Vul de verplichte velden in.");
     </script>
-    <?php
+<?php
   }
   else{
-
-    if(!file_exists($_FILES['persoonimgInp']['tmp_name']) || !is_uploaded_file($_FILES['persoonimgInp']['tmp_name'])){
-        $nopasfotoquery="INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
-            $conn->query($nopasfotoquery);
-        ?>
-        <script>$(".messages").text("De ingevulde wedstrijd is toegevoegd.");</script>
-        <?php
-    } else { 
-          //var_dump($id);
-        $file = $_FILES['persoonimgInp'];
-        $fileName = $file['name'];
-        $fileTmpName = $file['tmp_name'];
-        $fileSize = $file['size'];
-        $fileError = $file['error'];
-        $fileType = $file['type'];
-        
-        $fileExt = explode('.', $fileName);
-        $fileActualExt = strtolower(end($fileExt));
-        
-        $allowed = array('jpg', 'jpeg', 'png', 'pdf');
-        
-        if (in_array($fileActualExt, $allowed)) {
-          if ($fileError === 0) {
-            if ($fileSize < 1000000) {
-              $fileNameNew = uniqid('', true).".".$fileActualExt;
-              $fileDestination = '../uploads/pasfoto/'.$fileNameNew;
-              move_uploaded_file($fileTmpName, $fileDestination);
-              $pasfoto = $fileNameNew;
-          } else {
-              echo "Your file is too big!";
-          }
-      } else {
-        echo "There was an error uploading your file!";
-    }
-} else {
-  echo "You cannot upload files of this type!";
-}
-}
-
-
-
   $voornaam=$_POST['voornaam'];
   $tussenvoegsel=$_POST['tussenvoegsel'];
   $achternaam=$_POST['achternaam'];
   $email=$_POST['email'];
   $functie=$_POST['functie'];
 
-  if ($id == "" && !empty($pasfoto)){
-    $persoonquery = "INSERT INTO `persoon`(`pasfoto`, `voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$pasfoto', '$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
-    $conn->query($persoonquery);
-    redirectoverview();
-
-
-  } else if ($id == "" && empty($pasfoto)){
+  if ($id == ""){
     $persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
     $conn->query($persoonquery);
     redirectoverview();
 
-  }
 
-  else if ($id != ""){
+  } else if ($id != ""){
 
   $updatequery = "UPDATE persoon SET Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
   $conn->query($updatequery);
