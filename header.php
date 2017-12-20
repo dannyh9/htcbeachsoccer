@@ -43,6 +43,9 @@ if ($result->num_rows === 0) {
   <body>
     <style>
 .mySlides {display:none;}
+.navbar-brand img {
+  max-width:300px;
+}
 </style>
     <div id="fb-root"></div>
 <script>
