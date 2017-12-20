@@ -42,8 +42,10 @@ if ($result->num_rows === 0) {
   </head>
   <body>
     <style>
-.mySlides {display:none;}
-.navbar-brand img {
+.mySlides {
+  display:none;
+}
+.mySlides img {
     max-width: 100%;
     max-height: 200px;
 }
