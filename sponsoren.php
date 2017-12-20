@@ -16,7 +16,7 @@ if ($result->num_rows === 0) {
 }
 ?>
 <style>
-img {
+p img {
     width: 50%;
     height: auto;
 }
