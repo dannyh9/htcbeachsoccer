@@ -66,7 +66,7 @@ if ($result->num_rows === 0) {
         </a>
       </div>
       <div id="sponsors" class="col-md-4">
-        <div class="w3-content" style="max-width:300px">
+        <div class="w3-content" style="max-width:400px">
           <?php echo $content; ?>
         </div>
           
