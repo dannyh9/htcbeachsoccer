@@ -103,7 +103,7 @@ if(isset($_POST['submit'])){
 
             $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
             //var_dump($_FILES);
-            //$conn->query($wedstrijdquery);
+            $conn->query($wedstrijdquery);
           ?>
           <script>$(".messages").text("De ingevulde wedstrijd is toegevoegd.");</script>
           <?php
