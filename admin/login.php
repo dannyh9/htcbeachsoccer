@@ -7,8 +7,8 @@ $msg = FALSE;
 
 if (isset($_POST["login"])) {
 	if(isset($_POST["username"]) && $_POST["password"] != "") {
-		$username=$_POST['username'];
-		$password=$_POST['password'];
+		$username=mysqli_real_escape_string($conn,$_POST['username']);
+		$password=mysqli_real_escape_string($conn,$_POST['password']);
 		$hashpassword = hash("sha256", $password);
 
 		$loginquery = "SELECT * FROM `authenticatie` WHERE Username = '$username' AND Password = '$hashpassword'";

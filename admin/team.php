@@ -68,8 +68,8 @@ if(isset($_GET["teamid"])) {
 </div>
 <?php 
 if (isset($_POST['submit'])){
-$teamnaam=$_POST['teamnaam'];
-$klasse=$_POST['klasse'];
+$teamnaam=mysqli_real_escape_string($conn,$_POST['teamnaam']);
+$klasse=mysqli_real_escape_string($conn,$_POST['klasse']);
 
  if ($id == ""){
     $teamquery = "INSERT INTO `team`(`teamnaam`, `klasse`) VALUES ('$teamnaam', '$klasse')";

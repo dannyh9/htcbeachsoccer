@@ -108,7 +108,7 @@ include 'databaseconnection.php';
         $name="". $voornaam ." " . $achternaam .""; 
         $phone=mysqli_real_escape_string($conn,$_POST['telefoonnummer']);
         $sendto="kevinhendriks69@gmail.com";
-        $message=$_POST['bericht'];
+        $message=mysqli_real_escape_string($conn,$_POST['bericht']);
         $message= str_replace("\n.", "\n..", $message);
         $message= wordwrap($message, 70, "\r\n");
         $subject="Nieuw ingevuld contactformulier.";

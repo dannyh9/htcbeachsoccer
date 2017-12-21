@@ -27,7 +27,7 @@ function redirectoverview($status){
 
 
 if(isset($_GET["nieuwsartikelid"])) {
-  $id = $_GET["nieuwsartikelid"];
+  $id = mysqli_real_escape_string($conn,$_GET["nieuwsartikelid"]);
   $idquery = "SELECT * FROM nieuwsartikel WHERE ArtikelID = '$id'";
   $result = $conn->query($idquery);
   $row = mysqli_fetch_array($result);

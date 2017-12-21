@@ -94,7 +94,7 @@ if(isset($_POST['submit'])){
       $datumquery=date('Y-m-d H:i', $datum);
       $datumhuidig = new DateTime();
       $datumhuidig = $datumhuidig->format('Y-m-d H:i');
-      var_dump($datumhuidig , $datumquery);
+      //var_dump($datumhuidig , $datumquery);
       if($datumquery > $datumhuidig){
           //$wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
           //$conn->query($wedstrijdquery);
@@ -103,7 +103,7 @@ if(isset($_POST['submit'])){
 
             $wedstrijdquery="INSERT INTO `wedstrijd`(`Datum`, `Thuisteam`, `Uitteam`) VALUES ('$datumquery', '$thuisteam', '$uitteam')";
             //var_dump($_FILES);
-            //$conn->query($wedstrijdquery);
+            $conn->query($wedstrijdquery);
           ?>
           <script>$(".messages").text("De ingevulde wedstrijd is toegevoegd.");</script>
           <?php

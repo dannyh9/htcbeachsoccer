@@ -127,8 +127,8 @@ if (isset($_POST['submit'])) {
   <?php
   }
   else{
-  $naam= $_POST['sponsornaam'];
-  $link= $_POST['link'];
+  $naam= mysqli_real_escape_string($conn,$_POST['sponsornaam']);
+  $link= mysqli_real_escape_string($conn,$_POST['link']);
   //$conn->query($updatequery);
   //redirectoverview();
   //var_dump($_FILES);

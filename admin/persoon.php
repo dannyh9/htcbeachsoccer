@@ -25,7 +25,7 @@ function redirectoverview(){
 
 
 if(isset($_GET["persoonid"])) {
-  $id = $_GET["persoonid"];
+  $id = mysqli_real_escape_string($conn,$_GET["persoonid"]);
   $idquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
   $result = $conn->query($idquery);
   $row = mysqli_fetch_array($result);
@@ -167,11 +167,11 @@ if (isset($_POST['submit'])){
   <?php
 }
 else{
-  $voornaam=$_POST['voornaam'];
-  $tussenvoegsel=$_POST['tussenvoegsel'];
-  $achternaam=$_POST['achternaam'];
-  $email=$_POST['email'];
-  $functie=$_POST['functie'];
+  $voornaam=mysqli_real_escape_string($conn,$_POST['voornaam']);
+  $tussenvoegsel=mysqli_real_escape_string($conn,$_POST['tussenvoegsel']);
+  $achternaam=mysqli_real_escape_string($conn,$_POST['achternaam']);
+  $email=mysqli_real_escape_string($conn,$_POST['email']);
+  $functie=mysqli_real_escape_string($conn,$_POST['functie']);
 
   if(!file_exists($_FILES['img']['tmp_name']) || !is_uploaded_file($_FILES['img']['tmp_name'])){
 
