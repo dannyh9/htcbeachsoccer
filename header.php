@@ -42,7 +42,13 @@ if ($result->num_rows === 0) {
   </head>
   <body>
     <style>
-.mySlides {display:none;}
+.mySlides {
+  display:none;
+}
+.mySlides img {
+    max-width: 100%;
+    max-height: 200px;
+}
 </style>
     <div id="fb-root"></div>
 <script>

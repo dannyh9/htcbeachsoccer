@@ -15,7 +15,7 @@ include('databaseconnection.php');
               $thuisteamquery="SELECT * FROM wedstrijd WHERE Datum >= '$dateQuery' LIMIT 2";
               $result=mysqli_query($conn, $thuisteamquery);
               $row=mysqli_fetch_array($result);
-              if(!$result){?>
+              if($result){?>
           <div class="container">
             <div class="text-center boldtext" style="border:1px #164394 solid" >
               <?php

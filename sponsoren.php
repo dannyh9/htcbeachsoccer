@@ -15,6 +15,12 @@ if ($result->num_rows === 0) {
     $content = "Geen Resultaten gevonden";
 }
 ?>
+<style>
+p img {
+    width: 50%;
+    height: auto;
+}
+</style>
 <div class="container">
 
       <div class="row content row-offcanvas row-offcanvas-right">

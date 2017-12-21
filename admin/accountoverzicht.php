@@ -8,7 +8,7 @@
 <?php
 include '../databaseconnection.php';
 
-$queryoverzicht = "SELECT A.username , P.Voornaam , P.Tussenvoegsel , P.Achternaam FROM persoon P JOIN authenticatie A ON P.persoonid = A.persoonid";
+$queryoverzicht = "SELECT A.username , P.Voornaam , P.Tussenvoegsel , P.Achternaam, R.Rolnaam  FROM persoon P JOIN authenticatie A ON P.Persoonid = A.Persoonid JOIN authorisatie R ON A.RolID = R.RolID";
 // $result = $conn->query($Contactoverzichtquery);
 
 
@@ -126,6 +126,7 @@ if($code == "error1"){ ?>
         <th>Voornaam</th>
         <th>Tussenvoegsel</th>
         <th>Achternaam</th>
+        <th>Rol</th>
     </tr>
 </thead>
 <tbody>
@@ -145,6 +146,9 @@ if($code == "error1"){ ?>
             </td>
             <td>
                 <?php echo  $row['Achternaam'];?>
+            </td>
+            <td>
+                <?php echo  $row['Rolnaam'];?>
             </td>
         </a>
     </tr>

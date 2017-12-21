@@ -112,7 +112,9 @@
               include 'sponsor.php';
           }else if($page == "wedstrijd"){
               include 'wedstrijd.php';
-          }   else {
+          }else if($page == "wedstrijdoverzicht"){
+              include 'wedstrijdoverzicht.php';
+          }    else {
             echo "er is iets fout gegaan.";
           }
        } else if (isset($_GET['contactid'])) {

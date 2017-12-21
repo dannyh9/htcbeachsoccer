@@ -87,7 +87,7 @@ if(isset($_GET["redcode"])){
 
 
 if($code == "error1"){ ?>
-
+<br>
 <div class="alert alert-danger">
     Gebruiker heeft al een account!
 </div>
@@ -95,7 +95,7 @@ if($code == "error1"){ ?>
 <?php 
 } elseif($code == "error2"){
     ?>
-
+    <br>
     <div class="alert alert-danger">
         Persoon bestaat niet!
     </div>
@@ -103,12 +103,14 @@ if($code == "error1"){ ?>
     <?php
 } elseif($code == "error3"){
     ?>
+    <br>
     <div class="alert alert-danger">
         Geen persoon geselecteerd!
     </div>
     <?php
 } elseif($code == "succes1"){
     ?>
+    <br>
     <div class="alert alert-success">
         Account is aangemaakt!
     </div>
