@@ -179,13 +179,13 @@ else{
     if ($id == ""){
       $persoonquery = "INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
       $conn->query($persoonquery);
-      //redirectoverview();
+      redirectoverview();
 
     } else if ($id != ""){
 
       $updatequery = "UPDATE persoon SET Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
       $conn->query($updatequery);
-      //redirectoverview();
+      redirectoverview();
     }
     //$nopasfotoquery="INSERT INTO `persoon`(`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
     //$conn->query($nopasfotoquery);
@@ -214,13 +214,13 @@ else{
           if ($id == ""){
             $persoonquery = "INSERT INTO `persoon`(`Pasfoto`,`voornaam`, `tussenvoegsel`, `achternaam`,  `email`, `functie`) VALUES ('$pasfoto','$voornaam', '$tussenvoegsel', '$achternaam', '$email', '$functie')";
             $conn->query($persoonquery);
-            //redirectoverview();
+            redirectoverview();
 
           } else if ($id != ""){
 
             $updatequery = "UPDATE persoon SET Pasfoto = '$pasfoto', Voornaam = '$voornaam', Tussenvoegsel = '$tussenvoegsel', Achternaam = '$achternaam', Email = '$email', Functie = '$functie' WHERE PersoonID = '$id'";
             $conn->query($updatequery);
-            //redirectoverview();
+            redirectoverview();
           }
         } else {
           echo "Your file is too big!";
