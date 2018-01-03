@@ -47,8 +47,7 @@
                             <a class="wide" href="#"><i class="fa fa-user-circle-o fa-lg"></i> Accounts <span class="arrow"></span></a>
                           </li>
                           <ul class="sub-menu collapse" id="Account">
-                            <li>Accounts Beheren</li>
-                            <li>Accounts Aanmaken</li>
+                            <li> <a href="?page=accounts">Accounts Beheren </a></li>
                           </ul>
 
                           <?php  
@@ -114,6 +113,8 @@
               include 'wedstrijd.php';
           }else if($page == "wedstrijdoverzicht"){
               include 'wedstrijdoverzicht.php';
+          }else if($page == "accounts"){
+              include 'accountoverzicht.php';
           }    else {
             echo "er is iets fout gegaan.";
           }

@@ -42,6 +42,7 @@ if(isset($_GET["persoonid"])) {
   $email="";
   $functie="";
   $id="";
+  $afbeelding="";
 }
 
 if (!$id == ""){
