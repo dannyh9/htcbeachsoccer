@@ -21,8 +21,8 @@ function redirectoverview($status){
 }
 
 
-if(isset($_GET["newaccid"])){
-	$id = $_GET["newaccid"];
+if(isset($_GET["accid"])){
+	$id = $_GET["accid"];
 	$accountcheckquery = "SELECT * FROM authenticatie WHERE PersoonID = '$id'";
 	$persooncheckquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
 	$accountresult = $conn->query($accountcheckquery);
@@ -40,7 +40,7 @@ if(isset($_GET["newaccid"])){
 		exit;
 	}
 } else {
-	redirectoverview("&redcode=error3");
+	// redirectoverview("&redcode=error3");
 }
 
 $authorisatiequery = "SELECT * FROM authorisatie";
@@ -175,63 +175,6 @@ if($code == "error1"){ ?>
 
 
 		}
-	// 			//Check if username exists USING PREPARED STATEMENTS
-	// 		$sql = "SELECT * FROM authenticatie WHERE username = '$username'";
-	// 			//Create a prepared statement
-	// 		$stmt = mysqli_stmt_init($conn);
-	// 		var_dump($username);
-	// 		var_dump($password);
-	// 		var_dump($rollid);
-	// 		var_dump($persoonID);
-	// 		var_dump($sql);
-	// 		var_dump($stmt);
-	// 			//Check if prepared statement fails
-	// 		if(!mysqli_stmt_prepare($stmt, $sql)) {
-	// 			header("Location: registratieform.php?login=error1");
-	// 			exit();
-	// 		} else {
-	// 				//Bind parameters to the placeholder
-	// 				//The "s" means we are defining the placeholder as a string
-	// 			mysqli_stmt_bind_param($stmt, "s", $username);
-
-	// 				//Run query in database
-	// 			mysqli_stmt_execute($stmt);
-
-	// 				//Check if user exists
-	// 			mysqli_stmt_store_result($stmt);
-	// 			$resultCheck = mysqli_stmt_num_rows($stmt);
-	// 			if ($resultCheck > 0) {
-	// 				// header("Location: registratieform.php?signup=usertaken");
-	// 				exit();
-	// 			} else {
-	// 					//Hashing the password
-	// 				$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-	// 					//Insert the user into the database
-	// 				$sql = "INSERT INTO `authenticatie` (`Username`, `Password`, `RolID`, `PersoonID`) VALUES ('?', '?', '?', '?');";
-	// 					//Create second prepared statement
-	// 				$stmt2 = mysqli_stmt_init($conn);
-
-	// 					//Check if prepared statement fails
-	// 				if(!mysqli_stmt_prepare($stmt2, $sql)) {
-	// 					// header("Location: registratieform.php?login=error2");
-	// 					exit();
-	// 				} else {
-	// 						//Bind parameters to the placeholder
-	// 					mysqli_stmt_bind_param($stmt2, "ssss", $username, $hashedPwd, $rollid, $persoonID);
-
-	// 						//Run query in database
-	// 					mysqli_stmt_execute($stmt2);
-	// 					// header("Location: registratieform.php?signup=success");
-	// 					exit();
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-
-	// //Close first statement
-	// 	mysqli_stmt_close($stmt);
-	// //Close second statement
-	// 	mysqli_stmt_close($stmt2);
 
 	} 
 
