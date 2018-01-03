@@ -8,16 +8,18 @@ include('databaseconnection.php');
     font-weight:bold;
   }
 </style>
+<div class="container">
 <?php
 $date = new DateTime('yesterday');
 $dateQuery = $date->format('Y-m-d H:i:s');
 
 $thuisteamquery="SELECT * FROM wedstrijd WHERE Datum >= '$dateQuery' LIMIT 2";
 $result=mysqli_query($conn, $thuisteamquery);
-$row=mysqli_fetch_array($result);
 if ($result->num_rows === 0) {
-}else{?>
-<div class="container">
+}else{
+ while($row = mysqli_fetch_array($result)) {
+  ?>
+
   <div class="text-center boldtext" style="border:1px #164394 solid" >
     <?php
     $datum=$row['Datum'];
@@ -41,6 +43,7 @@ if ($result->num_rows === 0) {
   <br><br>
   <hr>
   <?php
+  }
 }
 ?>
 <a class="twitter-timeline" data-lang="nl" data-width="320" data-height="420" data-theme="light" href="https://twitter.com/PBSZ?ref_src=twsrc%5Etfw">

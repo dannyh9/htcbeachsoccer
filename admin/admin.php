@@ -128,6 +128,10 @@
           include 'sponsor.php';
        } else if(isset($_GET['newaccid'])) {
           include 'registratieform.php';
+       }else if(isset($_GET['accountid'])) {
+          include 'account.php';
+       }else if(isset($_GET['wedstrijdid'])) {
+          include 'wedstrijd.php';
        }
        else { 
           //laad home pagina in
