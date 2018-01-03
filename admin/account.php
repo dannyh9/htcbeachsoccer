@@ -17,28 +17,29 @@ include '../databaseconnection.php';
 $status = "";
 function redirectoverview($status){
 	$reloc = "../admin/index.php?page=personen";
-	?><script>window.location.replace("../admin/index.php?page=personen<?php echo $status; ?>");</script><?php
+	?><script>window.location.replace("../admin/index.php?page=accounts<?php echo $status; ?>");</script><?php
 }
 
 
 if(isset($_GET["accid"])){
 	$id = $_GET["accid"];
-	$accountcheckquery = "SELECT * FROM authenticatie WHERE PersoonID = '$id'";
+	$accountcheckquery = "SELECT * FROM authenticatie A JOIN authorisatie U ON A.RolID = U.RolID WHERE A.Username = '$id'";
 	$persooncheckquery = "SELECT * FROM persoon WHERE PersoonID = '$id'";
 	$accountresult = $conn->query($accountcheckquery);
 	$persoonresult = $conn->query($persooncheckquery);
 	$accrow = mysqli_fetch_array($accountresult);
+	var_dump($accrow);
 	$persrow = mysqli_fetch_array($persoonresult);
 	$gotacc = isset($accrow);
 	$gotpers = isset($persrow);
-	if($gotacc){
+	if(!$gotacc){
 		redirectoverview("&redcode=error1");
 		exit;
 	}
-	if(!$gotpers){
-		redirectoverview("&redcode=error2");
-		exit;
-	}
+	// if(!$gotpers){
+	// 	redirectoverview("&redcode=error2");
+	// 	exit;
+	// }
 } else {
 	// redirectoverview("&redcode=error3");
 }
