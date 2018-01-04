@@ -1,6 +1,8 @@
 <?php 
 if(!isset($_SESSION['rollid'],$_SESSION['user']) && empty($_SESSION['rollid']) && empty($_SESSION['user'])) {
   exit;
+} if($_SESSION['rollid'] != 1) {
+  exit;
 }
 ?><?php
 include '../databaseconnection.php';

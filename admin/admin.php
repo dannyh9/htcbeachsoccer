@@ -60,6 +60,9 @@
                             <li> <a href="index.php?page=nieuwsoverzicht">Nieuwsartikelen Beheren</a></li>
                             <li> <a href="index.php?page=nieuwsartikelaanmaken">Nieuwsartikelen Aanmaken</a></li>
                           </ul>
+                          <?php if($_SESSION['rollid'] == 1){ 
+
+                          ?>
 
                           <li data-toggle="collapse" data-target="#Media" class="collapsed">
                             <a class="wide" href="#"><i class="fa fa-picture-o fa-lg"></i> Sponsoren <span class="arrow"></span></a>
@@ -74,6 +77,9 @@
                             <i class="fa fa-envelope fa-lg"></i> Verstuurde contact formulieren
                             </a>
                           </li>
+                          <?php }
+
+                          ?>
                           <li data-toggle="collapse" data-target="#Wedstrijden" class="collapsed">
                              <a class="wide" href="#"><i class="fa fa-futbol-o fa-lg"></i> Wedstrijden <span class="arrow"></span></a>
                           </li>
