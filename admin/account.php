@@ -16,7 +16,6 @@ include '../databaseconnection.php';
 <?php
 $status = "";
 function redirectoverview($status){
-	$reloc = "../admin/index.php?page=personen";
 	?><script>window.location.replace("../admin/index.php?page=accounts<?php echo $status; ?>");</script><?php
 }
 
@@ -28,7 +27,7 @@ if(isset($_GET["accid"])){
 	$accountresult = $conn->query($accountcheckquery);
 	$persoonresult = $conn->query($persooncheckquery);
 	$accrow = mysqli_fetch_array($accountresult);
-	var_dump($accrow);
+	//var_dump($accrow);
 	$persrow = mysqli_fetch_array($persoonresult);
 	$gotacc = isset($accrow);
 	$gotpers = isset($persrow);
@@ -80,13 +79,12 @@ if($code == "error1"){ ?>
 		<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-12">
 				<?php 
-				if(isset($_GET['newaccid'])){
+				if(isset($_GET['accid'])){
 					?>
-					<form id="registratieform" method="post" action="index.php?newaccid=<?php echo $_GET['newaccid'];?>" role="form"> 
+					<form id="registratieform" method="post" action="index.php?accid=<?php echo $_GET['accid'];?>" role="form"> 
 						<?php
 					} else {
 						?>
-						<form id="registratieform" method="post" action="index.php?page=newacc" role="form"> 
 							<?php
 						}
 
@@ -98,21 +96,21 @@ if($code == "error1"){ ?>
 								<span class="asteriskField">
 									*
 								</label>
-								<input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value="" />
+								<input class="form-control" id="username" placeholder="Vul hier uw gebruikersnaam in *" name="username" type="text" value="<?php echo $accrow["Username"]?>" readonly />
 							</div>
 
 							<div class="form-group ">
 								<label class="control-label " for="password">
-									Wachtwoord
+									Nieuw Wachtwoord
 									<span class="asteriskField">
 										*
 									</label>
-									<input class="form-control" id="password" placeholder="Vul hier uw wachtwoord in *" name="password" type="password" />
+									<input class="form-control" id="password" placeholder="Vul hier het nieuwe wachtwoord in *" name="password" type="password" />
 								</div>
 								<label for="PersoonID">Selecteer rol</label>
 								<select class="form-control" id="persoonid" name="rollid">
 									<?php while($authorrow = mysqli_fetch_array($authorresult)){?>
-									<option value=<?php echo $authorrow["RolID"] ?>><?php echo $authorrow["Rolnaam"] ?></option>
+									<option <?php if($authorrow["Rolnaam"]==$accrow["Rolnaam"]){echo "selected";} ?> value="<?php echo $authorrow["RolID"]; ?>"><?php echo $authorrow["Rolnaam"]; ?></option>
 									<?php } ?>
 								</select>
 								<br>
@@ -150,28 +148,36 @@ if($code == "error1"){ ?>
 		$accountrow = mysqli_num_rows($accountresult);
 		if($accountrow > 0) {
         	// account gevonden.
-        	$check = false;
+        	//$check = false;
         	// error maken.
         }
 
 
-		if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['rollid'])) { ?>
-		<script>window.location.replace("../admin/index.php?newaccid=<?php echo $id; ?>&redcode=error1");</script>
+		if (empty($_POST['username']) || empty($_POST['rollid'])) { ?>
+
+
+		<script>//window.location.replace("../admin/index.php?newaccid=<?php echo $id; ?>&redcode=error1");</script>
 		<?php } elseif(!$check){
-			?><script>window.location.replace("../admin/index.php?newaccid=<?php echo $id; ?>&redcode=error2");</script><?php
+			?><script>//window.location.replace("../admin/index.php?newaccid=<?php echo $id; ?>&redcode=error2");</script><?php
 		} else {
-			$username = mysqli_real_escape_string($conn, $_POST['username']);
-			$password = mysqli_real_escape_string($conn, $_POST['password']);
-			$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
-			$persoonID = mysqli_real_escape_string($conn, $_GET['newaccid']);
+
+			if(empty($_POST['password'])){
+				$username = mysqli_real_escape_string($conn, $_POST['username']);
+				$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
+
+				$updatequery="UPDATE authenticatie SET RolID='$rollid' WHERE Username='$username' ";
+			}else {
+				$username = mysqli_real_escape_string($conn, $_POST['username']);
+				$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
+				$password = mysqli_real_escape_string($conn, $_POST['password']);
+				$hashedPwd = hash("sha256", $password);
+				$updatequery="UPDATE authenticatie SET RolID='$rollid',Password ='$hashedPwd' WHERE Username='$username' ";
+			}
 			// Hashing the password
-			$hashedPwd = hash("sha256", $password);
 
-			$newaccquery = "INSERT INTO `authenticatie` (`Username`, `Password`, `RolID`, `PersoonID`) VALUES ('$username', '$hashedPwd', '$rollid', '$persoonID')";
+			$conn->query($updatequery);
 
-			$conn->query($newaccquery);
-
-			redirectoverview("&redcode=succes1");	
+			//redirectoverview("&redcode=succes1");	
 
 
 
