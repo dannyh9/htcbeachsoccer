@@ -3,6 +3,7 @@ if(!isset($_SESSION['rollid'],$_SESSION['user']) && empty($_SESSION['rollid']) &
 	exit;
 }
 if($_SESSION['rollid'] != 1) {
+	echo "U heeft hiervoor geen rechten";
   exit;
 }
 ?>

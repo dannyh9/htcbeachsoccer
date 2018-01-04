@@ -3,6 +3,7 @@
         exit;
     }
     if($_SESSION['rollid'] != 1) {
+      echo "U heeft hiervoor geen rechten";
   exit;
 }
 ?>
