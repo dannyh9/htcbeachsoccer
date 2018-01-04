@@ -134,7 +134,14 @@ if(isset($_GET['wedstrijdid'])){
             <input type="datetime-local" id="datum"  name="datum">
           
           
-      <?php } ?>
+      <?php }
+      if($id !="" ){?>
+              <button class="btn btn-danger " onclick="return confirm('Weet u zeker dat u deze wedstrijd wilt verwijderen?');" name="delete" type="submit">
+                Verwijder
+              </button>
+              <?php
+            }
+       ?>
       </div>
       <div class="messages" style="font-size:20px"></div>
           <button class="btn btn-primary " name="submit" type="submit">
@@ -148,7 +155,12 @@ if(isset($_GET['wedstrijdid'])){
 </div>
 
 <?php
+if(isset($_POST['delete'])){
+  $deleteqeury = "DELETE FROM wedstrijd WHERE WedstrijdID = '$id'";
 
+  $conn->query($deleteqeury);
+  //redirectoverview();
+}
 if(isset($_POST['submit'])){
     //var_dump($_POST);
      if(empty($_POST['thuisteam']) || empty($_POST['uitteam'])){
