@@ -187,10 +187,11 @@ if (isset($_POST['submit'])) {
 
 
 if(isset($_POST['delete'])){
+  $deletesponsorquery = "DELETE FROM sponsor WHERE SponsorID = '$id'";
   //$deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
   //$deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
-  //$conn->query($deleteaccountquery);
+  $conn->query($deletesponsorquery);
   //$conn->query($deletepersoonquery);
-  //redirectoverview();
+  redirectoverview();
 }
 ?>
