@@ -1,4 +1,6 @@
 <?php
+// Dit bestand moet alleen gebruikt worden zodra de website online gezet word en word daarna verwijderd ( dit maakt de rollen en standaard gebruiker aan op de werbsite).
+//Wijzig het wachtwoord zodra deze is aangemaakt.
 include '../databaseconnection.php';
 ?>
 

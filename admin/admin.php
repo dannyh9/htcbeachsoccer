@@ -144,7 +144,7 @@
         ?>
          <h1>Welkom in het adminpaneel</h1>
             <p>
-                Hier kunnen onderdelen worden aangemaakt voor de website.
+                Hier kunnen onderdelen worden aangepast voor de website.
             </p>
        <?php
 

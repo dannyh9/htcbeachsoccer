@@ -119,9 +119,9 @@ if($code == "error1"){ ?>
     </thead>
     <tbody>
         <?php 
-        //var_dump($result);
+     
         while($row = mysqli_fetch_array($result)){
-                        //var_dump($result);
+                     
             ?>
             <tr class="row2" data-id="<?php echo $row['ArtikelID'];?>">
                 <td>

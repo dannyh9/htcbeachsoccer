@@ -31,7 +31,6 @@ if(isset($_GET["accid"])){
 	$accountresult = $conn->query($accountcheckquery);
 	$persoonresult = $conn->query($persooncheckquery);
 	$accrow = mysqli_fetch_array($accountresult);
-	//var_dump($accrow);
 	$persrow = mysqli_fetch_array($persoonresult);
 	$gotacc = isset($accrow);
 	$gotpers = isset($persrow);
@@ -39,12 +38,8 @@ if(isset($_GET["accid"])){
 		redirectoverview("&redcode=error1");
 		exit;
 	}
-	// if(!$gotpers){
-	// 	redirectoverview("&redcode=error2");
-	// 	exit;
 	// }
 } else {
-	// redirectoverview("&redcode=error3");
 }
 
 $authorisatiequery = "SELECT * FROM authorisatie";
@@ -151,9 +146,6 @@ if($code == "error1"){ ?>
 		$accountresult = $conn->query($accountcheckquery);
 		$accountrow = mysqli_num_rows($accountresult);
 		if($accountrow > 0) {
-        	// account gevonden.
-        	//$check = false;
-        	// error maken.
         }
 
 
@@ -174,15 +166,15 @@ if($code == "error1"){ ?>
 				$username = mysqli_real_escape_string($conn, $_POST['username']);
 				$rollid = mysqli_real_escape_string($conn, $_POST['rollid']);
 				$password = mysqli_real_escape_string($conn, $_POST['password']);
+				
+				
+
 				$hashedPwd = hash("sha256", $password);
 				$updatequery="UPDATE authenticatie SET RolID='$rollid',Password ='$hashedPwd' WHERE Username='$username' ";
 			}
-			// Hashing the password
-
+			
 			$conn->query($updatequery);
-
-			//redirectoverview("&redcode=succes1");	
-
+			redirectoverview($status);
 
 
 		}

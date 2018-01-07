@@ -39,7 +39,7 @@ if(isset($_GET["sponsorid"])) {
     //geen resultaat ga terug naar overzicht
     if($result->num_rows === 0){ 
       redirectoverview();
-      //
+      
     }
 
     $row = mysqli_fetch_array($result);
@@ -133,14 +133,10 @@ if (isset($_POST['submit'])) {
   else{
   $naam= mysqli_real_escape_string($conn,$_POST['sponsornaam']);
   $link= mysqli_real_escape_string($conn,$_POST['link']);
-  //$conn->query($updatequery);
-  //redirectoverview();
-  //var_dump($_FILES);
   if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
     $query = "UPDATE sponsor SET SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
     $conn->query($query);
   } else { 
-    //var_dump($id);
       $file = $_FILES['userfile'];
       $fileName = $file['name'];
       $fileTmpName = $file['tmp_name'];
@@ -165,7 +161,6 @@ if (isset($_POST['submit'])) {
                  $query = "UPDATE sponsor SET SponsorAfbeelding = '$fileNameNew',  SponsorLink = '$link' , SponsorNaam = '$naam' WHERE SponsorID = '$id'";
                  }
                  $conn->query($query);
-                  //var_dump($fileNameNew);
           } else {
             echo "Your file is too big!";
           }
@@ -176,9 +171,6 @@ if (isset($_POST['submit'])) {
         echo "You cannot upload files of this type!";
       }
     }
-    //var_dump($query);
-   
-    //exit;
    
   redirectoverview();
 
@@ -188,10 +180,7 @@ if (isset($_POST['submit'])) {
 
 if(isset($_POST['delete'])){
   $deletesponsorquery = "DELETE FROM sponsor WHERE SponsorID = '$id'";
-  //$deleteaccountquery = "DELETE FROM authenticatie WHERE PersoonID = '$id'";
-  //$deletepersoonquery = "DELETE FROM persoon WHERE PersoonID = '$id'";
   $conn->query($deletesponsorquery);
-  //$conn->query($deletepersoonquery);
   redirectoverview();
 }
 ?>

@@ -159,7 +159,7 @@ if(isset($_POST['delete'])){
   $deleteqeury = "DELETE FROM wedstrijd WHERE WedstrijdID = '$id'";
 
   $conn->query($deleteqeury);
-  //redirectoverview();
+  redirectoverview();
 }
 if(isset($_POST['submit'])){
     //var_dump($_POST);
